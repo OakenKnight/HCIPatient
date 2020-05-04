@@ -59,8 +59,8 @@
             <CheckBox BorderBrush="PowderBlue" BorderThickness="2" Content="Zapamti me!" IsChecked="False" HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Width="94" Grid.Row="4" Grid.Column="1" />
             <TextBlock TextDecorations="Underline" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="Blue" Height="20" Width="148" MouseLeftButtonDown="forgotenPassword_MouseLeftButtonDown" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="2" >Zaboravili ste lozinku?</TextBlock>
 
-            <TextBlock Grid.Row ="5" Grid.ColumnSpan="3" Height="20"  x:Name ="errormessage" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width ="250" Foreground="#FFE5572C" Grid.Column="1" Margin="64,7,103.667,7"   />
-            <TextBlock Grid.Row ="5" Grid.ColumnSpan="3" Height="20"  x:Name ="errorWrongInput" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width ="250" Foreground="#FFE5572C" Grid.Column="1" Margin="64,7,103.667,7"/>
+            <TextBlock Grid.Row ="5" Grid.ColumnSpan="3" Height="24"  x:Name ="errormessage" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width ="300" Foreground="#FFE5572C" Grid.Column="1"/>
+            <TextBlock Grid.Row ="5" Grid.ColumnSpan="3" Height="24"  x:Name ="errorWrongInput" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width ="300" Foreground="#FFE5572C" Grid.Column="1" />
 
             <Button Content="Prijavite se!" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="Medium" Name="signIn" Click="signIn_Click" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3"   Width="250" Margin="71,16,96.667,17" />
 

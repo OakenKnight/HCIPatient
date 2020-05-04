@@ -145,8 +145,6 @@ namespace HCZdravo.PatientPages
                     case MessageBoxResult.OK:
                         {
                             NavigationService.Navigate(new Uri("/PatientPages/PatientMainPage.xaml", UriKind.Relative));
-                           // Window1 win = new Window1();
-                            //win.Show();
                             break;
                         }
                 }
