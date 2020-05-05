@@ -1,6 +1,6 @@
 # Projekat iz predmeta Interakcija covek racunar
 
-## Zahtevi: J 4 I3 Y
+## Zahtevi: J Y I3 4
 
 ## 1. Tip korisnika: Jovan (J)
 Pol: Muški.
@@ -17,9 +17,9 @@ koristi ovaj scenario korišćenja, preferira da koristi mobilne aplikacije. Zbo
 interfejs poseduje elemente interfejsa mobilne aplikacije. (Action bar)
 
 
-## 3. Tip izvestaja: Izveštaj o rasporedu uzimanja terapije(I3)
+## 3. Tip izvestaja: Izveštaj o rasporedu uzimanja terapije (I3)
 Izvestaj bi trebao biti prikazan u obliku kalendara.
-## 4. Tip dodatne funkcionalnosti - Grafikon 
+## 4. Tip dodatne funkcionalnosti - Grafikon (4)
 Pronaći mesta u okviru aplikacije gde je moguće iskoristiti prikaz podataka u vidu grafikona.
 Potrebno je prilagoditi ponašanje grafikona u odnosu na podatke. Moguće je koristiti različite alate za
 generisanje grafikona.
