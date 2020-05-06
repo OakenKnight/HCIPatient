@@ -89,7 +89,6 @@ namespace HCZdravo
                         if (patients[password].Equals(username))
                         {
                             NavigationService.Navigate(new Uri("/PatientPages/PatientMainPage.xaml", UriKind.Relative));
-                            Console.WriteLine("ULOGOVAO SI SE KONJU");
                             errorWrongInput.Text = "";
                             errormessage.Text = "";
                         }
@@ -109,7 +108,7 @@ namespace HCZdravo
 
         private void forgotenPassword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/PatientPages/ForgotenPasswordPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/PatientPages/PatientForgotenPasswordPage.xaml", UriKind.Relative));
 
         }
 

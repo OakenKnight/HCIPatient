@@ -94,7 +94,7 @@
                 <ColumnDefinition Width="104*"/>
                 <ColumnDefinition Width="90*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox Grid.Column="0" ItemsSource="{Binding Path= days}" Name="day" Width="47" HorizontalAlignment="Left" />
+            <ComboBox Grid.Column="0" ItemsSource="{Binding Path= days}" Name="day" Width="47" HorizontalAlignment="Left" SelectedValue=""/>
             <ComboBox Grid.Column="1"  ItemsSource="{Binding Path= months}" Name="month" Width="90" HorizontalAlignment="Center"    />
             <ComboBox Grid.Column="2" ItemsSource="{Binding Path= years}" Name="yrs" Width="76" HorizontalAlignment="Center"  ></ComboBox>
         </Grid>

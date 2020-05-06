@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace HCZdravo.PatientPages
 {
@@ -80,7 +81,7 @@ namespace HCZdravo.PatientPages
 
             genders.Add("Ženski");
             genders.Add("Muški");
-            genders.Add("Drugi...");
+            genders.Add("Drugi");
 
             doctors.Add("dr Goran Stevanovic");
             doctors.Add("dr Jovan Prodanov");
@@ -99,6 +100,7 @@ namespace HCZdravo.PatientPages
             months.Add("Februar");
             months.Add("Mart");
             months.Add("April");
+            months.Add("Maj");
             months.Add("Jun");
             months.Add("Jul");
             months.Add("Avgust");
