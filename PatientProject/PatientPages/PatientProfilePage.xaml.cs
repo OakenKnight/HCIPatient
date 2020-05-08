@@ -199,6 +199,7 @@ namespace PatientProject.PatientPages
 
     private void FeedbackButton_Click(object sender, RoutedEventArgs e)
     {
+            NavigationService.Navigate(new Uri("/PatientPages/PatientFeedbackPage.xaml", UriKind.Relative));
 
     }
 
@@ -229,17 +230,19 @@ namespace PatientProject.PatientPages
 
     private void DoctorsButton_Click(object sender, RoutedEventArgs e)
     {
+            NavigationService.Navigate(new Uri("/PatientPages/PatientSeeDoctorsPage.xaml", UriKind.Relative));
 
     }
 
 
 
-    private void RateDoctorButton_Click(object sender, RoutedEventArgs e)
+        private void RateDoctorButton_Click(object sender, RoutedEventArgs e)
     {
+            NavigationService.Navigate(new Uri("/PatientPages/PatientRateDoctorPage.xaml", UriKind.Relative));
 
     }
 
-    private void BlogButton_Click(object sender, RoutedEventArgs e)
+        private void BlogButton_Click(object sender, RoutedEventArgs e)
     {
 
     }

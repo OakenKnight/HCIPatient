@@ -7,11 +7,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MessageBox = System.Windows.MessageBox;
 
 namespace PatientProject.PatientPages
 {
@@ -56,7 +58,7 @@ namespace PatientProject.PatientPages
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult succesMessage = MessageBox.Show("Da li ste sigurni da zelite da se odjavite?", "Odjavljivanje?", MessageBoxButton.YesNo);
+            MessageBoxResult succesMessage = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da se odjavite?", "Odjavljivanje?", MessageBoxButton.YesNo);
             switch (succesMessage)
             {
                 case MessageBoxResult.Yes:
@@ -70,7 +72,7 @@ namespace PatientProject.PatientPages
 
         private void FeedbackButton_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/PatientPages/PatientFeedbackPage.xaml", UriKind.Relative));
         }
 
         private void AccountButton_Click(object sender, RoutedEventArgs e)
@@ -100,13 +102,14 @@ namespace PatientProject.PatientPages
 
         private void DoctorsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/PatientPages/PatientSeeDoctorsPage.xaml", UriKind.Relative));
         }
 
 
 
         private void RateDoctorButton_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new Uri("/PatientPages/PatientRateDoctorPage.xaml", UriKind.Relative));
 
         }
 
@@ -134,7 +137,6 @@ namespace PatientProject.PatientPages
 
         private void HomePageButton_Click(object sender, RoutedEventArgs e)
         {
-            MenuPopup.IsOpen = false;
             NavigationService.Navigate(new Uri("/PatientPages/PatientMainPage.xaml", UriKind.Relative));
 
         }

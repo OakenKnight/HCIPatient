@@ -171,7 +171,7 @@ namespace PatientProject.PatientPages
 
         private void FeedbackButton_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/PatientPages/PatientFeedbackPage.xaml", UriKind.Relative));
         }
 
         private void AccountButton_Click(object sender, RoutedEventArgs e)
@@ -201,6 +201,7 @@ namespace PatientProject.PatientPages
 
         private void DoctorsButton_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new Uri("/PatientPages/PatientSeeDoctorsPage.xaml", UriKind.Relative));
 
         }
 
@@ -208,6 +209,7 @@ namespace PatientProject.PatientPages
 
         private void RateDoctorButton_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new Uri("/PatientPages/PatientRateDoctorPage.xaml", UriKind.Relative));
 
         }
 
@@ -235,6 +237,20 @@ namespace PatientProject.PatientPages
         }
 
         private void AcceptButton_Click(object sender, RoutedEventArgs e)
+        {
+            string date = day.SelectedItem.ToString() + "/" + month.SelectedItem.ToString() + "/" + yrs.SelectedItem.ToString();
+            MessageBoxResult succesMessage = MessageBox.Show("Potvrdite izmene podataka na nalogu!", "Potvrdite izmene?", MessageBoxButton.OKCancel);
+            switch (succesMessage)
+            {
+                case MessageBoxResult.OK:
+                    {
+                        NavigationService.Navigate(new PatientProfilePage(doctor.SelectedItem.ToString(), name.Text, lastname.Text, parent.Text, date, tel.Text, gender.SelectedItem.ToString(), livingCity.Text, birthCity.Text, pin.Text, new MailAddress(email.Text)));
+                        break;
+                    }
+            }
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
             string date = day.SelectedItem.ToString() + "/" + month.SelectedItem.ToString() + "/" + yrs.SelectedItem.ToString();
             NavigationService.Navigate(new PatientProfilePage(doctor.SelectedItem.ToString(), name.Text, lastname.Text, parent.Text, date, tel.Text, gender.SelectedItem.ToString(), livingCity.Text, birthCity.Text, pin.Text, new MailAddress(email.Text)));

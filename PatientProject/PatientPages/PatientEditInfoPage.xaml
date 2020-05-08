@@ -15,309 +15,290 @@
       TextOptions.TextRenderingMode="Auto"
       Background="{DynamicResource MaterialDesignPaper}"
       FontFamily="{DynamicResource MaterialDesignFont}">
-
-
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="23*"/>
-            <ColumnDefinition Width="153*"/>
-            <ColumnDefinition Width="88*"/>
-            <ColumnDefinition Width="88*"/>
-            <ColumnDefinition Width="88*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="91*"/>
-            <RowDefinition Height="659*"/>
+        <materialDesign:DrawerHost HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" BorderBrush="{DynamicResource MaterialDesignDivider}" Height="750" Width="440">
 
-        </Grid.RowDefinitions>
-        <Popup x:Name="MenuPopup" Placement="RelativePoint" StaysOpen="False" VerticalOffset="63">
-            <StackPanel Background="PowderBlue" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="250">
-                <Grid Height="600">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <StackPanel Width="250" Background="LightGray">
+                    <Grid Height="750">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50*" />
+                            <RowDefinition Height="50*" />
+                            <RowDefinition Height="50*" />
+                            <RowDefinition Height="50*" />
+                            <RowDefinition Height="50*" />
+                            <RowDefinition Height="50*" />
+                            <RowDefinition Height="50*"/>
+                            <RowDefinition Height="61*"/>
+                            <RowDefinition Height="39*"/>
+                            <RowDefinition Height="50*"/>
+                            <RowDefinition Height="50*"/>
+                            <RowDefinition Height="50*"/>
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="17*"/>
+                            <ColumnDefinition Width="33*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="30" Name="HomePageButton" Click="HomePageButton_Click" >
+                            <materialDesign:PackIcon Kind="Home"></materialDesign:PackIcon>
+                        </Button>
+                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" Name="HomePageText" MouseLeftButtonDown="HomePageButton_Click">Pocetna stranica</TextBlock>
+
+                        <Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="30" Click="AccountButton_Click">
+                            <materialDesign:PackIcon Kind="User"></materialDesign:PackIcon>
+                        </Button>
+                        <TextBlock Grid.Column="1" Grid.Row="2" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" Name="AccountText1" MouseLeftButtonDown="AccountButton_Click">Profil</TextBlock>
+
+
+
+                        <Button Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="30" Name="TherapyButton" Click="TherapyButton_Click">
+                            <materialDesign:PackIcon Kind="Medicine"></materialDesign:PackIcon>
+                        </Button>
+                        <TextBlock Grid.Row="3" Grid.Column="1" FontSize="16"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Name="TherapyText" MouseLeftButtonDown="TherapyButton_Click">Prikaz terapija</TextBlock>
+
+                        <Button Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="30" Name="PatientChartButton" Click="PatientChartButton_Click" >
+                            <materialDesign:PackIcon Kind="ChartHistogram"></materialDesign:PackIcon>
+                        </Button>
+                        <TextBlock Grid.Row="4" Grid.Column="1" FontSize="16"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Name="PatientChartText" MouseLeftButtonDown="PatientChartButton_Click" >Zdravstveni karton</TextBlock>
+
+                        <Button Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="30" Name="BlogButton" Click="BlogButton_Click">
+                            <materialDesign:PackIcon Kind="Blog"></materialDesign:PackIcon>
+                        </Button>
+                        <TextBlock Grid.Row="5" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Name="BlogText" MouseLeftButtonDown="BlogButton_Click" >Blog</TextBlock>
+
+
+                        <Button Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="30" Name="DoctorsButton" Click="DoctorsButton_Click" >
+                            <materialDesign:PackIcon Kind="Doctor"></materialDesign:PackIcon>
+                        </Button>
+                        <TextBlock Grid.Row="6" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" Name="DoctorsText" MouseLeftButtonDown="DoctorsButton_Click" >Lekari</TextBlock>
+
+
+
+                        <TextBlock Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="18" Margin="16,7,15,14" Width="54"  >Pregled</TextBlock>
+
+
+                        <Button Grid.Row="9" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="30" Name="NewExamButton" Click="NewExamButton_Click">
+                            <materialDesign:PackIcon Kind="HospitalBox"/>
+                        </Button>
+                        <TextBlock Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Name="NewExamText" MouseLeftButtonDown="NewExamButton_Click" >Zakazite pregled</TextBlock>
+
+                        <Button Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="30" Name="ScheduledExamsButton" Click="ScheduledExamsButton_Click">
+                            <materialDesign:PackIcon Kind="MedicalBag"/>
+                        </Button>
+                        <TextBlock Grid.Row="10" Grid.Column="1" HorizontalAlignment="left" VerticalAlignment="Center" FontSize="16" Height="18" Name="ScheduledExamsText" MouseLeftButtonDown="ScheduledExamsButton_Click" >Zakazani pregledi</TextBlock>
+
+                        <Button Grid.Row="11" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="30" Name="EmergencyExamButton" Click="EmergencyExamButton_Click" >
+                            <materialDesign:PackIcon Kind="HospitalBuilding"/>
+                        </Button>
+                        <TextBlock Grid.Row="11" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Name="EmergencyExamText" MouseLeftButtonDown="EmergencyExamButton_Click" >Hitan pregled</TextBlock>
+                    </Grid>
+                </StackPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+
+
+
+            <materialDesign:DrawerHost.RightDrawerContent>
+                <StackPanel Width="250" Background="LightGray">
+                    <Grid Height="360">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="17*"/>
+                            <ColumnDefinition Width="33*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="30" Name="RateDoctorButton2" Click="RateDoctorButton_Click">
+                            <materialDesign:PackIcon Kind="Account"/>
+                        </Button>
+                        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="22" Name="RateDoctorText2" MouseLeftButtonDown="RateDoctorButton_Click" >Ocenite lekara</TextBlock>
+
+                        <Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="30" Name="FeedbackButton" Click="FeedbackButton_Click">
+                            <materialDesign:PackIcon Kind="Feedback"/>
+                        </Button>
+                        <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="22"  Name="FeedbackText" MouseLeftButtonDown="FeedbackButton_Click">Ostavite komentar</TextBlock>
+
+
+
+
+                        <Button Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="30" Name="LogoutButton" Click="LogoutButton_Click">
+                            <materialDesign:PackIcon Kind="Logout"/>
+                        </Button>
+                        <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="22" Width="115" Name="LogoutText" MouseLeftButtonDown="LogoutButton_Click">Odjavite se</TextBlock>
+
+                        <Button Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Height="30" Name="ExitButton" Click="ExitButton_Click">
+                            <materialDesign:PackIcon Kind="PresenceExit"/>
+                        </Button>
+                        <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="22" Name="ExitText" MouseLeftButtonDown="ExitButton_Click" Width="115" >Izlazak</TextBlock>
+                    </Grid>
+                </StackPanel>
+            </materialDesign:DrawerHost.RightDrawerContent>
+
+
+
+            <materialDesign:DrawerHost.TopDrawerContent>
+                <StackPanel Background="LightGray" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="440"/>
+            </materialDesign:DrawerHost.TopDrawerContent>
+
+
+
+
+            <Grid MinWidth="440" MinHeight="750">
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="750" Width="440">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="23"/>
+                        <ColumnDefinition Width="65"/>
+                        <ColumnDefinition Width="135"/>
+                        <ColumnDefinition Width="128"/>
+                        <ColumnDefinition Width="66"/>
+                        <ColumnDefinition Width="23"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50*" />
-                        <RowDefinition Height="50*" />
-                        <RowDefinition Height="50*" />
-                        <RowDefinition Height="50*" />
-                        <RowDefinition Height="50*" />
-                        <RowDefinition Height="50*" />
-                        <RowDefinition Height="111*"/>
-                        <RowDefinition Height="29*"/>
-                        <RowDefinition Height="50*"/>
-                        <RowDefinition Height="50*"/>
-                        <RowDefinition Height="60*"/>
+                        <RowDefinition Height="63"/>
+                        <RowDefinition Height="28"/>
+                        <RowDefinition/>
+
 
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="17*"/>
-                        <ColumnDefinition Width="33*"/>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Name="HomePageButton" Click="HomePageButton_Click" >
-                        <materialDesign:PackIcon Kind="Home"></materialDesign:PackIcon>
+
+
+
+
+                    <Rectangle Fill="#536878" HorizontalAlignment="Left" Height="91" StrokeThickness="0" VerticalAlignment="Top" Width="440" Grid.ColumnSpan="6" Grid.RowSpan="2"/>
+
+                    <Button Grid.Column="1" Grid.Row="0" Name="menu" Click="displayMenu_Click" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="30" Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" CommandParameter="{x:Static Dock.Left}">
+                        <materialDesign:PackIcon Kind="Menu" Width="40" Height="30"/>
                     </Button>
-                    <TextBlock Grid.Row="0" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" Name="HomePageText" MouseLeftButtonDown="HomePageButton_Click">Pocetna stranica</TextBlock>
 
-                    <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Name="TherapyButton" Click="TherapyButton_Click">
-                        <materialDesign:PackIcon Kind="Medicine"></materialDesign:PackIcon>
+                    <Button Grid.Column="3" Grid.Row="0" Name="bell" Click="bell_Click" Width="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="30" Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" CommandParameter="{x:Static Dock.Top}">
+                        <materialDesign:PackIcon Kind="Bell" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="30"/>
                     </Button>
-                    <TextBlock Grid.Row="1" Grid.Column="1" FontSize="16"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Name="TherapyText" MouseLeftButtonDown="TherapyButton_Click">Prikaz terapija</TextBlock>
 
-                    <Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Name="PatientChartButton" Click="PatientChartButton_Click">
-                        <materialDesign:PackIcon Kind="ChartHistogram"></materialDesign:PackIcon>
+                    <Button Grid.Column="4" Grid.Row="0" Name="gear" Click="displayOptions_Click" Width="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="30" Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" CommandParameter="{x:Static Dock.Right}">
+                        <materialDesign:PackIcon Kind="DotsVertical" Width="40" Height="30" />
                     </Button>
-                    <TextBlock Grid.Row="2" Grid.Column="1" FontSize="16"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Name="PatientChartText" MouseLeftButtonDown="PatientChartButton_Click">Zdravstveni karton</TextBlock>
+                    <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45*"/>
+                            <RowDefinition Height="43*"/>
+                            <RowDefinition Height="43*"/>
+                            <RowDefinition Height="44*"/>
+                            <RowDefinition Height="44*"/>
+                            <RowDefinition Height="44*"/>
+                            <RowDefinition Height="44*"/>
+                            <RowDefinition Height="44*"/>
+                            <RowDefinition Height="44*"/>
+                            <RowDefinition Height="44*"/>
+                            <RowDefinition Height="44*"/>
+                            <RowDefinition Height="44*"/>
+                            <RowDefinition Height="44*"/>
+                            <RowDefinition Height="44*"/>
+                            <RowDefinition Height="44*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="23"/>
+                            <ColumnDefinition Width="142"/>
+                            <ColumnDefinition Width="99"/>
+                            <ColumnDefinition Width="65"/>
+                            <ColumnDefinition Width="111"/>
+                        </Grid.ColumnDefinitions>
 
-                    <Button Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Name="BlogButton" Click="BlogButton_Click">
-                        <materialDesign:PackIcon Kind="Blog"></materialDesign:PackIcon>
-                    </Button>
-                    <TextBlock Grid.Row="3" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Name="BlogText" MouseLeftButtonDown="BlogButton_Click" >Blog</TextBlock>
-
-
-                    <Button Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Name="DoctorsButton" Click="DoctorsButton_Click" >
-                        <materialDesign:PackIcon Kind="Doctor"></materialDesign:PackIcon>
-                    </Button>
-                    <TextBlock Grid.Row="4" Grid.Column="1" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18" Name="DoctorsText" MouseLeftButtonDown="DoctorsButton_Click">Lekari</TextBlock>
-
-
-
-                    <TextBlock Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="18"  >Pregled</TextBlock>
-
-
-                    <Button Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Name="NewExamButton" Click="NewExamButton_Click" >
-                        <materialDesign:PackIcon Kind="HospitalBox"/>
-                    </Button>
-                    <TextBlock Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Name="NewExamText" MouseLeftButtonDown="NewExamButton_Click">Zakazite pregled</TextBlock>
-
-                    <Button Grid.Row="9" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Name="ScheduledExamsButton" Click="ScheduledExamsButton_Click">
-                        <materialDesign:PackIcon Kind="MedicalBag"/>
-                    </Button>
-                    <TextBlock Grid.Row="9" Grid.Column="1" HorizontalAlignment="left" VerticalAlignment="Center" FontSize="16" Height="18" Name="ScheduledExamsText" MouseLeftButtonDown="ScheduledExamsButton_Click">Zakazani pregledi</TextBlock>
-
-                    <Button Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Name="EmergencyExamButton" Click="EmergencyExamButton_Click">
-                        <materialDesign:PackIcon Kind="HospitalBuilding"/>
-                    </Button>
-                    <TextBlock Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Name="EmergencyExamText" MouseLeftButtonDown="EmergencyExamButton_Click">Hitan pregled</TextBlock>
-                </Grid>
-            </StackPanel>
-        </Popup>
+                        <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="40" Height="40" Name="Back" Click="Back_Click">
+                            <materialDesign:PackIcon Kind="ArrowLeftBoldCircle" Height="35" Width="35"/>
+                        </Button>
 
 
+                        <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontWeight="Medium" Grid.ColumnSpan="2" >Izmenite podatke</TextBlock>
+                        <Image Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" Width="79" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4,22,0" Height="78">
+                            <Image.Source>
+                                <BitmapImage UriSource="/Resources/pacijent.jpg"/>
+                            </Image.Source>
+                        </Image>
 
+                        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Ime:</TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="name" Width="180" Grid.ColumnSpan="3" />
 
+                        <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Ime roditelja:</TextBlock>
+                        <TextBox Grid.Row="2" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="parent" Width="250" Grid.ColumnSpan="3" />
 
-        <Popup x:Name="NotificationsPopup" Placement="RelativePoint" StaysOpen="False" HorizontalOffset="174" VerticalOffset="63">
-            <StackPanel Background="PowderBlue" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="250"/>
-        </Popup>
+                        <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Prezime:</TextBlock>
+                        <TextBox Grid.Row="3" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="lastname" Width="250" Grid.ColumnSpan="3" />
 
+                        <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">JMBG:</TextBlock>
+                        <TextBox Grid.Row="4" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Name="pin" Width="250" Grid.ColumnSpan="3" />
 
+                        <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" >Mesto prebivalista:</TextBlock>
+                        <TextBox Grid.Row="5" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="livingCity" Width="250" Grid.ColumnSpan="3" />
 
+                        <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Mesto rodjenja:</TextBlock>
+                        <TextBox Grid.Row="6" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="birthCity" Width="250" Grid.ColumnSpan="3" />
 
+                        <TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Telefon:</TextBlock>
+                        <TextBox Grid.Row="7" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="tel" Width="250" Grid.ColumnSpan="3" />
 
+                        <TextBlock Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Datum rodjenja:</TextBlock>
+                        <Grid Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="31*"/>
+                                <RowDefinition Height="13*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65*"/>
+                                <ColumnDefinition Width="104*"/>
+                                <ColumnDefinition Width="90*"/>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Path= days}" Name="day" Width="47" HorizontalAlignment="Left" Height="24" />
+                            <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Path= months}" Name="month" Width="90" HorizontalAlignment="Center" Height="24"/>
+                            <ComboBox Grid.Column="2" Grid.Row="0" ItemsSource="{Binding Path= years}" Name="yrs" Width="76" HorizontalAlignment="Center" Height="24" />
 
+                            <TextBlock Grid.Row="1" Grid.Column="0" FontSize="10" HorizontalAlignment="Center" Margin="10,0,25,0" Width="34">Dan</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="1" FontSize="10" HorizontalAlignment="Center" Margin="10,0,25,0" Width="34">Mesec</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="2" FontSize="10" HorizontalAlignment="Center" Margin="10,0,25,0" Width="34">Godina</TextBlock>
 
-        <Popup x:Name="DotsPopup" Placement="RelativePoint" StaysOpen="False" HorizontalOffset="174" VerticalOffset="63">
-            <StackPanel Background="PowderBlue" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="250">
-                <Grid Height="300">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="17*"/>
-                        <ColumnDefinition Width="33*"/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <Button Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Name="RateDoctorButton2" Click="RateDoctorButton_Click">
-                        <materialDesign:PackIcon Kind="Account"/>
-                    </Button>
-                    <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="22" Name="RateDoctorText2" MouseLeftButtonDown="RateDoctorButton_Click" >Ocenite lekara</TextBlock>
-
-                    <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Name="FeedbackButton" Click="FeedbackButton_Click">
-                        <materialDesign:PackIcon Kind="Feedback"/>
-                    </Button>
-                    <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="22"  Name="FeedbackText" MouseLeftButtonDown="FeedbackButton_Click">Ostavite komentar</TextBlock>
-
-
-
-
-                    <Button Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Name="LogoutButton" Click="LogoutButton_Click">
-                        <materialDesign:PackIcon Kind="Logout"/>
-                    </Button>
-                    <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="22" Width="115" Name="LogoutText" MouseLeftButtonDown="LogoutButton_Click">Odjavite se</TextBlock>
-
-                    <Button Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="48" Name="ExitButton" Click="ExitButton_Click">
-                        <materialDesign:PackIcon Kind="PresenceExit"/>
-                    </Button>
-                    <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="22" Name="ExitText" MouseLeftButtonDown="ExitButton_Click" Width="115" >Izlazak</TextBlock>
-                </Grid>
-            </StackPanel>
-        </Popup>
-
-
-
-
-
-
-
-
-
-        <Rectangle Fill="PowderBlue" HorizontalAlignment="Left" Height="91" StrokeThickness="0" VerticalAlignment="Top" Width="440" Grid.ColumnSpan="5"/>
-        <Button Grid.Column="1" Grid.Row="0" Name="menu" Click="displayMenu_Click" Width="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,36,0,23" >
-            <materialDesign:PackIcon Kind="Menu" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
-            <Button.Triggers>
-                <EventTrigger RoutedEvent="Button.Click">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="MenuPopup" Storyboard.TargetProperty="IsOpen">
-                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
-                                </BooleanAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger.Actions>
-                </EventTrigger>
-            </Button.Triggers>
-        </Button>
-
-        <Button Grid.Column="3" Grid.Row="0" Name="bell" Click="bell_Click" Width="50" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,36,0,23">
-            <materialDesign:PackIcon Kind="Bell" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
-            <Button.Triggers>
-                <EventTrigger RoutedEvent="Button.Click">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="NotificationsPopup" Storyboard.TargetProperty="IsOpen">
-                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
-                                </BooleanAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger.Actions>
-                </EventTrigger>
-            </Button.Triggers>
-        </Button>
-
-        <Button Grid.Column="4" Grid.Row="0" Name="gear" Click="displayOptions_Click" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="19,36,19,23">
-            <materialDesign:PackIcon Kind="DotsVertical" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
-            <Button.Triggers>
-                <EventTrigger RoutedEvent="Button.Click">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="DotsPopup" Storyboard.TargetProperty="IsOpen">
-                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
-                                </BooleanAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger.Actions>
-                </EventTrigger>
-            </Button.Triggers>
-        </Button>
-        <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="45*"/>
-                <RowDefinition Height="43*"/>
-                <RowDefinition Height="43*"/>
-                <RowDefinition Height="44*"/>
-                <RowDefinition Height="44*"/>
-                <RowDefinition Height="44*"/>
-                <RowDefinition Height="44*"/>
-                <RowDefinition Height="44*"/>
-                <RowDefinition Height="44*"/>
-                <RowDefinition Height="44*"/>
-                <RowDefinition Height="44*"/>
-                <RowDefinition Height="44*"/>
-                <RowDefinition Height="44*"/>
-                <RowDefinition Height="44*"/>
-                <RowDefinition Height="44*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="23*"/>
-                <ColumnDefinition Width="142*"/>
-                <ColumnDefinition Width="99*"/>
-                <ColumnDefinition Width="65*"/>
-                <ColumnDefinition Width="111*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" FontWeight="Medium">Podaci</TextBlock>
-            <Image Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" Width="79" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0" Height="79">
-                <Image.Source>
-                    <BitmapImage UriSource="/Resources/pacijent.jpg"/>
-                </Image.Source>
-            </Image>
-
-            <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="19" Margin="0,12" Width="30">Ime:</TextBlock>
-            <TextBox Grid.Row="1" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="name" Width="180" Grid.ColumnSpan="3" />
-
-            <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="19" Margin="0,12" Width="92">Ime roditelja:</TextBlock>
-            <TextBox Grid.Row="2" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="parent" Width="250" Grid.ColumnSpan="3" />
-
-            <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,13" Width="60">Prezime:</TextBlock>
-            <TextBox Grid.Row="3" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="lastname" Width="250" Grid.ColumnSpan="3" />
-
-            <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,13" Width="44">JMBG:</TextBlock>
-            <TextBox Grid.Row="4" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Name="pin" Width="250" Grid.ColumnSpan="3" />
-
-            <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,13" Width="133">Mesto prebivalista:</TextBlock>
-            <TextBox Grid.Row="5" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="livingCity" Width="250" Grid.ColumnSpan="3" />
-
-            <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,13" Width="110">Mesto rodjenja:</TextBlock>
-            <TextBox Grid.Row="6" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="birthCity" Width="250" Grid.ColumnSpan="3" />
-
-            <TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,13" Width="54">Telefon:</TextBlock>
-            <TextBox Grid.Row="7" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="tel" Width="250" Grid.ColumnSpan="3" />
-
-            <TextBlock Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Datum rodjenja:</TextBlock>
-            <Grid Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="31*"/>
-                    <RowDefinition Height="13*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="65*"/>
-                    <ColumnDefinition Width="104*"/>
-                    <ColumnDefinition Width="90*"/>
-                </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Path= days}" Name="day" Width="47" HorizontalAlignment="Left" Height="24" />
-                <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Path= months}" Name="month" Width="90" HorizontalAlignment="Center" Height="24"/>
-                <ComboBox Grid.Column="2" Grid.Row="0" ItemsSource="{Binding Path= years}" Name="yrs" Width="76" HorizontalAlignment="Center" Height="24" />
-
-                <TextBlock Grid.Row="1" Grid.Column="0" FontSize="10" HorizontalAlignment="Center" Margin="10,0,25,0" Width="34">Dan</TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="1" FontSize="10" HorizontalAlignment="Center" Margin="10,0,25,0" Width="34">Mesec</TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="2" FontSize="10" HorizontalAlignment="Center" Margin="10,0,25,0" Width="34">Godina</TextBlock>
-
-            </Grid>
-
-            <TextBlock Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,13" Width="25">Pol:</TextBlock>
-            <ComboBox Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="3"  ItemsSource="{Binding Path= genders}" Name="gender" Height="30" Width="220" HorizontalAlignment="Left"></ComboBox>
-
-            <TextBlock Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,13" Width="48">E-mail:</TextBlock>
-            <TextBox Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="email" Width="250"/>
-
-            <TextBlock Grid.Row="11" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,13" Width="97">Izabrani lekar:</TextBlock>
-            <ComboBox Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="3"  ItemsSource="{Binding Path= doctors}" Name="doctor" Height="30" Width="220" HorizontalAlignment="Left"></ComboBox>
-
-            <Button Grid.Column="4" Grid.Row="13" Grid.RowSpan="2" Grid.ColumnSpan="2" Name="AcceptButton" Height="68" Width="68" VerticalAlignment="Top" HorizontalAlignment="Left" Click="AcceptButton_Click">
-                <materialDesign:PackIcon Kind="Tick" Height="50" Width="52"/>
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Grid>
-                            <Ellipse Stroke="PowderBlue" StrokeThickness="0">
-                                <Ellipse.Fill>
-                                    <SolidColorBrush Color="PowderBlue"/>
-                                </Ellipse.Fill>
-                            </Ellipse>
-                            <ContentPresenter HorizontalAlignment="Center"  
-                                VerticalAlignment="Center"/>
                         </Grid>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
+
+                        <TextBlock Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Pol:</TextBlock>
+                        <ComboBox Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="3"  ItemsSource="{Binding Path= genders}" Name="gender" Height="30" Width="220" HorizontalAlignment="Left"></ComboBox>
+
+                        <TextBlock Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">E-mail:</TextBlock>
+                        <TextBox Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="email" Width="250"/>
+
+                        <TextBlock Grid.Row="11" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Izabrani lekar:</TextBlock>
+                        <ComboBox Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="3"  ItemsSource="{Binding Path= doctors}" Name="doctor" Height="30" Width="220" HorizontalAlignment="Left"></ComboBox>
+
+                        <Button Grid.Column="4" Grid.Row="13" Grid.RowSpan="2" Grid.ColumnSpan="2" Name="AcceptButton" Height="68" Width="68" VerticalAlignment="Top" HorizontalAlignment="Left" Click="AcceptButton_Click">
+                            <materialDesign:PackIcon Kind="Tick" Height="50" Width="52"/>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Ellipse Stroke="PowderBlue" StrokeThickness="0">
+                                            <Ellipse.Fill>
+                                                <SolidColorBrush Color="PowderBlue"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <ContentPresenter HorizontalAlignment="Center"  
+                                VerticalAlignment="Center"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
 
 
 
-        </Grid>
+                    </Grid>
 
+                </Grid>
+            </Grid>
+        </materialDesign:DrawerHost>
     </Grid>
+
+    
 </Page>
