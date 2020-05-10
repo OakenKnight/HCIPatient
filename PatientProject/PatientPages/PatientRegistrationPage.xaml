@@ -33,8 +33,8 @@
             <RowDefinition Height="197*"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="1" x:Name="back" BorderThickness="0" Padding="0" Height="66" Width="66"  Click="back_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,40,0,39">
-            <materialDesign:PackIcon Kind="ArrowLeftBoldCircle" Height="50" Width="52" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="MaterialDesignFloatingActionAccentButton" Grid.Row="0" Grid.Column="1" x:Name="back" BorderThickness="0" Padding="0" Height="66" Width="66"  Click="back_Click" HorizontalAlignment="Left" VerticalAlignment="Center" >
+            <materialDesign:PackIcon Kind="ArrowLeft" Height="50" Width="52" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Button>
         <Image Grid.Row="0" Grid.Column="2">
             <Image.Source>
@@ -60,8 +60,7 @@
         <PasswordBox Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="190" Height="24" Name="pwd2" ></PasswordBox>
 
         <TextBlock Grid.Row ="6" Grid.ColumnSpan="2" Height="20"  x:Name ="errormessage" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width ="340" Foreground="#FFE5572C" Grid.Column="1" Margin="39,12,38,11" />
-
-        <Button Content="Nastavi" Grid.ColumnSpan="2" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Medium" FontSize="30" Height="50"  Width="132" Click="Nastavi_Button_Click" Grid.Column="1" Margin="131,73,154,74"></Button>
+        <Button Grid.ColumnSpan="3" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Medium" FontSize="30" Height="50"  Width="132" Click="Nastavi_Button_Click" Grid.Column="0"  Style="{StaticResource MaterialDesignRaisedDarkButton}" >Nastavi</Button>
 
     </Grid>
 </Page>

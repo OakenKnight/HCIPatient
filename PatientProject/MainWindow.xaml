@@ -17,6 +17,8 @@
         WindowStyle="None"
         Title="MainWindow" Height="750" Width="440">
     <Grid>
-        <Frame Source="/PatientPages/PatientSignInPage.xaml" NavigationUIVisibility="Hidden"/>
+ 
+                <Frame Source="/PatientPages/PatientSignInPage.xaml" NavigationUIVisibility="Hidden"/>
+           
     </Grid>
 </Window>

@@ -44,8 +44,8 @@
 
         <TextBlock Grid.Column="1" Grid.ColumnSpan="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontWeight="Medium" Margin="0,6" Height="36" Width="214" Grid.Row="1">Unesite podatke:</TextBlock>
 
-        <Button Grid.Row="0" Grid.Column="1" x:Name="back" Width="66" BorderThickness="0" Padding="0"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="Back_Click" Height="66" >
-            <materialDesign:PackIcon Kind="ArrowLeftBoldCircle" Height="50" Width="52"/>
+        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="MaterialDesignFloatingActionAccentButton" Grid.Row="0" Grid.Column="1" x:Name="back" BorderThickness="0" Padding="0" Height="66" Width="66"  Click="Back_Click" HorizontalAlignment="Left" VerticalAlignment="Center" >
+            <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White" Height="50" Width="52" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Button>
         <Image Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Margin="0,0,0,5">
             <Image.Source>
@@ -110,6 +110,6 @@
 
         <TextBlock Grid.Row ="15" Grid.Column="1" Grid.ColumnSpan="2" x:Name ="errorWrongInput" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C" Margin="25,26"/>
 
-        <Button Grid.Column="3" Grid.Row="15" Content="Potvrdi" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24" FontWeight="Medium" Height="44" Width="120" Click="Accept_Click" Margin="0,14" />
+        <Button Grid.Column="3" Grid.Row="15" Content="Potvrdi" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24" FontWeight="Medium" Height="44" Width="120" Click="Accept_Click" Style="{StaticResource MaterialDesignRaisedDarkButton}"/>
     </Grid>
 </Page>

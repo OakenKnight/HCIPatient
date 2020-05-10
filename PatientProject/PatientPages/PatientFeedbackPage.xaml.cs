@@ -69,29 +69,102 @@ namespace PatientProject.PatientPages
 
         private void FeedbackButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/PatientPages/PatientFeedbackPage.xaml", UriKind.Relative));
+            if (!feedback.Text.Equals(""))
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite da se napustite ostavljanje komentara?", "Napustate?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientFeedbackPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
+            else
+            {
+
+                NavigationService.Navigate(new Uri("/PatientPages/PatientFeedbackPage.xaml", UriKind.Relative));
+
+            }
         }
 
         private void AccountButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/PatientPages/PatientProfilePage.xaml", UriKind.Relative));
+            if (!feedback.Text.Equals(""))
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite da se napustite ostavljanje komentara?", "Napustate?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientProfilePage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
+            else
+            {
+
+                NavigationService.Navigate(new Uri("/PatientPages/PatientProfilePage.xaml", UriKind.Relative));
+
+            }
+
+
 
         }
 
 
         private void EmergencyExamButton_Click(object sender, RoutedEventArgs e)
         {
-
+            //TODO 1: mora da se uradi ovde
         }
 
         private void NewExamButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!feedback.Text.Equals(""))
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite da se napustite ostavljanje komentara?", "Napustate?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
+            else
+            {
+
+                NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
+
+            }
 
         }
 
 
         private void ScheduledExamsButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!feedback.Text.Equals(""))
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite da se napustite ostavljanje komentara?", "Napustate?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
+            else
+            {
+
+                NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
+
+            }
+
 
         }
 
@@ -99,8 +172,24 @@ namespace PatientProject.PatientPages
 
         private void DoctorsButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/PatientPages/PatientSeeDoctorsPage.xaml", UriKind.Relative));
+            if (!feedback.Text.Equals(""))
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite da se napustite ostavljanje komentara?", "Napustate?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientSeeDoctorsPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
+            else
+            {
 
+                NavigationService.Navigate(new Uri("/PatientPages/PatientSeeDoctorsPage.xaml", UriKind.Relative));
+
+            }
         }
 
 
@@ -130,29 +219,103 @@ namespace PatientProject.PatientPages
 
         private void BlogButton_Click(object sender, RoutedEventArgs e)
         {
+            if (feedback.Text.Equals(""))
+            {
+
+                NavigationService.Navigate(new Uri("/PatientPages/PatientBlogPage.xaml", UriKind.Relative));
+
+            }
+            else
+            {
+
+                MessageBoxResult succesMessage = MessageBox.Show("Potvrdite unos vaseg komentara!", "Potvrdite unos!", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientBlogPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
 
         }
 
 
         private void PatientChartButton_Click(object sender, RoutedEventArgs e)
         {
+            if (feedback.Text.Equals(""))
+            {
+
+                NavigationService.Navigate(new Uri("/PatientPages/PatientChartPage.xaml", UriKind.Relative));
+
+            }
+            else
+            {
+
+                MessageBoxResult succesMessage = MessageBox.Show("Potvrdite unos vaseg komentara!", "Potvrdite unos!", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientChartPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
+
 
         }
 
 
         private void TherapyButton_Click(object sender, RoutedEventArgs e)
         {
+            if (feedback.Text.Equals(""))
+            {
 
-        }
+                NavigationService.Navigate(new Uri("/PatientPages/PatientTherapyPage.xaml", UriKind.Relative));
 
-        private void ScheduledExamsText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
+            }
+            else
+            {
+
+                MessageBoxResult succesMessage = MessageBox.Show("Potvrdite unos vaseg komentara!", "Potvrdite unos!", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientTherapyPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
 
         }
 
         private void HomePageButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/PatientPages/PatientMainPage.xaml", UriKind.Relative));
+
+            if (feedback.Text.Equals(""))
+            {
+
+                NavigationService.Navigate(new Uri("/PatientPages/PatientMainPage.xaml", UriKind.Relative));
+
+            }
+            else
+            {
+
+                MessageBoxResult succesMessage = MessageBox.Show("Potvrdite unos vaseg komentara!", "Potvrdite unos!", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientMainPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
+
+
 
         }
 
@@ -170,7 +333,8 @@ namespace PatientProject.PatientPages
                         }
                 }
             }
-            else {
+            else
+            {
 
                 NavigationService.Navigate(new Uri("/PatientPages/PatientMainPage.xaml", UriKind.Relative));
 

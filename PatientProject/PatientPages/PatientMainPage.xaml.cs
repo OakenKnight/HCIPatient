@@ -73,6 +73,7 @@ namespace PatientProject.PatientPages
         private void FeedbackButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/PatientPages/PatientFeedbackPage.xaml", UriKind.Relative));
+
         }
 
         private void AccountButton_Click(object sender, RoutedEventArgs e)
@@ -84,17 +85,18 @@ namespace PatientProject.PatientPages
 
         private void EmergencyExamButton_Click(object sender, RoutedEventArgs e)
         {
-
+            //TODO 1: mora da se uradi ovde
         }
 
         private void NewExamButton_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
         }
 
 
         private void ScheduledExamsButton_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
 
         }
 
@@ -103,6 +105,7 @@ namespace PatientProject.PatientPages
         private void DoctorsButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/PatientPages/PatientSeeDoctorsPage.xaml", UriKind.Relative));
+
         }
 
 
@@ -115,23 +118,20 @@ namespace PatientProject.PatientPages
 
         private void BlogButton_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/PatientPages/PatientBlogPage.xaml", UriKind.Relative));
         }
 
 
         private void PatientChartButton_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new Uri("/PatientPages/PatientChartPage.xaml", UriKind.Relative));
 
         }
 
 
         private void TherapyButton_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void ScheduledExamsText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
+            NavigationService.Navigate(new Uri("/PatientPages/PatientTherapyPage.xaml", UriKind.Relative));
 
         }
 
@@ -140,5 +140,6 @@ namespace PatientProject.PatientPages
             NavigationService.Navigate(new Uri("/PatientPages/PatientMainPage.xaml", UriKind.Relative));
 
         }
+
     }
 }

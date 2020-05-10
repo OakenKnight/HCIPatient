@@ -96,29 +96,114 @@ namespace PatientProject.PatientPages
 
         private void FeedbackButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/PatientPages/PatientFeedbackPage.xaml", UriKind.Relative));
+            if (doctor.SelectedItem == null && rating.SelectedItem == null)
+            {
+                NavigationService.Navigate(new Uri("/PatientPages/PatientFeedbackPage.xaml", UriKind.Relative));
+
+            }
+            else if (doctor.SelectedItem == null || rating.SelectedItem == null)
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Molim Vas popunite polja za ocenu i izbor lekara!", "Popunite obavezna polja!", MessageBoxButton.OK);
+
+            }
+            else
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite li da napustite ocenjivanje lekara?", "Napustate ocenjivanje?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientFeedbackPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
         }
 
         private void AccountButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/PatientPages/PatientProfilePage.xaml", UriKind.Relative));
+            if (doctor.SelectedItem == null && rating.SelectedItem == null)
+            {
+                NavigationService.Navigate(new Uri("/PatientPages/PatientProfilePage.xaml", UriKind.Relative));
 
+            }
+            else if (doctor.SelectedItem == null || rating.SelectedItem == null)
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Molim Vas popunite polja za ocenu i izbor lekara!", "Popunite obavezna polja!", MessageBoxButton.OK);
+
+            }
+            else
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite li da napustite ocenjivanje lekara?", "Napustate ocenjivanje?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientProfilePage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
         }
 
 
         private void EmergencyExamButton_Click(object sender, RoutedEventArgs e)
         {
-
+            //TODO 1: mora da se uradi ovde
         }
 
         private void NewExamButton_Click(object sender, RoutedEventArgs e)
         {
+            if (doctor.SelectedItem == null && rating.SelectedItem == null)
+            {
+                NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
 
+            }
+            else if (doctor.SelectedItem == null || rating.SelectedItem == null)
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Molim Vas popunite polja za ocenu i izbor lekara!", "Popunite obavezna polja!", MessageBoxButton.OK);
+
+            }
+            else
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite li da napustite ocenjivanje lekara?", "Napustate ocenjivanje?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
         }
 
 
         private void ScheduledExamsButton_Click(object sender, RoutedEventArgs e)
         {
+            if (doctor.SelectedItem == null && rating.SelectedItem == null)
+            {
+                NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
+
+            }
+            else if (doctor.SelectedItem == null || rating.SelectedItem == null)
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Molim Vas popunite polja za ocenu i izbor lekara!", "Popunite obavezna polja!", MessageBoxButton.OK);
+
+            }
+            else
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite li da napustite ocenjivanje lekara?", "Napustate ocenjivanje?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
+
 
         }
 
@@ -126,7 +211,29 @@ namespace PatientProject.PatientPages
 
         private void DoctorsButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/PatientPages/PatientSeeDoctorsPage.xaml", UriKind.Relative));
+            if (doctor.SelectedItem == null && rating.SelectedItem == null)
+            {
+                NavigationService.Navigate(new Uri("/PatientPages/PatientSeeDoctorsPage.xaml", UriKind.Relative));
+
+            }
+            else if (doctor.SelectedItem == null || rating.SelectedItem == null)
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Molim Vas popunite polja za ocenu i izbor lekara!", "Popunite obavezna polja!", MessageBoxButton.OK);
+
+            }
+            else
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite li da napustite ocenjivanje lekara?", "Napustate ocenjivanje?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientSeeDoctorsPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
+
 
         }
 
@@ -134,36 +241,141 @@ namespace PatientProject.PatientPages
 
         private void RateDoctorButton_Click(object sender, RoutedEventArgs e)
         {
+            if (doctor.SelectedItem == null && rating.SelectedItem == null)
+            {
+                NavigationService.Navigate(new Uri("/PatientPages/PatientRateDoctorPage.xaml", UriKind.Relative));
+
+            }
+            else if (doctor.SelectedItem == null || rating.SelectedItem == null)
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Molim Vas popunite polja za ocenu i izbor lekara!", "Popunite obavezna polja!", MessageBoxButton.OK);
+
+            }
+            else
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite li da napustite ocenjivanje lekara?", "Napustate ocenjivanje?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientRateDoctorPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
+
 
         }
 
         private void BlogButton_Click(object sender, RoutedEventArgs e)
         {
+            if (doctor.SelectedItem == null && rating.SelectedItem == null)
+            {
+                NavigationService.Navigate(new Uri("/PatientPages/PatientBlogPage.xaml", UriKind.Relative));
+
+            }
+            else if (doctor.SelectedItem == null || rating.SelectedItem == null)
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Molim Vas popunite polja za ocenu i izbor lekara!", "Popunite obavezna polja!", MessageBoxButton.OK);
+
+            }
+            else
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite li da napustite ocenjivanje lekara?", "Napustate ocenjivanje?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientBlogPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
 
         }
 
 
         private void PatientChartButton_Click(object sender, RoutedEventArgs e)
         {
+            if (doctor.SelectedItem == null && rating.SelectedItem == null)
+            {
+                NavigationService.Navigate(new Uri("/PatientPages/PatientChartPage.xaml", UriKind.Relative));
+
+            }
+            else if (doctor.SelectedItem == null || rating.SelectedItem == null)
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Molim Vas popunite polja za ocenu i izbor lekara!", "Popunite obavezna polja!", MessageBoxButton.OK);
+
+            }
+            else
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite li da napustite ocenjivanje lekara?", "Napustate ocenjivanje?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientChartPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
+
 
         }
 
 
         private void TherapyButton_Click(object sender, RoutedEventArgs e)
         {
+            if (doctor.SelectedItem == null && rating.SelectedItem == null)
+            {
+                NavigationService.Navigate(new Uri("/PatientPages/PatientTherapyPage.xaml", UriKind.Relative));
 
-        }
+            }
+            else if (doctor.SelectedItem == null || rating.SelectedItem == null)
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Molim Vas popunite polja za ocenu i izbor lekara!", "Popunite obavezna polja!", MessageBoxButton.OK);
 
-        private void ScheduledExamsText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
+            }
+            else
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite li da napustite ocenjivanje lekara?", "Napustate ocenjivanje?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientTherapyPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
         }
 
         private void HomePageButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/PatientPages/PatientMainPage.xaml", UriKind.Relative));
+            if (doctor.SelectedItem == null && rating.SelectedItem == null)
+            {
+                NavigationService.Navigate(new Uri("/PatientPages/PatientMainPage.xaml", UriKind.Relative));
 
+            }
+            else if (doctor.SelectedItem == null || rating.SelectedItem == null)
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Molim Vas popunite polja za ocenu i izbor lekara!", "Popunite obavezna polja!", MessageBoxButton.OK);
+
+            }
+            else
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite li da napustite ocenjivanje lekara?", "Napustate ocenjivanje?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientMainPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
         }
+
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {

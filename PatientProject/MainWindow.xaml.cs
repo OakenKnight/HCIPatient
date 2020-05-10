@@ -23,6 +23,7 @@ namespace PatientProject
         public MainWindow()
         {
             InitializeComponent();
+
         }
     }
 }

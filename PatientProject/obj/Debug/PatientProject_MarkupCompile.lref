@@ -1,6 +1,9 @@
 ﻿
 FC:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\App.xaml;;
 FC:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\MainWindow.xaml;;
+FC:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\PatientPages\PatientChooseDateExamPage.xaml;;
+FC:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\PatientPages\PatientChooseDoctorPage.xaml;;
+FC:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\PatientPages\PatientChooseTimePage.xaml;;
 FC:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\PatientPages\PatientEditInfoPage.xaml;;
 FC:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\PatientPages\PatientForgotenPasswordPage.xaml;;
 FC:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\PatientPages\PatientBlogPage.xaml;;
@@ -15,4 +18,6 @@ FC:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\Patient
 FC:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\PatientPages\PatientSeeDoctorsPage.xaml;;
 FC:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\PatientPages\PatientSignInPage.xaml;;
 FC:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\PatientPages\PatientTherapyPage.xaml;;
+FC:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\PatientPages\PatientSuggestAppointmentPage.xaml;;
+FC:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\PatientPages\PatientExamDetailsConfirmPage.xaml;;
 
