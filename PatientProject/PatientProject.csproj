@@ -89,6 +89,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PatientPages\CheckedListItem.cs" />
+    <Compile Include="PatientPages\ExpandersItemsList.cs" />
     <Compile Include="PatientPages\DateValidationClass.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -106,11 +108,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PatientPages\PatientDatePriorityPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PatientPages\PatientEditInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PatientPages\PatientExamDetailsConfirmPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PatientPages\PatientExamSuggestDatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -150,6 +160,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PatientPages\PatientScheduledExamsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PatientPages\PatientScheduleEmergencyExamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PatientPages\PatientScheduleExamPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -172,6 +190,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PatientPages\ExpandersItem.cs" />
     <Compile Include="PatientPages\PatientChooseDateExamPage.xaml.cs">
       <DependentUpon>PatientChooseDateExamPage.xaml</DependentUpon>
     </Compile>
@@ -181,11 +200,17 @@
     <Compile Include="PatientPages\PatientChooseTimePage.xaml.cs">
       <DependentUpon>PatientChooseTimePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PatientPages\PatientDatePriorityPage.xaml.cs">
+      <DependentUpon>PatientDatePriorityPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PatientPages\PatientEditInfoPage.xaml.cs">
       <DependentUpon>PatientEditInfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PatientPages\PatientExamDetailsConfirmPage.xaml.cs">
       <DependentUpon>PatientExamDetailsConfirmPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatientPages\PatientExamSuggestDatePage.xaml.cs">
+      <DependentUpon>PatientExamSuggestDatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PatientPages\PatientForgotenPasswordPage.xaml.cs">
       <DependentUpon>PatientForgotenPasswordPage.xaml</DependentUpon>
@@ -214,6 +239,12 @@
     <Compile Include="PatientPages\PatientRegistrationPage.xaml.cs">
       <DependentUpon>PatientRegistrationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PatientPages\PatientScheduledExamsPage.xaml.cs">
+      <DependentUpon>PatientScheduledExamsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatientPages\PatientScheduleEmergencyExamPage.xaml.cs">
+      <DependentUpon>PatientScheduleEmergencyExamPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PatientPages\PatientScheduleExamPage.xaml.cs">
       <DependentUpon>PatientScheduleExamPage.xaml</DependentUpon>
     </Compile>
@@ -230,6 +261,7 @@
       <DependentUpon>PatientSuggestAppointmentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PatientPages\PickersViewModel.cs" />
+    <Compile Include="PatientPages\ScheduledExam.cs" />
     <Compile Include="PatientPages\TimeValidationClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

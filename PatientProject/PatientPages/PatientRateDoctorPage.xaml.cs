@@ -150,6 +150,28 @@ namespace PatientProject.PatientPages
         private void EmergencyExamButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO 1: mora da se uradi ovde
+            if (doctor.SelectedItem == null && rating.SelectedItem == null)
+            {
+                NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleEmergemcyExamPage.xaml", UriKind.Relative));
+
+            }
+            else if (doctor.SelectedItem == null || rating.SelectedItem == null)
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Molim Vas popunite polja za ocenu i izbor lekara!", "Popunite obavezna polja!", MessageBoxButton.OK);
+
+            }
+            else
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite li da napustite ocenjivanje lekara?", "Napustate ocenjivanje?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleEmergemcyExamPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
         }
 
         private void NewExamButton_Click(object sender, RoutedEventArgs e)
@@ -183,7 +205,7 @@ namespace PatientProject.PatientPages
         {
             if (doctor.SelectedItem == null && rating.SelectedItem == null)
             {
-                NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/PatientPages/PatientScheduledExamsPage.xaml", UriKind.Relative));
 
             }
             else if (doctor.SelectedItem == null || rating.SelectedItem == null)
@@ -198,7 +220,7 @@ namespace PatientProject.PatientPages
                 {
                     case MessageBoxResult.OK:
                         {
-                            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduledExamsPage.xaml", UriKind.Relative));
                             break;
                         }
                 }

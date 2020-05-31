@@ -119,6 +119,16 @@ namespace PatientProject.PatientPages
         private void EmergencyExamButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO 1: mora da se uradi ovde
+            MessageBoxResult succesMessage = MessageBox.Show("Da li ste sigurni da zelite da napustite zakazivanja pregleda?", "Napustate?", MessageBoxButton.YesNo);
+            switch (succesMessage)
+            {
+                case MessageBoxResult.Yes:
+                    {
+                        NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleEmergemcyExamPage.xaml", UriKind.Relative));
+                        break;
+                    }
+
+            }
         }
 
         private void NewExamButton_Click(object sender, RoutedEventArgs e)
@@ -143,7 +153,7 @@ namespace PatientProject.PatientPages
             {
                 case MessageBoxResult.Yes:
                     {
-                        NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
+                        NavigationService.Navigate(new Uri("/PatientPages/PatientScheduledExamsPage.xaml", UriKind.Relative));
                         break;
                     }
 

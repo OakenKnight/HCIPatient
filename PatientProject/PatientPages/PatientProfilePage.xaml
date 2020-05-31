@@ -248,6 +248,7 @@
                         <TextBlock Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Name="tel" />
 
                         <TextBlock Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" >Datum rodjenja:</TextBlock>
+                        <DatePicker Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" IsEnabled="False" Width="200" materialDesign:HintAssist.Hint="Disabled" Name="dtp" HorizontalAlignment="Left" />
                         <TextBlock Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Name="birthDate" />
 
                         <TextBlock Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Pol:</TextBlock>

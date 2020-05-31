@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PatientProject.PatientPages"
       mc:Ignorable="d" 
-      d:DesignHeight="750" d:DesignWidth="440"
+      d:DesignHeight="750" d:DesignWidth="430"
       Title="PatientScheduleExamPage"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -214,25 +214,31 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50"/>
-                                <RowDefinition Height="231"/>
-                                <RowDefinition Height="244"/>
-                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="149"/>
+                                <RowDefinition Height="150"/>
+                                <RowDefinition Height="182"/>
+                                <RowDefinition Height="44.667"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock TextWrapping="Wrap" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Medium" FontSize="24">Zakazite pregled</TextBlock>
+                            <TextBlock TextWrapping="Wrap" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Medium" FontSize="24" Margin="45,49,45,72" Height="28" Width="181">Zakazite pregled</TextBlock>
 
 
-                            <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="60" Style="{StaticResource MaterialDesignFloatingActionDarkButton}" ToolTip="Zakazite pregled" Name="regularExam" Click="regularExam_Click">
-                                <materialDesign:PackIcon Kind="PlusCircle" Height="35" Width="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Button>
-                            
-                            
-                            <TextBlock TextWrapping="Wrap" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Medium" FontSize="24">Preporuci mi termin pregleda</TextBlock>
-
-                            <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="60" Style="{StaticResource MaterialDesignFloatingActionDarkButton}" ToolTip="Preporuci mi pregled" Name="suggestExam" Click="suggestExam_Click">
+                            <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="60" Style="{StaticResource MaterialDesignFloatingActionDarkButton}" ToolTip="Zakazite pregled" Name="regularExam" Click="regularExam_Click" Margin="43,31,43,58">
                                 <materialDesign:PackIcon Kind="PlusCircle" Height="35" Width="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             </Button>
 
+
+                            <TextBlock TextWrapping="Wrap" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Medium" FontSize="24" Margin="12,38,27,54" Height="58" Width="232">Prioritetno zakazivanje pregleda</TextBlock>
+
+                            <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="60" Style="{StaticResource MaterialDesignFloatingActionDarkButton}" ToolTip="Preporuci mi pregled" Name="prioritySchedule" Click="suggestExam_Click" Margin="43,36,43,54">
+                                <materialDesign:PackIcon Kind="PlusCircle" Height="35" Width="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Button>
+
+                            <TextBlock Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Medium" FontSize="24">Preporuci mi termin</TextBlock>
+
+                            <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Height="60" Style="{StaticResource MaterialDesignFloatingActionDarkButton}" ToolTip="Preporuci mi pregled" Name="suggestExam" Click="suggestExam_Click" Margin="43,36,43,54">
+                                <materialDesign:PackIcon Kind="PlusCircle" Height="35" Width="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Button>
                         </Grid>
                     </Grid>
                 </Grid>

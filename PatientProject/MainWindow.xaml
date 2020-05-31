@@ -15,7 +15,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         WindowStyle="None"
-        Title="MainWindow" Height="750" Width="440">
+        Title="MainWindow" Height="750" Width="430">
     <Grid>
  
                 <Frame Source="/PatientPages/PatientSignInPage.xaml" NavigationUIVisibility="Hidden"/>

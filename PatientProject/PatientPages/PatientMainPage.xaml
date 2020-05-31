@@ -190,83 +190,31 @@
 
 
 
-
-
-
-                    <Button Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Height="90" Width="90" Name="AccountGridButton" Click="AccountButton_Click">
-                        <materialDesign:PackIcon Kind="User" Height="50" Width="52"/>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Grid>
-                                    <Ellipse Stroke="White" StrokeThickness="0">
-                                        <Ellipse.Fill>
-                                            <SolidColorBrush Color="PowderBlue"/>
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    <ContentPresenter HorizontalAlignment="Center"  
-                                VerticalAlignment="Center"/>
-                                </Grid>
-                            </ControlTemplate>
-                        </Button.Template>
+                    <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Height="90" Width="90" BorderThickness="0" Padding="0"  HorizontalAlignment="Center" VerticalAlignment="Center" Name="AccountGridButton" Click="AccountButton_Click">
+                        <materialDesign:PackIcon Kind="Account" Height="50" Width="50"/>
                     </Button>
                     <TextBlock Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Medium" FontSize="24" >Profil</TextBlock>
 
 
+
+
+                    <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Height="90" Width="90" BorderThickness="0" Padding="0"  HorizontalAlignment="Center" VerticalAlignment="Center" Name="newExamGridButton" Click="NewExamButton_Click">
+                        <materialDesign:PackIcon Kind="HospitalBox" Height="50" Width="50"/>
+                    </Button>
                     <TextBlock Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Medium" FontSize="24" >Zakazite pregled</TextBlock>
 
-                    <Button Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Width="90" Height="90" Name="newExamGridButton" Click="NewExamButton_Click">
-                        <materialDesign:PackIcon Kind="HospitalBox" Height="50" Width="52"/>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Grid>
-                                    <Ellipse Stroke="PowderBlue" StrokeThickness="0">
-                                        <Ellipse.Fill>
-                                            <SolidColorBrush Color="PowderBlue"/>
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    <ContentPresenter HorizontalAlignment="Center"  
-                                VerticalAlignment="Center"/>
-                                </Grid>
-                            </ControlTemplate>
-                        </Button.Template>
+
+                    <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Height="90" Width="90" BorderThickness="0" Padding="0"  HorizontalAlignment="Center" VerticalAlignment="Center" Name="EmergencyExamGridButton"  Click="EmergencyExamButton_Click">
+                        <materialDesign:PackIcon Kind="HospitalBuilding" Height="50" Width="50"/>
                     </Button>
                     <TextBlock Grid.ColumnSpan="2" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Medium" FontSize="24" >Hitan pregled!</TextBlock>
 
-                    <Button Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Height="90" Width="90" Name="EmergencyExamGridButton"  Click="EmergencyExamButton_Click">
-                        <materialDesign:PackIcon Kind="HospitalBuilding" Height="50" Width="52"/>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Grid>
-                                    <Ellipse Stroke="PowderBlue" StrokeThickness="0">
-                                        <Ellipse.Fill>
-                                            <SolidColorBrush Color="PowderBlue"/>
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    <ContentPresenter HorizontalAlignment="Center"  
-                                VerticalAlignment="Center"/>
-                                </Grid>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
 
+                    <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Height="90" Width="90" BorderThickness="0" Padding="0"  HorizontalAlignment="Center" VerticalAlignment="Center" Name="TherapyGridButton" Click="TherapyButton_Click">
+                        <materialDesign:PackIcon Kind="Pill" Height="50" Width="50"/>
+                    </Button>
                     <TextBlock Grid.Row="5" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Medium" FontSize="24" >Terapija</TextBlock>
 
-                    <Button Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Height="90" Width="90" Name="TherapyGridButton" Click="TherapyButton_Click">
-                        <materialDesign:PackIcon Kind="Medicine" Height="50" Width="52"/>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Grid>
-                                    <Ellipse Stroke="PowderBlue" StrokeThickness="0">
-                                        <Ellipse.Fill>
-                                            <SolidColorBrush Color="PowderBlue"/>
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    <ContentPresenter HorizontalAlignment="Center"  
-                                VerticalAlignment="Center"/>
-                                </Grid>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
                 </Grid>
 
 

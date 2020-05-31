@@ -94,8 +94,16 @@ C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientP
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientChooseDoctorPage.g.cs
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientChooseDoctorPage.baml
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientProject.csprojAssemblyReference.cache
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientChooseTimePage.g.cs
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientChooseTimePage.baml
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientExamDetailsConfirmPage.g.cs
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientExamDetailsConfirmPage.baml
+C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientExamSuggestDatePage.g.cs
+C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientExamSuggestDatePage.baml
+C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientDatePriorityPage.g.cs
+C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientDatePriorityPage.baml
+C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientScheduleEmergencyExamPage.g.cs
+C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientScheduleEmergencyExamPage.baml
+C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientProject.csprojAssemblyReference.cache
+C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientScheduledExamsPage.g.cs
+C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientScheduledExamsPage.baml

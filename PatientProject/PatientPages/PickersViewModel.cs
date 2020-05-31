@@ -15,6 +15,7 @@ namespace PatientProject.PatientPages
         private string _validatingTime;
         private DateTime? _futureValidatingDate;
 
+
         public PickersViewModel()
         {
             Date = DateTime.Now;

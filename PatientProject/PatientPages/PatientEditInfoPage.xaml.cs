@@ -51,7 +51,7 @@ namespace PatientProject.PatientPages
         }
 
 
-        public PatientEditInfoPage(string chosenDoctor, string personName, string personLastname, string personParent, string personBirthDate, string personTelephone, string personGender, string personLivingCity, string personBirthCity, string personPin, MailAddress personEmail)
+        public PatientEditInfoPage(string chosenDoctor, string personName, string personLastname, string personParent, DateTime personBirthDate, string personTelephone, string personGender, string personLivingCity, string personBirthCity, string personPin, MailAddress personEmail)
         {
             InitializeComponent();
             this.DataContext = this;
@@ -84,43 +84,17 @@ namespace PatientProject.PatientPages
             doctors.Add("dr Miodrag Đukić");
             doctors.Add("dr Petar Petrović");
 
-
-
-            for (int i = 1; i < 32; i++)
-            {
-                days.Add(i);
+            String[] parts = personBirthDate.ToString().Split(' ');
+            foreach (String part in parts) {
+                Console.WriteLine(part);
             }
-
-            months.Add(" ");
-            months.Add("Januar");
-            months.Add("Februar");
-            months.Add("Mart");
-            months.Add("April");
-            months.Add("Maj");
-            months.Add("Jun");
-            months.Add("Jul");
-            months.Add("Avgust");
-            months.Add("Septembar");
-            months.Add("Oktobar");
-            months.Add("Novembar");
-            months.Add("Decembar");
-
-
-
-            int k = 2020;
-            for (int i = 0; i < 120; i++)
-            {
-
-                k -= 1;
-                years.Add(k);
-            }
-
-            string[] parts = personBirthDate.Split('/');
-
-
+            /*
             day.SelectedItem = Convert.ToInt32(parts[0]);
             month.SelectedItem = parts[1];
             yrs.SelectedItem = Convert.ToInt32(parts[2]);
+            */
+            //Console.WriteLine(dtp.SelectedDate.ToString());
+            dtp.SelectedDate = personBirthDate;
             gender.SelectedItem = personGender;
             doctor.SelectedItem = chosenDoctor;
             
@@ -185,6 +159,8 @@ namespace PatientProject.PatientPages
         private void EmergencyExamButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO 1: mora da se uradi ovde
+            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleEmergemcyExamPage.xaml", UriKind.Relative));
+
         }
 
         private void NewExamButton_Click(object sender, RoutedEventArgs e)
@@ -195,7 +171,7 @@ namespace PatientProject.PatientPages
 
         private void ScheduledExamsButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduledExamsPage.xaml", UriKind.Relative));
 
         }
 
@@ -242,13 +218,17 @@ namespace PatientProject.PatientPages
 
         private void AcceptButton_Click(object sender, RoutedEventArgs e)
         {
-            string date = day.SelectedItem.ToString() + "/" + month.SelectedItem.ToString() + "/" + yrs.SelectedItem.ToString();
+            // string date = day.SelectedItem.ToString() + "/" + month.SelectedItem.ToString() + "/" + yrs.SelectedItem.ToString();
+            //string date = dtp.SelectedDate.ToString().Split(' ')[0];
+
+            //Console.WriteLine(date);
+            DateTime date = dtp.SelectedDate.Value;
             MessageBoxResult succesMessage = MessageBox.Show("Potvrdite izmene podataka na nalogu!", "Potvrdite izmene?", MessageBoxButton.OKCancel);
             switch (succesMessage)
             {
                 case MessageBoxResult.OK:
                     {
-                        NavigationService.Navigate(new PatientProfilePage(doctor.SelectedItem.ToString(), name.Text, lastname.Text, parent.Text, date, tel.Text, gender.SelectedItem.ToString(), livingCity.Text, birthCity.Text, pin.Text, new MailAddress(email.Text)));
+                        NavigationService.Navigate(new PatientProfilePage(doctor.SelectedItem.ToString(), name.Text, lastname.Text, parent.Text, dtp.SelectedDate.Value, tel.Text, gender.SelectedItem.ToString(), livingCity.Text, birthCity.Text, pin.Text, new MailAddress(email.Text)));
                         break;
                     }
             }
@@ -256,9 +236,34 @@ namespace PatientProject.PatientPages
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            string date = day.SelectedItem.ToString() + "/" + month.SelectedItem.ToString() + "/" + yrs.SelectedItem.ToString();
-            NavigationService.Navigate(new PatientProfilePage(doctor.SelectedItem.ToString(), name.Text, lastname.Text, parent.Text, date, tel.Text, gender.SelectedItem.ToString(), livingCity.Text, birthCity.Text, pin.Text, new MailAddress(email.Text)));
+          //  string date = day.SelectedItem.ToString() + "/" + month.SelectedItem.ToString() + "/" + yrs.SelectedItem.ToString();
+           // string date = dtp.SelectedDate.ToString();
+            NavigationService.Navigate(new PatientProfilePage(doctor.SelectedItem.ToString(), name.Text, lastname.Text, parent.Text, dtp.SelectedDate.Value, tel.Text, gender.SelectedItem.ToString(), livingCity.Text, birthCity.Text, pin.Text, new MailAddress(email.Text)));
 
         }
     }
 }
+
+/*
+ <Grid Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="31*"/>
+                                <RowDefinition Height="13*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65*"/>
+                                <ColumnDefinition Width="104*"/>
+                                <ColumnDefinition Width="90*"/>
+                            </Grid.ColumnDefinitions>
+                            <!-- TODO 1: uraditi comboboxeve svuda sa material designom  -->
+                            
+                            <ComboBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Path= days}" Name="day" Width="47" HorizontalAlignment="Left" Height="24" />
+                            <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Path= months}" Name="month" Width="90" HorizontalAlignment="Center" Height="24"/>
+                            <ComboBox Grid.Column="2" Grid.Row="0" ItemsSource="{Binding Path= years}" Name="yrs" Width="76" HorizontalAlignment="Center" Height="24" />
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" FontSize="10" HorizontalAlignment="Center" Margin="10,0,25,0" Width="34">Dan</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="1" FontSize="10" HorizontalAlignment="Center" Margin="10,0,25,0" Width="34">Mesec</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="2" FontSize="10" HorizontalAlignment="Center" Margin="10,0,25,0" Width="34">Godina</TextBlock>
+
+                        </Grid>
+*/

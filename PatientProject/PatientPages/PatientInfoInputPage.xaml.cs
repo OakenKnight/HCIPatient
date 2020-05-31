@@ -91,33 +91,6 @@ namespace HCZdravo.PatientPages
 
 
 
-            for (int i = 1; i < 32; i++)
-            {
-                days.Add(i);
-            }
-
-            months.Add("Januar");
-            months.Add("Februar");
-            months.Add("Mart");
-            months.Add("April");
-            months.Add("Maj");
-            months.Add("Jun");
-            months.Add("Jul");
-            months.Add("Avgust");
-            months.Add("Septembar");
-            months.Add("Oktobar");
-            months.Add("Novembar");
-            months.Add("Decembar");
-
-
-
-            int k = 2020;
-            for (int i = 0; i < 120; i++)
-            {
-
-                k -= 1;
-                years.Add(k);
-            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -161,40 +134,40 @@ namespace HCZdravo.PatientPages
         public bool validateCB()
         {
 
-            if (doctor.SelectedItem == null && gender.SelectedItem != null && (day.SelectedItem != null || month.SelectedItem != null || yrs.SelectedItem != null))
+            if (doctor.SelectedItem == null && gender.SelectedItem != null && dtp.SelectedDate != null)
             {
                 errorWrongInput.Text = "Oznacite doktora!";
                 return false;
             }
-            else if (doctor.SelectedItem != null && gender.SelectedItem == null && (day.SelectedItem != null || month.SelectedItem != null || yrs.SelectedItem != null))
+            else if (doctor.SelectedItem != null && gender.SelectedItem == null && dtp.SelectedDate != null)
             {
                 errorWrongInput.Text = "Oznacite pol!";
                 return false;
             }
-            else if (doctor.SelectedItem != null && gender.SelectedItem != null && (day.SelectedItem == null || month.SelectedItem == null || yrs.SelectedItem == null))
+            else if (doctor.SelectedItem != null && gender.SelectedItem != null && dtp.SelectedDate == null)
             {
                 errorWrongInput.Text = "Oznacite datum!";
                 return false;
 
             }
-            else if (doctor.SelectedItem == null && gender.SelectedItem == null && (day.SelectedItem != null || month.SelectedItem != null || yrs.SelectedItem != null))
+            else if (doctor.SelectedItem == null && gender.SelectedItem == null && dtp.SelectedDate != null)
             {
                 errorWrongInput.Text = "Oznacite doktora i pol!";
                 return false;
 
             }
-            else if (doctor.SelectedItem == null && gender.SelectedItem != null && (day.SelectedItem == null || month.SelectedItem == null || yrs.SelectedItem == null))
+            else if (doctor.SelectedItem == null && gender.SelectedItem != null && dtp.SelectedDate == null)
             {
                 errorWrongInput.Text = "Oznacite doktora i godinu!";
                 return false;
             }
-            else if (doctor.SelectedItem != null && gender.SelectedItem == null && (day.SelectedItem == null || month.SelectedItem == null || yrs.SelectedItem == null))
+            else if (doctor.SelectedItem != null && gender.SelectedItem == null && dtp.SelectedDate == null)
             {
                 errorWrongInput.Text = "Oznacite pol i godinu!";
                 return false;
 
             }
-            else if (doctor.SelectedItem == null && gender.SelectedItem == null && (day.SelectedItem == null || month.SelectedItem == null || yrs.SelectedItem == null))
+            else if (doctor.SelectedItem == null && gender.SelectedItem == null && dtp.SelectedDate == null)
             {
                 errorWrongInput.Text = "Oznacite doktora, pol i datum rodjenja!";
                 return false;
@@ -210,6 +183,7 @@ namespace HCZdravo.PatientPages
             if (email.Text.Equals(""))
             {
                 email.Text = emailEmpty;
+                email.Foreground = Brushes.Red;
                 return false;
             }
             else if (email.Text.Equals(emailEmpty))
@@ -223,6 +197,7 @@ namespace HCZdravo.PatientPages
             else if (!emailIsValid(email.Text))
             {
                 email.Text = emailWrong;
+                email.Foreground = Brushes.Red;
                 return false;
             }
             else
@@ -237,6 +212,7 @@ namespace HCZdravo.PatientPages
             if (tel.Text.Equals(""))
             {
                 tel.Text = telEmpty;
+                tel.Foreground = Brushes.Red;
                 return false;
             }
             else if (tel.Text.Equals(telEmpty))
@@ -250,6 +226,7 @@ namespace HCZdravo.PatientPages
             else if (!tel.Text.All(char.IsDigit))
             {
                 tel.Text = telWrong;
+                tel.Foreground = Brushes.Red;
                 return false;
             }
             else
@@ -262,6 +239,7 @@ namespace HCZdravo.PatientPages
             if (livingCity.Text.Equals(""))
             {
                 livingCity.Text = livingCityEmpty;
+                livingCity.Foreground = Brushes.Red;
                 return false;
             }
             else if (livingCity.Text.Equals(livingCityEmpty))
@@ -271,6 +249,7 @@ namespace HCZdravo.PatientPages
             else if (!livingCity.Text.Equals(cityWrong) && !Regex.IsMatch(livingCity.Text, @"^[\p{L}\p{M}' \.\-]+$"))
             {
                 livingCity.Text = cityWrong;
+                livingCity.Foreground = Brushes.Red;
                 return false;
             }
             else
@@ -283,6 +262,8 @@ namespace HCZdravo.PatientPages
             if (birthCity.Text.Equals(""))
             {
                 birthCity.Text = birthCityEmpty;
+                birthCity.Foreground = Brushes.Red;
+
                 return false;
             }
             else if (birthCity.Text.Equals(birthCityEmpty))
@@ -292,6 +273,8 @@ namespace HCZdravo.PatientPages
             else if (!birthCity.Text.Equals(cityWrong) && !Regex.IsMatch(birthCity.Text, @"^[\p{L}\p{M}' \.\-]+$"))
             {
                 birthCity.Text = cityWrong;
+                birthCity.Foreground = Brushes.Red;
+
                 return false;
             }
             else
@@ -304,6 +287,7 @@ namespace HCZdravo.PatientPages
             if (pin.Text.Equals(""))
             {
                 pin.Text = pinEmpty;
+                pin.Foreground = Brushes.Red;
                 return false;
             }
             else if (pin.Text.Equals(pinEmpty))
@@ -321,6 +305,8 @@ namespace HCZdravo.PatientPages
             else if (!pin.Text.All(char.IsDigit))
             {
                 pin.Text = pinWrong;
+                pin.Foreground = Brushes.Red;
+
                 return false;
             }
             else
@@ -328,6 +314,8 @@ namespace HCZdravo.PatientPages
                 if (pin.Text.Length != 13)
                 {
                     pin.Text = pinShort;
+                    pin.Foreground = Brushes.Red;
+
                     return false;
                 }
                 else
@@ -341,6 +329,8 @@ namespace HCZdravo.PatientPages
             if (lastname.Text.Equals(""))
             {
                 lastname.Text = lastnameEmpty;
+                lastname.Foreground = Brushes.Red;
+
                 return false;
             }
             else if (lastname.Text.Equals(lastnameEmpty))
@@ -350,6 +340,8 @@ namespace HCZdravo.PatientPages
             else if (!lastname.Text.Equals(lastnameWrong) && !Regex.IsMatch(lastname.Text, @"^[\p{L}\p{M}' \.\-]+$"))
             {
                 lastname.Text = lastnameWrong;
+                lastname.Foreground = Brushes.Red;
+
                 return false;
             }
             else
@@ -365,6 +357,8 @@ namespace HCZdravo.PatientPages
             if (parentName.Text.Equals(""))
             {
                 parentName.Text = parentEmpty;
+                parentName.Foreground = Brushes.Red;
+
                 return false;
             }
             else if (parentName.Text.Equals(parentEmpty))
@@ -374,6 +368,8 @@ namespace HCZdravo.PatientPages
             else if (!parentName.Text.Equals(parentWrong) && !Regex.IsMatch(parentName.Text, @"^[\p{L}\p{M}' \.\-]+$"))
             {
                 parentName.Text = parentWrong;
+                parentName.Foreground = Brushes.Red;
+
                 return false;
             }
             else
@@ -387,6 +383,7 @@ namespace HCZdravo.PatientPages
             if (name.Text.Equals(""))
             {
                 name.Text = nameEmpty;
+                name.Foreground = Brushes.Red;
                 return false;
             }
             else if (name.Text.Equals(nameEmpty))
@@ -396,6 +393,8 @@ namespace HCZdravo.PatientPages
             else if (!name.Text.Equals(nameEmpty) && !Regex.IsMatch(name.Text, @"^[\p{L}\p{M}' \.\-]+$"))
             {
                 name.Text = nameWrong;
+                name.Foreground = Brushes.Red;
+
                 return false;
             }
             else

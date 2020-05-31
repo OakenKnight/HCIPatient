@@ -223,10 +223,10 @@
                         <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Medium" FontSize="24">Ocenite lekara</TextBlock>
 
                         <TextBlock Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30">Lekar:</TextBlock>
-                        <ComboBox Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Name="doctor" ItemsSource="{Binding Path= doctors}" Height="28"></ComboBox>
+                        <ComboBox materialDesign:HintAssist.Hint="Izaberite lekara" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Name="doctor" ItemsSource="{Binding Path= doctors}" Height="28"></ComboBox>
 
                         <TextBlock Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30">Ocena:</TextBlock>
-                        <ComboBox Grid.Row="5" Grid.Column="3" Name="rating" ItemsSource="{Binding Path= ratings}" HorizontalAlignment="Center" Width="45" ></ComboBox>
+                        <ComboBox materialDesign:HintAssist.Hint="Ocena" Grid.Row="5" Grid.Column="3" Name="rating" ItemsSource="{Binding Path= ratings}" HorizontalAlignment="Center" Width="78" Margin="85,11,53,11" ></ComboBox>
 
 
                         <TextBox BorderBrush="LightGray" BorderThickness="4" Grid.ColumnSpan="4" Grid.Column="1" Height="250" Grid.Row="6"  VerticalAlignment="Bottom" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Name="feedback" Width="395"/>

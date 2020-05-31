@@ -118,6 +118,24 @@ namespace PatientProject.PatientPages
         private void EmergencyExamButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO 1: mora da se uradi ovde
+            if (!feedback.Text.Equals(""))
+            {
+                MessageBoxResult succesMessage = MessageBox.Show("Zelite da se napustite ostavljanje komentara?", "Napustate?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleEmergemcyExamPage.xaml", UriKind.Relative));
+                            break;
+                        }
+                }
+            }
+            else
+            {
+
+                NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleEmergemcyExamPage.xaml", UriKind.Relative));
+
+            }
         }
 
         private void NewExamButton_Click(object sender, RoutedEventArgs e)
@@ -153,7 +171,7 @@ namespace PatientProject.PatientPages
                 {
                     case MessageBoxResult.OK:
                         {
-                            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
+                            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduledExamsPage.xaml", UriKind.Relative));
                             break;
                         }
                 }
@@ -161,7 +179,7 @@ namespace PatientProject.PatientPages
             else
             {
 
-                NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/PatientPages/PatientScheduledExamsPage.xaml", UriKind.Relative));
 
             }
 

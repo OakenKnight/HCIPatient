@@ -83,6 +83,8 @@ namespace PatientProject.PatientPages
         private void EmergencyExamButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO 1: mora da se uradi ovde
+            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleEmergemcyExamPage.xaml", UriKind.Relative));
+
         }
 
         private void NewExamButton_Click(object sender, RoutedEventArgs e)
@@ -93,7 +95,7 @@ namespace PatientProject.PatientPages
 
         private void ScheduledExamsButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleExamPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduledExamsPage.xaml", UriKind.Relative));
 
         }
 

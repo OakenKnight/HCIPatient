@@ -20,6 +20,10 @@ namespace HCZdravo
     /// </summary>
     public partial class PatientRegistrationPage : Page
     {
+        String usernameWrong = "Korisnicko ime je vec zauzeto";
+        String usernameEmpty = "Unesite korisnicko ime";
+        String passWrong = "Lozinka nema dovoljno karaktera";
+        int minPassChars = 6;
         public PatientRegistrationPage()
         {
             InitializeComponent();
@@ -31,48 +35,114 @@ namespace HCZdravo
 
         private void Nastavi_Button_Click(object sender, RoutedEventArgs e)
         {
-            int k = 0;
-            if (username.Text.Length == 0)
+            validateUsername();
+            validatePasswordFirst();
+            validatePasswordSecond();
+            if (validateUsername() && validatePasswordFirst() && validatePasswordSecond())
             {
-                username.Text = "Unesite korisničko ime...";
-                username.Focus();
-                k = 1;
-            }
-
-            if (pwd1.Password.Length == 0 && pwd2.Password.Length == 0)
-            {
-                errormessage.Text = "Unesite lozinku i ponovite je!";
-            }
-            else if (pwd1.Password.Length == 0)
-            {
-                errormessage.Text = "Unesite lozinku...";
-                pwd1.Focus();
-            }
-            else if (pwd2.Password.Length == 0)
-            {
-                errormessage.Text = "Ponovite lozinku...";
-                pwd2.Focus();
-            }
-            else if (!pwd1.Password.Equals(pwd2.Password))
-            {
-                errormessage.Text = "Lozinke se ne poklapaju! Ponovite opet!";
-                pwd2.Focus();
-            }
-            else
-            {
-                if (k == 0 && username.Text != "Unesite korisničko ime...")
+                if (!pwd1.Password.Equals(pwd2.Password)) 
                 {
-                    errormessage.Text = "";
+                    errormessage.Text = "Lozinke se ne poklapaju! Ponovite opet!";
 
+                }
+                else 
+                {
                     NavigationService.Navigate(new Uri("/PatientPages/PatientInfoInputPage.xaml", UriKind.Relative));
 
                 }
-                else if (username.Text == "Unesite korisničko ime...")
-                {
-                    errormessage.Text = "Unesite korisničko ime...";
-                    username.Text = "";
-                    username.Focus();
-                }
+            }
+            
+        }
+
+
+
+
+        public bool validateUsername()
+        {
+            if (username.Text.Equals(""))
+            {
+                username.Text = usernameEmpty;
+                username.Foreground = Brushes.Red;
+                return false;
+            }
+            else if (username.Text.Equals(usernameEmpty))
+            {
+                return false;
+            }
+            else if (username.Text.Equals(usernameWrong))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool validatePasswordFirst()
+        {
+            if (pwd1.Password.Equals(""))
+            {
+                errormessage.Text = "Unesite lozinku i ponovite je!";
+
+                return false;
+            }
+            else if (pwd1.Password.Length < minPassChars) {
+                
+                errormessage.Text = passWrong;
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool validatePasswordSecond()
+        {
+            if (pwd2.Password.Equals(""))
+            {
+                errormessage.Text = "Unesite lozinku i ponovite je!";
+
+                return false;
+            }
+            else if (pwd2.Password.Length < minPassChars)
+            {
+                errormessage.Text = passWrong;
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void username_GotFocus(object sender, RoutedEventArgs e)
+        {
+            username.Foreground = Brushes.Black;
+            if (username.Text.Equals(usernameEmpty))
+            {
+                username.Text = "";
+            }
+            else if (username.Text.Equals(usernameWrong))
+            {
+                username.Text = "";
+            }
+        }
+        
+        private void pwd1_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (errormessage.Text.Equals("Unesite lozinku i ponovite je!") || errormessage.Text.Equals(passWrong))
+            {
+                errormessage.Text = "";
+            }
+            
+        }
+
+        private void pwd2_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (errormessage.Text.Equals("Unesite lozinku i ponovite je!") || errormessage.Text.Equals(passWrong))
+            {
+                errormessage.Text = "";
             }
         }
     }
