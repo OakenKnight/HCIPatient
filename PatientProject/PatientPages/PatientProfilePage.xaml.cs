@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PatientProject.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -31,29 +32,40 @@ namespace PatientProject.PatientPages
 
     public partial class PatientProfilePage : Page
     {
+        public ObservableCollection<Notification> notifications
+        {
+            get;
+            set;
+        }
         public ObservableCollection<string> doctors
         {
             get;
             set;
         }
 
-        string personName = "Luka";
-        string personLastname = "Lukovic";
-        string personParent = "Pavle";
-        DateTime personBirthDate = new DateTime(2001,6,12);
-        string personTelephone = "0611717306";
-        string personGender = Gender.Muški.ToString();
-        string personLivingCity = "Bulevar Revolucije 2, Novi Sad, Srbija";
-        string personBirthCity = "Novi Sad";
-        string personPin = "1234567890123";
-        MailAddress personEmail = new MailAddress("luka.lukovic@gmail.com");
+        private string personName = "Luka";
+        private string personLastname = "Lukovic";
+        private string personParent = "Pavle";
+        private DateTime personBirthDate = new DateTime(2001,6,12);
+        private string personTelephone = "0611717306";
+        private string personGender = Gender.Muški.ToString();
+        private string personLivingCity = "Bulevar Revolucije 2, Novi Sad, Srbija";
+        private string personBirthCity = "Novi Sad";
+        private string personPin = "1234567890123";
+        private MailAddress personEmail = new MailAddress("luka.lukovic@gmail.com");
 
-
+        private Notifications notifi = new Notifications();
+        public Patient patient;
 
         public PatientProfilePage()
         {
             InitializeComponent();
+            this.DataContext = this;
             doctors = new ObservableCollection<string>();
+            
+            notifications = notifi.notifications;
+            patient = MainWindow.patient;
+
 
             doctors.Add("dr Zoran Radovanovic");
             doctors.Add("dr Goran Stevanovic");
@@ -61,40 +73,53 @@ namespace PatientProject.PatientPages
             doctors.Add("dr Jelena Klašnjar");
             doctors.Add("dr Miodrag Đukić");
             doctors.Add("dr Petar Petrović");
+            doctors.Add("dr Legenda Nestorovic");
 
-            chosenDoctor.Text = doctors.ElementAt(0);
-            name.Text = personName;
-            parent.Text = personParent;
-            lastname.Text = personLastname;
-            pin.Text = personPin;
-            tel.Text = personTelephone;
-            gender.Text = personGender;
-            dtp.SelectedDate = personBirthDate.Date;
-            livingCity.Text = personLivingCity;
-            birthCity.Text = personBirthCity;
-            email.Text = personEmail.ToString();
+            chosenDoctor.Text = patient.chosenDoctor;
+            name.Text = patient.name;
+            parent.Text = patient.parentName;
+            lastname.Text = patient.lastname;
+            pin.Text = patient.pin;
+            tel.Text = patient.number;
+            gender.Text = patient.gender;
+            dtp.SelectedDate = patient.birth.Date;
+            livingCity.Text = patient.living_city;
+            birthCity.Text = patient.birth_city;
+            email.Text = patient.email.ToString();
 
         }
         public PatientProfilePage(string doctor, string personName, string personLastname, string personParent, DateTime personBirthDate, string personTelephone, string personGender, string personLivingCity, string personBirthCity, string personPin, MailAddress personEmail) {
 
             InitializeComponent();
             this.DataContext = this;
+            patient = MainWindow.patient;
 
-            name.Text = personName;
-            parent.Text = personParent;
-            lastname.Text = personLastname;
-            pin.Text = personPin;
-            tel.Text = personTelephone;
+            patient.name = personName;
+            patient.parentName = personParent;
+            patient.lastname = personLastname;
+            patient.pin = personPin;
+            patient.birth = personBirthDate;
+            patient.living_city = personLivingCity;
+            patient.birth_city = personBirthCity;
+            patient.chosenDoctor = doctor;
+            patient.email = personEmail;
+            patient.gender = personGender;
+            patient.number = personTelephone;
 
-            livingCity.Text = personLivingCity;
-            birthCity.Text = personBirthCity;
+            Notifications notifi = new Notifications();
+            notifications = notifi.notifications;
 
-            email.Text = personEmail.ToString();
-
-            dtp.SelectedDate = personBirthDate.Date;
-
-            gender.Text = personGender;
-            chosenDoctor.Text = doctor;
+            chosenDoctor.Text = patient.chosenDoctor;
+            name.Text = patient.name;
+            parent.Text = patient.parentName;
+            lastname.Text = patient.lastname;
+            pin.Text = patient.pin;
+            tel.Text = patient.number;
+            gender.Text = patient.gender;
+            dtp.SelectedDate = patient.birth.Date;
+            livingCity.Text = patient.living_city;
+            birthCity.Text = patient.birth_city;
+            email.Text = patient.email.ToString();
         }
 
         private void displayMenu_Click(object sender, RoutedEventArgs e)
@@ -119,6 +144,15 @@ namespace PatientProject.PatientPages
             {
                 case MessageBoxResult.Yes:
                     {
+                        try
+                        {
+                            System.Diagnostics.Process.GetProcessById(MainWindow.idKeyboard).Kill();
+
+                        }
+                        catch
+                        {
+
+                        }
                         Environment.Exit(0);
                         break;
                     }
@@ -214,7 +248,7 @@ namespace PatientProject.PatientPages
 
         private void EditInfoButton_Click(object sender, RoutedEventArgs e)
         {
-                NavigationService.Navigate(new PatientEditInfoPage(chosenDoctor.Text, name.Text,lastname.Text,parent.Text,dtp.SelectedDate.Value,tel.Text,gender.Text,livingCity.Text, birthCity.Text, pin.Text, new MailAddress(email.Text)));
+                NavigationService.Navigate(new PatientEditInfoPage(patient));
 
         }
         private void Back_Click(object sender, RoutedEventArgs e)

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +23,11 @@ namespace PatientProject.PatientPages
     /// </summary>
     public partial class PatientScheduledExamsPage : Page
     {
-
+        public ObservableCollection<Notification> notifications
+        {
+            get;
+            set;
+        }
         public ObservableCollection<ScheduledExam> examsForToday
         {
             get;
@@ -46,15 +52,31 @@ namespace PatientProject.PatientPages
             get;
             set;
         }
-        public List<ScheduledExam> exams
+        public ObservableCollection<ScheduledExam> exams
         {
             get;
             set;
+        }
+        public ScheduledExam selectedExam { 
+            get;
+            set;
+
         }
         public DateTime dns = DateTime.Today;
         public DateTime tmrw = DateTime.Today;
         public DateTime dayaftertmrw2 = DateTime.Today;
         public DateTime dayaftertmrw = DateTime.Today;
+        public ObservableCollection<string> doctors
+        {
+            get;
+            set;
+        }
+
+        public ObservableCollection<string> vremena
+        {
+            get;
+            set;
+        }
 
         public PatientScheduledExamsPage()
         {
@@ -67,35 +89,54 @@ namespace PatientProject.PatientPages
             examsForTomorrow = new ObservableCollection<ScheduledExam>();
             examsForTmrw2 = new ObservableCollection<ScheduledExam>();
             examsForTmrw3 = new ObservableCollection<ScheduledExam>();
+            doctors = new ObservableCollection<string>();
+            doctors.Add("dr Goran Stevanovic");
+            doctors.Add("dr Jovan Prodanov");
+            doctors.Add("dr Jelena Klasnjar");
+            doctors.Add("dr Miodrag Đukic");
+            doctors.Add("dr Petar Petrovic");
+            doctors.Add("dr Legenda Nestorovic");
+
+            vremena = new ObservableCollection<string>();
+
+            DateTime startShift = new DateTime(2020, 5, 11, 7, 00, 0);
+            DateTime endShift = new DateTime(2020, 5, 11, 18, 00, 0);
+
+            IEnumerable<DateTime> listOfHours = Enumerable.Range(0, 24).Select(h => startShift.AddHours(h));
+
+            foreach (DateTime hour in listOfHours)
+            {
+                if (hour.Hour >= 7 && hour.Hour <= 18)
+                {
+                    vremena.Add(hour.TimeOfDay.ToString().Substring(0, hour.TimeOfDay.ToString().Length - 3));
+                    vremena.Add(hour.AddMinutes(30).TimeOfDay.ToString().Substring(0, hour.TimeOfDay.ToString().Length - 3));
+                }
+            }
 
             scheduledExamsNames = new Dictionary<DateTime, string>();
-
+            calendarStackPanel.Visibility = Visibility.Hidden;
             dns = DateTime.Today;
 
             tmrw = dns.AddDays(1);
             dayaftertmrw = dns.AddDays(2);
             dayaftertmrw2 = dns.AddDays(3);
+            Notifications notifi = new Notifications();
+            notifications = notifi.notifications;
 
+            ScheduledExam exam1 = new ScheduledExam(dns, "id1", "dr Jovan Prodanov","12:30","217");
+            ScheduledExam exam2 = new ScheduledExam(dns, "id2", "dr Legenda Nestorovic", "13:30", "237");
 
-            ScheduledExam exam1 = new ScheduledExam(dns, "id1", "Dr Jova Prodanov","12:30","217");
-            ScheduledExam exam2 = new ScheduledExam(dns, "id2", "Dr Legenda Nestorovic", "13:30", "237");
+            ScheduledExam exam3 = new ScheduledExam(tmrw, "id3", "dr Jelena Klasnjar", "11:30", "211");
+            ScheduledExam exam4 = new ScheduledExam(tmrw, "id4", "dr Goran Stevanovic", "13:30", "420");
 
-            ScheduledExam exam3 = new ScheduledExam(tmrw, "id3", "Dr Jelena Klasnjar", "11:30", "211");
-            ScheduledExam exam4 = new ScheduledExam(tmrw, "id4", "Dr Goran Stevanovic", "13:30", "420");
+            ScheduledExam exam5 = new ScheduledExam(dayaftertmrw, "id5", "dr Legenda Nestorovic", "17:30", "200");
+            ScheduledExam exam6 = new ScheduledExam(dayaftertmrw, "id6", "dr Legenda Nestorovic", "9:30", "12");
 
-            ScheduledExam exam5 = new ScheduledExam(dayaftertmrw, "id5", "Dr Legenda Nestorovic", "17:30", "200");
-            ScheduledExam exam6 = new ScheduledExam(dayaftertmrw, "id6", "Dr Legenda Nestorovic", "9:30", "12");
+            ScheduledExam exam7 = new ScheduledExam(dayaftertmrw2, "id7", "dr Legenda Nestorovic", "16:30", "666");
 
-            ScheduledExam exam7 = new ScheduledExam(dayaftertmrw2, "id7", "Dr Legenda Nestorovic", "16:30", "666");
+            exams = MainWindow.exams;
 
-            exams = new List<ScheduledExam>();
-            exams.Add(exam1);
-            exams.Add(exam2);
-            exams.Add(exam3);
-            exams.Add(exam4);
-            exams.Add(exam5); 
-            exams.Add(exam6); 
-            exams.Add(exam7);
+            selectedExam = null;
 
             examsForToday.Add(exam1);
             examsForToday.Add(exam2);
@@ -138,6 +179,15 @@ namespace PatientProject.PatientPages
             {
                 case MessageBoxResult.Yes:
                     {
+                        try
+                        {
+                            System.Diagnostics.Process.GetProcessById(MainWindow.idKeyboard).Kill();
+
+                        }
+                        catch
+                        {
+
+                        }
                         Environment.Exit(0);
                         break;
                     }
@@ -243,51 +293,59 @@ namespace PatientProject.PatientPages
         {
             gridContainer.Focus();
 
-            string[] parts = calendar.SelectedDate.Value.Date.ToString().Split(' ');
-
-            dateText.Text = parts[0];
-
-            
-            List<DateTime> dates = new List<DateTime>();
-
-            foreach (DateTime date in scheduledExamsNames.Keys)
+            try
             {
-                dates.Add(date);
-            }
-            
+                string[] parts = calendar.SelectedDate.Value.Date.ToString().Split(' ');
 
-            
+                dateText.Text = parts[0];
 
-            
-            if (!dates.Contains(Convert.ToDateTime(sender.ToString()))) 
-            {
-                ExamsPopup.IsOpen = false;
 
-            }
-            else
-            {
-                foreach(DateTime date in dates)
+                List<DateTime> dates = new List<DateTime>();
+
+                foreach (DateTime date in scheduledExamsNames.Keys)
                 {
-                    if (sender.ToString().Equals(date.Date.ToString()))
-                    {
-                        itemControl.DataContext = null;
-                        itemControl.DataContext = scheduledExamsNames[date.Date];
-                        Console.WriteLine(scheduledExamsNames[date.Date]);
-
-                        Binding b = new Binding(scheduledExamsNames[date.Date].ToString())
-                        {
-                            Source = this
-                        };
-                        itemControl.SetBinding(ItemsControl.ItemsSourceProperty, b);
-                        itemControl.Items.Refresh();
-                    }
-
-
+                    dates.Add(date);
                 }
 
-                ExamsPopup.IsOpen = true;
 
+
+
+
+                if (!dates.Contains(Convert.ToDateTime(sender.ToString())))
+                {
+                    ExamsPopup.IsOpen = false;
+
+                }
+                else
+                {
+                    foreach (DateTime date in dates)
+                    {
+                        if (sender.ToString().Equals(date.Date.ToString()))
+                        {
+                            itemControl.DataContext = null;
+                            itemControl.DataContext = scheduledExamsNames[date.Date];
+                            Console.WriteLine(scheduledExamsNames[date.Date]);
+
+                            Binding b = new Binding(scheduledExamsNames[date.Date].ToString())
+                            {
+                                Source = this
+                            };
+                            itemControl.SetBinding(ItemsControl.ItemsSourceProperty, b);
+                            itemControl.Items.Refresh();
+                        }
+
+
+                    }
+
+                    ExamsPopup.IsOpen = true;
+
+                }
             }
+            catch
+            {
+            }
+
+            
 
 
 
@@ -300,6 +358,74 @@ namespace PatientProject.PatientPages
             ExamsPopup.IsOpen = false;
             itemControl.DataContext = null;
             
+        }
+
+        private void calendarView_Click(object sender, RoutedEventArgs e)
+        {
+            listViewStackPanel.Visibility = Visibility.Hidden; 
+            calendarStackPanel.Visibility = Visibility.Visible;
+
+        }
+
+        private void list_Click(object sender, RoutedEventArgs e)
+        {
+            listViewStackPanel.Visibility = Visibility.Visible;
+            calendarStackPanel.Visibility = Visibility.Hidden;
+
+        }
+
+        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            
+                if (listView.SelectedItems.Count > 0)
+                {
+                    selectedExam = (ScheduledExam)listView.SelectedItems[0];
+                    doktor.SelectedItem = selectedExam.Doctor;
+                    time.SelectedItem = selectedExam.Time;
+                    date.SelectedDate = selectedExam.Date;
+                    room.Text = selectedExam.Room;
+                    selectedExamPopup.IsOpen = true;
+                }
+            
+        }
+
+        private void reschedule_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult succesMessage = MessageBox.Show("Da li ste sigurni da zelite da izmenite pregled?", "Izmena?", MessageBoxButton.YesNo);
+            switch (succesMessage)
+            {
+                case MessageBoxResult.Yes:
+                    {
+                        selectedExam.Date = date.SelectedDate.Value;
+                        selectedExam.Doctor = doktor.SelectedItem.ToString();
+                        selectedExam.Time = time.SelectedItem.ToString();
+
+                        foreach (ScheduledExam eX in MainWindow.exams)
+                        {
+                            if (eX.Id.Equals(selectedExam.Id))
+                            {
+                                eX.Date = selectedExam.Date;
+                                eX.Doctor = selectedExam.Doctor;
+                                eX.Time = selectedExam.Time;
+                            }
+
+                        }
+
+                        exams = MainWindow.exams;
+
+                        ICollectionView view = CollectionViewSource.GetDefaultView(exams);
+                        view.Refresh();
+
+                        selectedExamPopup.IsOpen = false;
+                        break;
+
+                    }
+
+            }
+
+
+            
+
         }
     }
 }

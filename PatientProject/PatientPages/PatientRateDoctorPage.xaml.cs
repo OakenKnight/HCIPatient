@@ -21,6 +21,11 @@ namespace PatientProject.PatientPages
     /// </summary>
     public partial class PatientRateDoctorPage : Page
     {
+        public ObservableCollection<Notification> notifications
+        {
+            get;
+            set;
+        }
         public ObservableCollection<string> doctors
         {
             get;
@@ -48,7 +53,8 @@ namespace PatientProject.PatientPages
             doctors.Add("dr Jelena Klašnjar");
             doctors.Add("dr Miodrag Đukić");
             doctors.Add("dr Petar Petrović");
-
+            Notifications notifi = new Notifications();
+            notifications = notifi.notifications;
 
         }
         private void displayMenu_Click(object sender, RoutedEventArgs e)
@@ -73,6 +79,15 @@ namespace PatientProject.PatientPages
             {
                 case MessageBoxResult.Yes:
                     {
+                        try
+                        {
+                            System.Diagnostics.Process.GetProcessById(MainWindow.idKeyboard).Kill();
+
+                        }
+                        catch
+                        {
+
+                        }
                         Environment.Exit(0);
                         break;
                     }

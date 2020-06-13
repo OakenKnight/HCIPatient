@@ -13,7 +13,7 @@
       Background="{DynamicResource MaterialDesignPaper}"
       FontFamily="{DynamicResource MaterialDesignFont}"
       mc:Ignorable="d" 
-      d:DesignHeight="750" d:DesignWidth="440"
+      d:DesignHeight="750" d:DesignWidth="430"
       Title="PatientSignInPage">
 
     <Grid>
@@ -45,7 +45,7 @@
                     <BitmapImage UriSource="/Resources/logo.png"></BitmapImage>
                 </Image.Source>
             </Image>
-            <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Width="180" Height="28" >KLINIKA ZDRAVO!</TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Width="180" Height="28" Margin="54.463,84,53.537,10" >KLINIKA ZDRAVO!</TextBlock>
             <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"    FontSize="16" Height="22" Width="80" Margin="0,14" >Prijavite se!</TextBlock>
 
             <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="22" Width="106" Margin="0,14" >Korisničko ime:</TextBlock>
@@ -85,8 +85,8 @@
                 </StackPanel>
             </Button>
 
-            <Border Grid.Row="9" Grid.Column="2" CornerRadius="62" Padding="0,20,0,0" Background="PowderBlue" BorderBrush="Black" BorderThickness="1" Margin="43,3,44,4">
-                <TextBlock HorizontalAlignment="Center" Text="ili" FontSize="16" />
+            <Border Grid.Row="9" Grid.Column="2" CornerRadius="62" Padding="0,20,0,0" Background="PowderBlue" BorderBrush="Black" BorderThickness="1" Width="65" Height="65">
+                <TextBlock HorizontalAlignment="Center" Text="ili" FontSize="18" />
             </Border>
             <Line Grid.Row="9" Grid.Column="0" Stretch="Fill" Stroke="Black" X2="3" Grid.ColumnSpan="3" Margin="10,0,102,0"></Line>
             <Line Grid.Row="9" Grid.Column="2" Stretch="Fill" Stroke="Black" X2="3" Margin="103,0,10.667,0" Grid.ColumnSpan="2"/>
@@ -97,9 +97,10 @@
             </Image>
 
 
-
-
             <Button Grid.Row="11"  HorizontalAlignment="Center" VerticalAlignment="Center"  Content="Registrujte se!" Height="46"  FontSize="22" FontWeight="Medium" Grid.ColumnSpan="3" Width="250" Click="Register_Button_Click" Grid.Column="1" />
+            <Button Grid.Column="3" HorizontalAlignment="Left" Margin="85.463,11,0,0" Background="Transparent" VerticalAlignment="Top" Width="49"  Height="37" Name="exitClick" Click="exitClick_Click" BorderThickness="0">
+                <materialDesign:PackIcon Kind="Close" Foreground="Black"></materialDesign:PackIcon>
+            </Button>
         </Grid>
 
 

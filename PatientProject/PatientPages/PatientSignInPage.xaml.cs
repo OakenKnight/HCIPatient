@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PatientProject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,14 +25,11 @@ namespace HCZdravo
 
 
 
-        private Dictionary<string, string> patients;
         public PatientSignInPage()
         {
             InitializeComponent();
 
-            patients = new Dictionary<string, string>();
 
-            patients.Add("pera", "pera");
         }
 
         private void signIn_Click(object sender, RoutedEventArgs e)
@@ -45,7 +43,7 @@ namespace HCZdravo
             {
                 if (password.Length == 0 && username.Length == 0)
                 {
-                    errormessage.Text = "Enter an username and password.";
+                    errormessage.Text = "Unesite korisnicko ime i sifru.";
 
                     pwd.Focus();
                     user.Focus();
@@ -54,12 +52,12 @@ namespace HCZdravo
 
                 else if (password.Length == 0)
                 {
-                    errormessage.Text = "Enter a password.";
+                    errormessage.Text = "Unesite sifru.";
                     pwd.Focus();
                 }
                 else if (username.Length == 0)
                 {
-                    errormessage.Text = "Enter an username.";
+                    errormessage.Text = "Unesite korisnicko ime.";
                     user.Focus();
                 }
 
@@ -67,44 +65,33 @@ namespace HCZdravo
             else
             {
                 errormessage.Text = "";
-                int k = 0;
-                foreach (string username1 in patients.Values)
-                {
-                    if (username1.Equals(username))
-                    {
-                        k = 1;
-                        Console.WriteLine(username);
-                    }
-                }
 
-                if (k == 0)
+
+                if (!MainWindow.proveriPostojanje(user.Text))
                 {
-                    errorWrongInput.Text = "Wrong username.";
-                    user.Focus();
+
+                    errorWrongInput.Text = "Pogresno korisnicko ime.";
+
+                }
+                else if (!MainWindow.ispravanaKorisnik(user.Text, pwd.Password))
+                {
+
+                    errorWrongInput.Text = "Pogresna lozinka";
+
                 }
                 else
                 {
-                    if (patients.ContainsKey(password))
-                    {
-                        if (patients[password].Equals(username))
-                        {
-                            NavigationService.Navigate(new Uri("/PatientPages/PatientMainPage.xaml", UriKind.Relative));
-                            errorWrongInput.Text = "";
-                            errormessage.Text = "";
-                        }
-
-                    }
-                    else
-                    {
-                        errorWrongInput.Text = "Wrong password";
-                        pwd.Focus();
-                    }
+                    NavigationService.Navigate(new Uri("/PatientPages/PatientMainPage.xaml", UriKind.Relative));
+                    errorWrongInput.Text = "";
+                    errormessage.Text = "";
                 }
-
 
             }
 
+
         }
+
+        
 
         private void forgotenPassword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -115,6 +102,31 @@ namespace HCZdravo
         private void Register_Button_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/PatientPages/PatientRegistrationPage.xaml", UriKind.Relative));
+        }
+
+
+
+        private void exitClick_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult succesMessage = MessageBox.Show("Da li ste sigurni da zelite da izadjete?", "Izlazak?", MessageBoxButton.YesNo);
+            switch (succesMessage)
+            {
+                case MessageBoxResult.Yes:
+                    {
+                        try
+                        {
+                            System.Diagnostics.Process.GetProcessById(MainWindow.idKeyboard).Kill();
+
+                        }
+                        catch
+                        {
+
+                        }
+                        Environment.Exit(0);
+                        break;
+                    }
+
+            }
         }
     }
 }

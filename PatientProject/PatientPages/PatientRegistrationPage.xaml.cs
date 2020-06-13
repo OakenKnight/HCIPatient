@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PatientProject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,7 @@ namespace HCZdravo
         public PatientRegistrationPage()
         {
             InitializeComponent();
+            
         }
         private void back_Click(object sender, RoutedEventArgs e)
         {
@@ -47,6 +49,13 @@ namespace HCZdravo
                 }
                 else 
                 {
+
+                    MainWindow.korisnici[pwd1.Password] = username.Text;
+                    foreach(string key in MainWindow.korisnici.Keys)
+                    {
+                        Console.WriteLine(MainWindow.korisnici[key]);
+                    }
+
                     NavigationService.Navigate(new Uri("/PatientPages/PatientInfoInputPage.xaml", UriKind.Relative));
 
                 }
@@ -143,6 +152,29 @@ namespace HCZdravo
             if (errormessage.Text.Equals("Unesite lozinku i ponovite je!") || errormessage.Text.Equals(passWrong))
             {
                 errormessage.Text = "";
+            }
+        }
+
+        private void exitClick_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult succesMessage = MessageBox.Show("Da li ste sigurni da zelite da izadjete?", "Izlazak?", MessageBoxButton.YesNo);
+            switch (succesMessage)
+            {
+                case MessageBoxResult.Yes:
+                    {
+                        try
+                        {
+                            System.Diagnostics.Process.GetProcessById(MainWindow.idKeyboard).Kill();
+
+                        }
+                        catch
+                        {
+
+                        }
+                        Environment.Exit(0);
+                        break;
+                    }
+
             }
         }
     }

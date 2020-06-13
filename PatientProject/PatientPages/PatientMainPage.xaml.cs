@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +23,23 @@ namespace PatientProject.PatientPages
     /// </summary>
     public partial class PatientMainPage : Page
     {
+ 
+        public ObservableCollection<Notification> notifications
+        {
+            get;
+            set;
+        }
         public PatientMainPage()
         {
             InitializeComponent();
+            this.DataContext = this;
+
+            Notifications notif = new Notifications();
+            notifications = notif.notifications;
+
+            
         }
-        
+
         private void displayMenu_Click(object sender, RoutedEventArgs e)
         {
 
@@ -49,6 +62,15 @@ namespace PatientProject.PatientPages
             {
                 case MessageBoxResult.Yes:
                     {
+                        try
+                        {
+                            System.Diagnostics.Process.GetProcessById(MainWindow.idKeyboard).Kill();
+
+                        }
+                        catch
+                        {
+
+                        }
                         Environment.Exit(0);
                         break;
                     }

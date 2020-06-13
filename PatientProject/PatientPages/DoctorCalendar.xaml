@@ -1,0 +1,366 @@
+﻿<UserControl x:Class="HealthCare.View.Doctor.DoctorCalendar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:HealthCare.View.Doctor"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="ListBoxItem" x:Name="MyStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate  TargetType="ListBoxItem">
+                        <Border x:Name="ItemBorder" Margin="0 -1 0 -1" BorderBrush="Gray" BorderThickness="1" Background="Transparent">
+                            <ContentPresenter/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Focusable" Value="False"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightSkyBlue"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="LightSkyBlue"/>
+                    <Setter Property="Foreground" Value="Black"/>
+
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+
+    <Grid Margin="15 15 15 15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+
+
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="2" Background="DodgerBlue">
+        </Border>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+            <Button x:Name="btnLeftCalendar" BorderThickness="0" Click="btnLeftCalendar_Click" Background="Transparent" Height="40" Width="40">
+                <materialDesign:PackIcon Kind="ArrowLeft" Background="Transparent" Height="40" Width="40" VerticalAlignment="Center"/>
+            </Button>
+            <Button x:Name="btnRightCalendar" BorderThickness="0" Background="Transparent" Click="btnRightCalendar_Click" Height="40" Width="40">
+                <materialDesign:PackIcon Kind="ArrowRight" Background="Transparent" Height="40" Width="40" VerticalAlignment="Center"/>
+            </Button>
+        </StackPanel>
+
+        <Button x:Name="print" BorderThickness="0" Background="Transparent" Grid.Row="0" Grid.Column="6" Click="print_Click"  Height="40" Width="77" HorizontalAlignment="Left" Margin="0,10">
+            <materialDesign:PackIcon Kind="Printer" Background="Transparent" Height="40" Width="40" VerticalAlignment="Center"/>
+        </Button>
+
+        <TextBlock x:Name="CurrentMonth" FontWeight="Light" Text="{Binding}" FontSize="20" FontFamily="helvetica" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.ColumnSpan="7"/>
+
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Ned" FontFamily="Helvetica" FontWeight="Light" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Pon" FontFamily="Helvetica" FontWeight="Light" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="Uto" FontFamily="Helvetica" FontWeight="Light" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="3" Text="Sre" FontFamily="Helvetica" FontWeight="Light" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="4" Text="Čet" FontFamily="Helvetica" FontWeight="Light" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="5" Text="Pet" FontFamily="Helvetica" FontWeight="Light" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="6" Text="Sub" FontFamily="Helvetica" FontWeight="Light" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+
+        <ListBox x:Name ="Week1" Grid.Row="2" Background="Transparent" Grid.ColumnSpan="7"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 ItemsSource="{Binding}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+
+            <ListBox.ItemsPanel >
+                <ItemsPanelTemplate >
+                    <VirtualizingStackPanel IsItemsHost="True" HorizontalAlignment="Stretch" Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate >
+                <DataTemplate >
+                    <Grid Background="{Binding Path=dayColor}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.ColumnSpan="1" 
+                                BorderThickness="0"  
+                                Height="Auto"
+                                Width="212.5"
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch">
+                            <StackPanel >
+                                <TextBlock Background="Transparent" 
+                                       Margin="0 15 0 0"
+                                       VerticalAlignment="Top" 
+                                       HorizontalAlignment="Center" 
+                                       Text="{Binding Path=name}" 
+                                       FontFamily="Helvetica" 
+                                       FontSize="20" 
+                                       FontWeight="{Binding Path=weight}"/>
+                                <TextBlock  Background="Transparent" 
+                                       VerticalAlignment="Center" 
+                                            Margin="0 15 0 0 "
+                                       HorizontalAlignment="Center" 
+                                       Text="{Binding Path=text}" 
+                                       FontFamily="Helvetica" 
+                                       FontSize="20" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox x:Name ="Week2"  Grid.Row="3" Background="Transparent" Grid.ColumnSpan="7" Grid.Column="0" 
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 ItemsSource="{Binding}">
+
+            <ListBox.ItemsPanel >
+                <ItemsPanelTemplate >
+                    <VirtualizingStackPanel  IsItemsHost="True" Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="{Binding Path=dayColor}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Border Height="Auto" Width="212.5"
+                                BorderThickness="0"  
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch">
+                            <StackPanel Background="{Binding tabcolor}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                                <TextBlock
+                                        
+                                       Margin="0 15 0 0 "
+                                       VerticalAlignment="Top" 
+                                       HorizontalAlignment="Center" 
+                                       Text="{Binding Path=name}" 
+                                       FontFamily="Helvetica" 
+                                       FontSize="20" 
+                                       FontWeight="{Binding Path=weight}"/>
+                                <TextBlock
+                                       VerticalAlignment="Center" 
+                                       Margin="0 15 0 0 "
+                                       HorizontalAlignment="Center" 
+                                       Text="{Binding Path=text}" 
+                                       FontFamily="Helvetica" 
+                                       FontSize="20" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox x:Name ="Week3" Grid.Row="4" Background="Transparent" Grid.ColumnSpan="7" Grid.Column="0" 
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 ItemsSource="{Binding}">
+
+            <ListBox.ItemsPanel >
+                <ItemsPanelTemplate >
+                    <VirtualizingStackPanel  IsItemsHost="True" Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="{Binding Path=dayColor}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Border Height="Auto" Width="212.5"
+                                BorderThickness="0"  
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
+                            <StackPanel>
+                                <TextBlock Background="Transparent" 
+                                       Margin="0 -15 0 0 "
+                                       VerticalAlignment="Top" 
+                                       HorizontalAlignment="Center" 
+                                       Text="{Binding Path=name}" 
+                                       FontFamily="Helvetica" 
+                                       FontSize="20" 
+                                       FontWeight="{Binding Path=weight}"/>
+                                <TextBlock  Background="Transparent" 
+                                       VerticalAlignment="Center" 
+                                       Margin="0 15 0 0 "
+                                       HorizontalAlignment="Center" 
+                                       Text="{Binding Path=text}" 
+                                       FontFamily="Helvetica" 
+                                       FontSize="20" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox x:Name ="Week4" Grid.Row="5" Background="Transparent" Grid.ColumnSpan="7" Grid.Column="0" 
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 ItemsSource="{Binding}">
+
+            <ListBox.ItemsPanel >
+                <ItemsPanelTemplate >
+                    <VirtualizingStackPanel  IsItemsHost="True" Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="{Binding Path=dayColor}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Border Height="Auto" Width="212.5"
+                                BorderThickness="0"  
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
+                            <StackPanel>
+                                <TextBlock Background="Transparent" 
+                                       Margin="0 -15 0 0 "
+                                       VerticalAlignment="Top" 
+                                       HorizontalAlignment="Center" 
+                                       Text="{Binding Path=name}" 
+                                       FontFamily="Helvetica" 
+                                       FontSize="20" 
+                                       FontWeight="{Binding Path=weight}"/>
+                                <TextBlock  Background="Transparent" 
+                                       VerticalAlignment="Center" 
+                                       Margin="0 15 0 0 "
+                                       HorizontalAlignment="Center" 
+                                       Text="{Binding Path=text}" 
+                                       FontFamily="Helvetica" 
+                                       FontSize="20" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <ListBox x:Name ="Week5" Grid.Row="6" Background="Transparent" Grid.ColumnSpan="7" Grid.Column="0" 
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 ItemsSource="{Binding}">
+
+            <ListBox.ItemsPanel >
+                <ItemsPanelTemplate >
+                    <VirtualizingStackPanel  IsItemsHost="True" Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="{Binding Path=dayColor}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Border Height="Auto" Width="212.5"
+                                BorderThickness="0"  
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
+                            <StackPanel>
+                                <TextBlock Background="Transparent" 
+                                       Margin="0 -15 0 0 "
+                                       VerticalAlignment="Top" 
+                                       HorizontalAlignment="Center" 
+                                       Text="{Binding Path=name}" 
+                                       FontFamily="Helvetica" 
+                                       FontSize="20" 
+                                       FontWeight="{Binding Path=weight}"/>
+                                <TextBlock  Background="Transparent" 
+                                       VerticalAlignment="Center" 
+                                       Margin="0 15 0 0 "
+                                       HorizontalAlignment="Center" 
+                                       Text="{Binding Path=text}" 
+                                       FontFamily="Helvetica" 
+                                       FontSize="20" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <ListBox x:Name ="Week6" Grid.Row="7" Background="Transparent" Grid.ColumnSpan="7" Grid.Column="0" 
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 ItemsSource="{Binding}">
+
+            <ListBox.ItemsPanel >
+                <ItemsPanelTemplate >
+                    <VirtualizingStackPanel  IsItemsHost="True" Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="{Binding Path=dayColor}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Border Height="Auto" Width="212.5"
+                                BorderThickness="0"
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
+                            <StackPanel>
+                                <TextBlock Background="Transparent" 
+                                       Margin="0 -15 0 0 "
+                                       VerticalAlignment="Top" 
+                                       HorizontalAlignment="Center" 
+                                       Text="{Binding Path=name}" 
+                                       FontFamily="Helvetica" 
+                                       FontSize="20" 
+                                       FontWeight="{Binding Path=weight}"/>
+                                <TextBlock  Background="Transparent" 
+                                       VerticalAlignment="Center" 
+                                       Margin="0 15 0 0 "
+                                       HorizontalAlignment="Center" 
+                                       Text="{Binding Path=text}" 
+                                       FontFamily="Helvetica" 
+                                       FontSize="20" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
+    </Grid>
+</UserControl>

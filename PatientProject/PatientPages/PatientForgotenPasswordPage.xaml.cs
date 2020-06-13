@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PatientProject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +29,8 @@ namespace HCZdravo.PatientPages
 
         private void ResetPassowrd_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (username.Text.Length != 0 && jmbg.Text.Length != 0 && pwd1.Password.Length != 0 && pwd2.Password.Length != 0 && pwd1.Password.Equals(pwd2.Password))
+
+            if (username.Text.Length != 0 && jmbg.Text.Length != 0 && jmbg.Text.All(char.IsDigit) && pwd1.Password.Length != 0 && pwd2.Password.Length != 0 && pwd1.Password.Equals(pwd2.Password))
             {
                 MessageBoxResult succesMessage = MessageBox.Show("Uspešno ste resetovali lozinku!", "Uspešno!", MessageBoxButton.OKCancel);
                 errormessage.Text = "";
@@ -40,52 +42,95 @@ namespace HCZdravo.PatientPages
                             break;
                         }
                 }
+
             }
             else
             {
                 if (username.Text.Length == 0)
                 {
-                    username.Text = "Unesite korisnicko ime...";
+                    errorWrongName.Text = "Unesite korisnicko ime...";
                 }
-                else if (username.Text.Equals("Unesite korisnicko ime..."))
-                {
-                    errormessage.Text = "Niste uneli korisnicko ime!";
+                else {
+                    errorWrongName.Text = "";
                 }
+
 
                 if (jmbg.Text.Length == 0)
                 {
-                    jmbg.Text = "Unesite jmbg...";
+                    errorWrongPin.Text = "Unesite jmbg...";
                 }
-                else if (jmbg.Text.Equals("Unesite jmbg..."))
+                else if(!jmbg.Text.All(char.IsDigit))
                 {
-                    errormessage.Text = "Niste uneli lozinku!";
+                    errorWrongPin.Text = "JMBG mora imati samo cifre..";
+                }
+                else
+                {
+                    errorWrongPin.Text="";
                 }
 
-                if (pwd1.Password.Length == 0)
-                {
-                    errormessage1.Text = "Unesite lozinku...";
-                    errormessage.Text = "";
-                    pwd1.Focus();
+
+                if (pwd1.Password.Length == 0 || pwd2.Password.Length == 0 || !pwd1.Password.Equals(pwd2.Password)) {
+
+
+                    if (pwd1.Password.Length == 0)
+                    {
+                        errorWrongPass1.Text = "Unesite lozinku...";
+
+                    }
+                    else
+                    {
+                        errorWrongPass1.Text = "";
+                    }
+
+                    if (pwd2.Password.Length == 0)
+                    {
+                        errorWrongPass2.Text = "Unesite lozinku...";
+
+                    }
+                    else
+                    {
+                        errorWrongPass2.Text = "";
+                    }
+
+
+                    if (!pwd2.Password.Equals(pwd1.Password))
+                    {
+                        errormessage.Text = "Lozinke se ne poklapaju! Pokušajte ponovo.";
+
+                    }
                 }
-                else if (pwd2.Password.Length == 0)
-                {
-                    errormessage1.Text = "Ponovite unos lozinke...";
-                    errormessage.Text = "";
-                    pwd2.Focus();
-                }
-                else if (!pwd1.Password.Equals(pwd2.Password))
-                {
-                    errormessage1.Text = "";
-                    errormessage.Text = "Lozinke se ne poklapaju! Pokušajte ponovo.";
-                    pwd2.Focus();
-                }
+                
             }
+
+            
 
         }
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/PatientPages/PatientSignInPage.xaml", UriKind.Relative));
+        }
+        private void exitClick_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult succesMessage = MessageBox.Show("Da li ste sigurni da zelite da izadjete?", "Izlazak?", MessageBoxButton.YesNo);
+            switch (succesMessage)
+            {
+                case MessageBoxResult.Yes:
+                    {
+                        try
+                        {
+                            System.Diagnostics.Process.GetProcessById(MainWindow.idKeyboard).Kill();
+
+                        }
+                        catch
+                        {
+
+                        }
+                        Environment.Exit(0);
+                        break;
+                    }
+
+            }
         }
     }
 }

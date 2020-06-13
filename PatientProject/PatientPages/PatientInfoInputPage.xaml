@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCZdravo.PatientPages"
       mc:Ignorable="d" 
-      d:DesignHeight="750" d:DesignWidth="440"
+      d:DesignHeight="750" d:DesignWidth="430"
       Title="PatientInfoInputPage"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -18,11 +18,10 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="23*"/>
-            <ColumnDefinition Width="129*"/>
-            <ColumnDefinition Width="34*"/>
-            <ColumnDefinition Width="107*"/>
-            <ColumnDefinition Width="147*"/>
+            <ColumnDefinition Width="14*"/>
+            <ColumnDefinition Width="167*"/>
+            <ColumnDefinition Width="105*"/>
+            <ColumnDefinition Width="144*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="82*"/>
@@ -42,56 +41,96 @@
             <RowDefinition Height="72*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="1" Grid.ColumnSpan="3"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontWeight="Medium" Margin="0,6" Height="36" Width="214" Grid.Row="1">Unesite podatke:</TextBlock>
+        <TextBlock Grid.Column="1" Grid.ColumnSpan="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontWeight="Medium" Margin="0,6" Height="36" Width="214" Grid.Row="1">Unesite podatke:</TextBlock>
 
-        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="MaterialDesignFloatingActionAccentButton" Grid.Row="0" Grid.Column="1" x:Name="back" BorderThickness="0" Padding="0" Height="66" Width="66"  Click="Back_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,8" >
+        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Grid.Row="0" Grid.Column="1" x:Name="back" BorderThickness="0" Padding="0" Height="66" Width="66"  Click="Back_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,8" >
             <materialDesign:PackIcon Kind="ArrowLeft" Height="50" Width="52" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Button>
-        <Image Grid.Row="0" Grid.Column="4" Grid.RowSpan="2" Margin="0,0,0,5">
+        <Image Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Margin="0,35,29,5">
             <Image.Source>
                 <BitmapImage UriSource="/Resources/social-media.png"></BitmapImage>
             </Image.Source>
         </Image>
 
-        <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="24" Width="124" Margin="0,12,0,13" >Ime:</TextBlock>
-        <TextBox Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="3" Name="name" GotFocus="name_GotFocus" HorizontalAlignment="Left" Width="230" Height="30"/>
-
-        <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,47,0,1" Grid.RowSpan="2" >
-            <TextBlock  HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Center" FontSize="17" Height="50" Width="119" >Ime jednog roditelja:</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="24" Width="124" Margin="0,12,0,13" >Ime: *</TextBlock>
+        <StackPanel Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Orientation="Vertical">
+            <TextBox  Name="name" GotFocus="name_GotFocus" HorizontalAlignment="Left" Width="230" Height="30"/>
+            <TextBlock x:Name ="errorWrongName" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
         </StackPanel>
-        <TextBox Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="3" Name="parentName" GotFocus="parentName_GotFocus" HorizontalAlignment="Left" Width="230" Height="30"/>
+
+        <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,47,0,1" Grid.RowSpan="2" >
+            <TextBlock  HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Center" FontSize="17" Height="50" Width="119" >Ime jednog roditelja: *</TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Orientation="Vertical">
+            <TextBox Name="parentName" GotFocus="parentName_GotFocus" HorizontalAlignment="Left" Width="230" Height="30"/>
+            <TextBlock x:Name ="errorWrongNameParent" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+        </StackPanel>
 
 
-        <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="18" Height="22" Width="70" Margin="0,13,0,14" >Prezime:</TextBlock>
-        <TextBox Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="3" Name="lastname" GotFocus="lastname_GotFocus" HorizontalAlignment="Left" Width="230" Height="30"/>
-
-        <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="22" Width="56" Margin="0,15,0,13" >JMBG:</TextBlock>
-        <TextBox Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="3" Name="pin" GotFocus="pin_GotFocus" HorizontalAlignment="Left" Width="230" Height="30"/>
-
-        <TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="22" Width="150" Grid.ColumnSpan="2" Margin="0,14" >Mesto prebivališta:</TextBlock>
-        <TextBox Grid.Row="7" Grid.ColumnSpan="2" Grid.Column="3" Name="livingCity" GotFocus="livingCity_GotFocus" HorizontalAlignment="Left" Width="230" Height="30"/>
-
-        <TextBlock Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="24" Width="118" Margin="0,13" >Mesto rođenja:</TextBlock>
-        <TextBox Grid.Row="8" Grid.ColumnSpan="2" Grid.Column="3" Name="birthCity" GotFocus="birthCity_GotFocus" HorizontalAlignment="Left" Width="230" Height="30"/>
-
-        <TextBlock Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="24" Width="62" Margin="0,13,0,12">Telefon:</TextBlock>
-        <TextBox Grid.Row="9" Grid.ColumnSpan="2" Grid.Column="3" Name="tel" VerticalAlignment="Center" GotFocus="tel_GotFocus" HorizontalAlignment="Left" Width="230" Height="30"/>
-
-        <TextBlock Grid.Row="10" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="24" Width="124" Margin="0,14,0,15" >Datum rođenja:</TextBlock>
-        <DatePicker Name="dtp" Grid.Row="10" Grid.Column="3" Grid.ColumnSpan="2" Width="220" materialDesign:HintAssist.Hint="Odaberite datum rodjenja"  Style="{StaticResource MaterialDesignFloatingHintDatePicker}" HorizontalAlignment="Left"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="18" Height="22" Width="88" Margin="0,14,0,13" >Prezime: *</TextBlock>
+        <StackPanel Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Orientation="Vertical">
+            <TextBox Name="lastname" GotFocus="lastname_GotFocus" HorizontalAlignment="Left" Width="230" Height="30"/>
+            <TextBlock x:Name ="errorWrongLastname" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+        </StackPanel>
 
 
-        <TextBlock Grid.Row="11" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="24" Width="26" Margin="0,13" >Pol:</TextBlock>
-        <ComboBox Grid.Row="11" Grid.Column="3" Grid.ColumnSpan="2"  ItemsSource="{Binding Path= genders}" Name="gender" HorizontalAlignment="Left" Width="230" Height="30"></ComboBox>
+        <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="22" Margin="0,14" Width="62" >JMBG: *</TextBlock>
+        <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="2" Orientation="Vertical">
+            <TextBox Name="pin" GotFocus="pin_GotFocus" HorizontalAlignment="Left" Width="230" Height="30"/>
+            <TextBlock x:Name ="errorWrongPin" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+        </StackPanel>
 
-        <TextBlock Grid.Row="12" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="24" Width="50" Margin="0,13" >e-mail:</TextBlock>
-        <TextBox Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Width="230" Height="30" Name="email" GotFocus="email_GotFocus"></TextBox>
 
-        <TextBlock Grid.Row="13" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="24" Width="110" Margin="0,13,0,12" >Izabrani lekar:</TextBlock>
-        <ComboBox Grid.Row="13" Grid.Column="3" Grid.ColumnSpan="2" ItemsSource="{Binding Path= doctors}" Name="doctor" HorizontalAlignment="Left" Width="230" Height="30"></ComboBox>
+        <TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="22" Margin="0,14" Width="162"  >Mesto prebivališta: *</TextBlock>
+        <StackPanel Grid.Row="7" Grid.ColumnSpan="2" Grid.Column="2" Orientation="Vertical">
+            <ComboBox Grid.Row="11" Grid.Column="3" Grid.ColumnSpan="2"  ItemsSource="{Binding Path= cities}" Name="livingCity" HorizontalAlignment="Left" Width="230" Height="30"></ComboBox>
+            <TextBlock x:Name ="errorWrongLCity" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+        </StackPanel>
 
-        <TextBlock Grid.Row ="14" Grid.Column="1" Grid.ColumnSpan="3" x:Name ="errorWrongInput" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C" Margin="25,26"/>
+        <TextBlock Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="24" Margin="0,13" Width="132">Mesto rođenja: *</TextBlock>
+        <StackPanel Grid.Row="8" Grid.ColumnSpan="2" Grid.Column="2" Orientation="Vertical">
+            <ComboBox ItemsSource="{Binding Path= cities}" Name="birthCity" HorizontalAlignment="Left" Width="230" Height="30"></ComboBox>
+            <TextBlock x:Name ="errorWrongBCity" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+        </StackPanel>
 
-        <Button Grid.Column="4" Grid.Row="14" Content="Potvrdi" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24" FontWeight="Medium" Height="44" Width="120" Click="Accept_Click" Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0,14"/>
+        <TextBlock Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="24" Margin="0,13,0,12" Width="74">Telefon: *</TextBlock>
+        <StackPanel Grid.Row="9" Grid.ColumnSpan="2" Grid.Column="2" Orientation="Vertical">
+            <TextBox Name="tel" VerticalAlignment="Center" GotFocus="tel_GotFocus" HorizontalAlignment="Left" Width="230" Height="30"/>
+            <TextBlock x:Name ="errorWrongNumber" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="10" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="24" Margin="0,14,0,15" Width="135">Datum rođenja: *</TextBlock>
+        <StackPanel Grid.Row="10" Grid.ColumnSpan="2" Grid.Column="2" Orientation="Vertical">
+            <DatePicker Name="dtp" Width="220" materialDesign:HintAssist.Hint="Odaberite datum rodjenja"  Style="{StaticResource MaterialDesignFloatingHintDatePicker}" HorizontalAlignment="Left"/>
+            <TextBlock x:Name ="errorWrongDate" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="11" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="24"> Pol: *</TextBlock>
+        <StackPanel Grid.Row="11" Grid.ColumnSpan="2" Grid.Column="2" Orientation="Vertical">
+            <ComboBox ItemsSource="{Binding Path= genders}" Name="gender" HorizontalAlignment="Left" Width="230" Height="30"></ComboBox>
+            <TextBlock x:Name ="errorWrongGender" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="12" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="24" >e-mail: *</TextBlock>
+        <StackPanel Grid.Row="12" Grid.ColumnSpan="2" Grid.Column="2" Orientation="Vertical">
+            <TextBox Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Width="230" Height="30" Name="email" GotFocus="email_GotFocus"></TextBox>
+            <TextBlock x:Name ="errorWrongEmail" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+        </StackPanel>
+
+
+        <TextBlock Grid.Row="13" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Height="24">Izabrani lekar: *</TextBlock>
+        <StackPanel Grid.Row="13" Grid.ColumnSpan="2" Grid.Column="2" Orientation="Vertical">
+            <ComboBox ItemsSource="{Binding Path= doctors}" Name="doctor" HorizontalAlignment="Left" Width="230" Height="30"></ComboBox>
+            <TextBlock x:Name ="errorWrongDoctor" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row ="14" Grid.Column="1" Grid.ColumnSpan="2" x:Name ="errorWrongInput" HorizontalAlignment="Center" VerticalAlignment="center"  OpacityMask="Crimson" Width="250" Height="20" Foreground="#FFE5572C"/>
+
+        <Button Grid.Column="3" Grid.Row="14" Content="Potvrdi" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24" FontWeight="Medium" Height="44" Width="120" Click="Accept_Click" Style="{StaticResource MaterialDesignRaisedDarkButton}" Margin="0,14"/>
+
+        <Button Grid.Column="3" HorizontalAlignment="Left" Margin="85,11,0,0" Background="Transparent" VerticalAlignment="Top" Width="49"  Height="37" Name="exitClick" Click="exitClick_Click" BorderThickness="0">
+            <materialDesign:PackIcon Kind="Close" Foreground="Black"></materialDesign:PackIcon>
+        </Button>
     </Grid>
 </Page>

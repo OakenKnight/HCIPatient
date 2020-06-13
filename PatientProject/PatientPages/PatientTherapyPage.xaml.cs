@@ -16,6 +16,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Binding = System.Windows.Data.Binding;
 using MessageBox = System.Windows.MessageBox;
+using Syncfusion.Pdf;
+using System.Windows.Xps;
+using System.Windows.Xps.Packaging;
+using System.IO;
+using MaterialDesignThemes.Wpf.Converters;
 
 namespace PatientProject.PatientPages
 {
@@ -24,6 +29,11 @@ namespace PatientProject.PatientPages
     /// </summary>
     public partial class PatientTherapyPage : Page
     {
+        public ObservableCollection<Notification> notifications
+        {
+            get;
+            set;
+        }
         public ObservableCollection<ExpandersItem> drugs
         {
             get;
@@ -44,6 +54,11 @@ namespace PatientProject.PatientPages
             get;
             set;
         }
+        public ObservableCollection<ExpandersItem> drugs4
+        {
+            get;
+            set;
+        }
 
 
         private Dictionary<DateTime, string> drugsListNames
@@ -51,11 +66,18 @@ namespace PatientProject.PatientPages
             get;
             set;
         }
+
+        public ObservableCollection<DrugsThreapy> drugsTherapy
+        {
+            get;
+            set;
+        }
+
         public DateTime dns = DateTime.Today;
         public DateTime tmrw = DateTime.Today;
         public DateTime ystrdy = DateTime.Today;
         public DateTime dayaftertmrw = DateTime.Today;
-
+        
         public PatientTherapyPage()
         {
             InitializeComponent();
@@ -66,40 +88,85 @@ namespace PatientProject.PatientPages
             drugs1 = new ObservableCollection<ExpandersItem>();
             drugs2 = new ObservableCollection<ExpandersItem>();
             drugs3 = new ObservableCollection<ExpandersItem>();
+            drugs4 = new ObservableCollection<ExpandersItem>();
+            Notifications notifi = new Notifications();
+            notifications = notifi.notifications;
+            
+            
+            dataGridTherapy.Visibility = Visibility.Visible;
+            calendarStackPanel.Visibility = Visibility.Hidden;
 
             drugsListNames = new Dictionary<DateTime, string>();
-
+            drugsTherapy = new ObservableCollection<DrugsThreapy>();
             drugs.Add(new ExpandersItem("Lek1", "L1", "Pije se tri puta dnevno"));
-            drugs.Add(new ExpandersItem("Lek2", "L2", "Pije se jednom dnevno"));
-            drugs.Add(new ExpandersItem("Lek3", "L3", "Pije se tri puta dnevno"));
-            drugs.Add(new ExpandersItem("Lek4", "L4", "Pije se dva puta dnevno"));
 
             drugs1.Add(new ExpandersItem("Lek2", "L2", "Pije se jednom dnevno"));
-            drugs1.Add(new ExpandersItem("Lek3", "L3", "Pije se tri puta dnevno"));
-            drugs1.Add(new ExpandersItem("Lek4", "L4", "Pije se dva puta dnevno"));
-            
-            drugs2.Add(new ExpandersItem("Lek420", "L420", "Pije se jednom dnevno"));
-            drugs2.Add(new ExpandersItem("Lek666", "L666", "Pije se tri puta dnevno"));
-            drugs2.Add(new ExpandersItem("Lek42", "L42", "Pije se dva puta dnevno"));
 
-            drugs3.Add(new ExpandersItem("Lek1312", "L1312", "Pije se jednom dnevno"));
-            drugs3.Add(new ExpandersItem("Lek66669", "L66669", "Pije se tri puta dnevno"));
-            drugs3.Add(new ExpandersItem("Lek420", "L420", "Pije se dva puta dnevno"));
-            dns = DateTime.Today;
+            drugs2.Add(new ExpandersItem("Lek3", "L420", "Pije se jednom dnevno"));
 
-            tmrw = dns.AddDays(1);
-            dayaftertmrw = dns.AddDays(2);
-            ystrdy = dns.AddDays(-1);
+            drugs3.Add(new ExpandersItem("Lek4", "L1312", "Pije se jednom dnevno"));
+
+            drugs4.Add(new ExpandersItem("Lek5", "L420", "Pije se dva puta dnevno"));
+
+
+
+            drugsTherapy.Add(new DrugsThreapy("1.6.2020","4.6.2020.","Lek1", "Pije se tri puta dnevno"));
+            drugsTherapy.Add(new DrugsThreapy("4.6.2020", "8.6.2020.", "Lek2", "Pije se jednom  dnevno"));
+            drugsTherapy.Add(new DrugsThreapy("9.6.2020", "13.6.2020.", "Lek3", "Pije se jednom dnevno"));
+            drugsTherapy.Add(new DrugsThreapy("14.6.2020", "27.6.2020.", "Lek4", "Pije se tri puta dnevno"));
+            drugsTherapy.Add(new DrugsThreapy("5.7.2020", "12.7.2020.", "Lek5", "Pije se dva puta dnevno"));
+
+
+
+
+            drugsListNames[new DateTime(2020, 6, 1)] = nameof(drugs);
+            drugsListNames[new DateTime(2020, 6, 2)] = nameof(drugs);
+            drugsListNames[new DateTime(2020, 6, 3)] = nameof(drugs);
+            drugsListNames[new DateTime(2020, 6, 4)] = nameof(drugs); 
+
+            drugsListNames[new DateTime(2020, 6, 5)] = nameof(drugs1);
+            drugsListNames[new DateTime(2020, 6, 6)] = nameof(drugs1);
+            drugsListNames[new DateTime(2020, 6, 7)] = nameof(drugs1);
+            drugsListNames[new DateTime(2020, 6, 8)] = nameof(drugs1);
+
+            drugsListNames[new DateTime(2020, 6, 9)] = nameof(drugs2);
+            drugsListNames[new DateTime(2020, 6, 10)] = nameof(drugs2);
+            drugsListNames[new DateTime(2020, 6, 11)] = nameof(drugs2);
+            drugsListNames[new DateTime(2020, 6, 12)] = nameof(drugs2);
+            drugsListNames[new DateTime(2020, 6, 13)] = nameof(drugs2);
+
+            drugsListNames[new DateTime(2020, 6, 14)] = nameof(drugs3);
+            drugsListNames[new DateTime(2020, 6, 15)] = nameof(drugs3);
+            drugsListNames[new DateTime(2020, 6, 16)] = nameof(drugs3);
+            drugsListNames[new DateTime(2020, 6, 17)] = nameof(drugs3);
+            drugsListNames[new DateTime(2020, 6, 18)] = nameof(drugs3);
+            drugsListNames[new DateTime(2020, 6, 19)] = nameof(drugs3);
+            drugsListNames[new DateTime(2020, 6, 20)] = nameof(drugs3); 
+            drugsListNames[new DateTime(2020, 6, 21)] = nameof(drugs3);
+            drugsListNames[new DateTime(2020, 6, 22)] = nameof(drugs3);
+            drugsListNames[new DateTime(2020, 6, 23)] = nameof(drugs3);
+            drugsListNames[new DateTime(2020, 6, 24)] = nameof(drugs3);
+            drugsListNames[new DateTime(2020, 6, 25)] = nameof(drugs3);
+            drugsListNames[new DateTime(2020, 6, 26)] = nameof(drugs3);
+            drugsListNames[new DateTime(2020, 6, 27)] = nameof(drugs3);
+
+            drugsListNames[new DateTime(2020, 7, 5)] = nameof(drugs4);
+            drugsListNames[new DateTime(2020, 7, 6)] = nameof(drugs4);
+            drugsListNames[new DateTime(2020, 7, 7)] = nameof(drugs4);
+            drugsListNames[new DateTime(2020, 7, 8)] = nameof(drugs4);
+            drugsListNames[new DateTime(2020, 7, 9)] = nameof(drugs4);
+            drugsListNames[new DateTime(2020, 7, 10)] = nameof(drugs4);
+            drugsListNames[new DateTime(2020, 7, 11)] = nameof(drugs4);
+            drugsListNames[new DateTime(2020, 7, 12)] = nameof(drugs4);
+
+
             
-            drugsListNames[dns.Date] = nameof(drugs);
-            drugsListNames[tmrw.Date] = nameof(drugs1);
-            drugsListNames[ystrdy.Date] = nameof(drugs2);
-            drugsListNames[dayaftertmrw.Date] = nameof(drugs3);
 
             foreach (DateTime datum in drugsListNames.Keys) {
                 Console.WriteLine(drugsListNames[datum]);            
             }
 
+            
         }
         private void displayMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -123,6 +190,15 @@ namespace PatientProject.PatientPages
             {
                 case MessageBoxResult.Yes:
                     {
+                        try
+                        {
+                            System.Diagnostics.Process.GetProcessById(MainWindow.idKeyboard).Kill();
+
+                        }
+                        catch
+                        {
+
+                        }
                         Environment.Exit(0);
                         break;
                     }
@@ -228,63 +304,40 @@ namespace PatientProject.PatientPages
         {
             gridContainer.Focus();
 
-            dateText.Text = calendar.SelectedDate.Value.Date.ToString();
+            string[] parts = calendar.SelectedDate.Value.Date.ToString().Split(' ');
+
+            dateText.Text = parts[0];
 
             Console.WriteLine(sender.ToString());
-            /*
-            if (sender.ToString().Equals(dns.Date.ToString()))
+
+            if (!drugsListNames.Keys.Contains(Convert.ToDateTime(sender.ToString())))
             {
-                itemControl.DataContext = null;
-                itemControl.DataContext = drugs;
-                Binding b = new Binding("drugs")
-                {
-                    Source = this
-                };
-                itemControl.SetBinding(ItemsControl.ItemsSourceProperty, b);
-                itemControl.Items.Refresh();
+                TherapyPopup.IsOpen = false;
+
             }
             else
             {
-                Console.WriteLine("PIJNPIJNBJIPBUJIOPBUIOP");
-                itemControl.DataContext = null;
-                itemControl.DataContext = drugs1;
-                Binding b1 = new Binding("drugs1")
+                foreach (DateTime datum in drugsListNames.Keys)
                 {
-                    Source = this
-                };
-                itemControl.SetBinding(ItemsControl.ItemsSourceProperty, b1);
-                itemControl.Items.Refresh();
+                    if (sender.ToString().Equals(datum.Date.ToString()))
+                    {
+                        itemControl.DataContext = null;
+                        itemControl.DataContext = drugsListNames[datum.Date];
+                        Console.WriteLine(drugsListNames[datum.Date]);
+                        Binding b = new Binding(drugsListNames[datum.Date].ToString())
+                        {
+                            Source = this
+                        };
+                        itemControl.SetBinding(ItemsControl.ItemsSourceProperty, b);
+                        itemControl.Items.Refresh();
+                    }
+                }
 
+                TherapyPopup.IsOpen = true;
             }
-            */
 
-
-            itemControl.DataContext = null;
-            itemControl.DataContext = drugs;
-            Binding b1 = new Binding("drugs")
-            {
-                Source = this
-            };
-            itemControl.SetBinding(ItemsControl.ItemsSourceProperty, b1);
-            itemControl.Items.Refresh();
 
             
-            foreach (DateTime datum in drugsListNames.Keys) {
-                if (sender.ToString().Equals(datum.Date.ToString()))
-                {
-                    itemControl.DataContext = null;
-                    itemControl.DataContext = drugsListNames[datum.Date];
-                    Console.WriteLine(drugsListNames[datum.Date]);
-                    Binding b = new Binding(drugsListNames[datum.Date].ToString())
-                    {
-                        Source = this
-                    };
-                    itemControl.SetBinding(ItemsControl.ItemsSourceProperty, b);
-                    itemControl.Items.Refresh();
-                }
-            }
-
-            TherapyPopup.IsOpen = true;
             
         }
         private void closePopup_Click(object sender, RoutedEventArgs e)
@@ -292,5 +345,57 @@ namespace PatientProject.PatientPages
             TherapyPopup.IsOpen = false;
             itemControl.DataContext = null;
         }
+
+        private void list_Click(object sender, RoutedEventArgs e)
+        {
+            calendarStackPanel.Visibility = Visibility.Hidden;
+            dataGridTherapy.Visibility = Visibility.Visible;
+        }
+
+        private void calendarView_Click(object sender, RoutedEventArgs e)
+        {
+            calendarStackPanel.Visibility = Visibility.Visible;
+            dataGridTherapy.Visibility = Visibility.Hidden;
+
+        }
+
+        private void generisi_Click(object sender, RoutedEventArgs e)
+        {
+            PreviewZaStampu win = new PreviewZaStampu();
+            win.Show();
+
+        }
+        
+
+        private MemoryStream GetXPSDocument(string fileName)
+        {
+            //Create visual UIElement.
+            UIElement visual = System.Windows.Markup.XamlReader.Load(System.Xml.XmlReader.Create(fileName)) as System.Windows.UIElement;
+            FixedDocument doc = new System.Windows.Documents.FixedDocument();
+            PageContent pageContent = new System.Windows.Documents.PageContent();
+            FixedPage fixedPage = new System.Windows.Documents.FixedPage();
+
+            //Create first page of document
+            fixedPage.Children.Add(visual);
+            ((System.Windows.Markup.IAddChild)pageContent).AddChild(fixedPage);
+
+            //Adding page content to pages.
+            doc.Pages.Add(pageContent);
+
+            //Create the stream.
+            MemoryStream stream = new MemoryStream();
+
+            XpsDocument xpsdocument = new XpsDocument(System.IO.Packaging.Package.Open(stream, FileMode.Create));
+            XpsDocumentWriter xpswriter = XpsDocument.CreateXpsDocumentWriter(xpsdocument);
+
+            //Write the XPS document.
+            xpswriter.Write(doc);
+
+            //Close the XPS document.
+            xpsdocument.Close();
+
+            return stream;
+        }
+
     }
 }

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PatientProject.PatientPages"
       mc:Ignorable="d" 
-      d:DesignHeight="750" d:DesignWidth="440"
+      d:DesignHeight="750" d:DesignWidth="430"
       Title="PatientEditInfoPage"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -16,7 +16,7 @@
       Background="{DynamicResource MaterialDesignPaper}"
       FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <materialDesign:DrawerHost HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" BorderBrush="{DynamicResource MaterialDesignDivider}" Height="750" Width="440">
+        <materialDesign:DrawerHost HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" BorderBrush="{DynamicResource MaterialDesignDivider}" Height="750" Width="430">
 
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <StackPanel Width="250" Background="LightGray">
@@ -145,14 +145,37 @@
 
 
             <materialDesign:DrawerHost.TopDrawerContent>
-                <StackPanel Background="LightGray" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="440"/>
+                <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                    <StackPanel Background="LightGray" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="430" CanVerticallyScroll="True">
+                        <Separator Visibility="Hidden"/>
+                        <Separator Visibility="Hidden"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Medium" FontSize="20">Notifikacije</TextBlock>
+                        <Separator Visibility="Hidden"/>
+                        <Separator Visibility="Hidden"/>
+                        <ItemsControl ItemsSource="{Binding Path=notifications}"  Grid.IsSharedSizeScope="True">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type local:Notification}">
+                                    <Border x:Name="Border" Padding="8" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                        <StackPanel Margin="8 0 0 0">
+                                            <TextBlock FontWeight="Bold" Text="{Binding Header}" TextWrapping="Wrap"/>
+                                            <TextBlock FontWeight="Bold" Text="{Binding Date}" TextWrapping="Wrap"/>
+                                            <TextBlock Text="{Binding Content}" TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </StackPanel>
+                </ScrollViewer>
+
             </materialDesign:DrawerHost.TopDrawerContent>
 
 
 
 
-            <Grid MinWidth="440" MinHeight="750">
-                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="750" Width="440">
+            <Grid MinWidth="430" MinHeight="750">
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="750" Width="430">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="23"/>
                         <ColumnDefinition Width="65"/>
@@ -172,7 +195,7 @@
 
 
 
-                    <Rectangle Fill="#536878" HorizontalAlignment="Left" Height="91" StrokeThickness="0" VerticalAlignment="Top" Width="440" Grid.ColumnSpan="6" Grid.RowSpan="2"/>
+                    <Rectangle Fill="#536878" HorizontalAlignment="Left" Height="91" StrokeThickness="0" VerticalAlignment="Top" Width="430" Grid.ColumnSpan="6" Grid.RowSpan="2"/>
 
                     <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ButtonAssist.CornerRadius="10" ToolTip="Meni"  Grid.Column="1" Grid.Row="0" Name="menu" Click="displayMenu_Click" Width="60" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="40" Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" CommandParameter="{x:Static Dock.Left}">
                         <materialDesign:PackIcon Kind="Menu" Foreground="White" Width="50" Height="40" VerticalAlignment="Center"  HorizontalAlignment="Center"/>
@@ -196,11 +219,11 @@
                             <RowDefinition Height="44*"/>
                             <RowDefinition Height="44*"/>
                             <RowDefinition Height="44*"/>
+                            <RowDefinition Height="15*"/>
                             <RowDefinition Height="44*"/>
                             <RowDefinition Height="44*"/>
                             <RowDefinition Height="44*"/>
-                            <RowDefinition Height="44*"/>
-                            <RowDefinition Height="44*"/>
+                            <RowDefinition Height="73*"/>
                             <RowDefinition Height="44*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -217,52 +240,89 @@
 
 
 
-                        <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontWeight="Medium" Grid.ColumnSpan="2" >Izmenite podatke</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontWeight="Medium" Grid.ColumnSpan="2" Height="24" Margin="0,10,0,11" Width="158" >Izmenite podatke</TextBlock>
                         <Image Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" Width="79" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4,22,0" Height="78">
                             <Image.Source>
                                 <BitmapImage UriSource="/Resources/pacijent.jpg"/>
                             </Image.Source>
                         </Image>
 
-                        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Ime:</TextBlock>
-                        <TextBox  materialDesign:HintAssist.Hint="Unesite ime" Grid.Row="1" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="name" Width="180" Grid.ColumnSpan="3" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="19" Margin="0,12" Width="30">Ime:</TextBlock>
+                        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="2" Orientation="Vertical">
+                            <TextBox  materialDesign:HintAssist.Hint="Unesite ime" Grid.Row="1" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="name" Width="180" Grid.ColumnSpan="3" />
+                            <TextBlock x:Name ="errorWrongName" HorizontalAlignment="Left" VerticalAlignment="center"  OpacityMask="Crimson" Width="200" Height="15" FontSize="12" Foreground="#FFE5572C"/>
+                        </StackPanel>
 
-                        <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Ime roditelja:</TextBlock>
-                        <TextBox materialDesign:HintAssist.Hint="Unesite ime roditelja" Grid.Row="2" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="parent" Width="250" Grid.ColumnSpan="3" />
-
-                        <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Prezime:</TextBlock>
-                        <TextBox materialDesign:HintAssist.Hint="Unesite prezime" Grid.Row="3" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="lastname" Width="250" Grid.ColumnSpan="3" />
-
-                        <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">JMBG:</TextBlock>
-                        <TextBox materialDesign:HintAssist.Hint="Unesite jmbg" Grid.Row="4" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Name="pin" Width="250" Grid.ColumnSpan="3" />
-
-                        <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" >Mesto prebivalista:</TextBlock>
-                        <TextBox materialDesign:HintAssist.Hint="Unesite mesto prebivalista" Grid.Row="5" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="livingCity" Width="250" Grid.ColumnSpan="3" />
-
-                        <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Mesto rodjenja:</TextBlock>
-                        <TextBox materialDesign:HintAssist.Hint="Unesite mesto rodjenja" Grid.Row="6" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="birthCity" Width="250" Grid.ColumnSpan="3" />
-
-                        <TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Telefon:</TextBlock>
-                        <TextBox materialDesign:HintAssist.Hint="Unesite telefon" Grid.Row="7" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="tel" Width="250" Grid.ColumnSpan="3" />
-
-                        <TextBlock Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Datum rodjenja:</TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="19" Margin="0,12" Width="92">Ime roditelja:</TextBlock>
+                        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="2" Orientation="Vertical">
+                            <TextBox materialDesign:HintAssist.Hint="Unesite ime roditelja" Grid.Row="2" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="parent" Width="250" Grid.ColumnSpan="3" />
+                            <TextBlock x:Name ="errorWrongNameParent" HorizontalAlignment="Left" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+                        </StackPanel>
 
 
-                        <DatePicker Name="dtp" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" materialDesign:HintAssist.Hint="Odaberite datum rodjenja"  Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="0,3,55,3" />
+                        <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,13" Width="60">Prezime:</TextBlock>
+                        <StackPanel Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="2" Orientation="Vertical">
+                            <TextBox materialDesign:HintAssist.Hint="Unesite prezime" Grid.Row="3" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="lastname" Width="250" Grid.ColumnSpan="3" />
+                            <TextBlock x:Name ="errorWrongLastname" HorizontalAlignment="Left" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+                        </StackPanel>
 
-                        <TextBlock Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Pol:</TextBlock>
-                        <ComboBox materialDesign:HintAssist.Hint="Odaberite pol" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="3"  ItemsSource="{Binding Path= genders}" Name="gender" Height="30" Width="220" HorizontalAlignment="Left"></ComboBox>
 
-                        <TextBlock Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">E-mail:</TextBlock>
-                        <TextBox materialDesign:HintAssist.Hint="Unesite email" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="email" Width="250"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,13" Width="44">JMBG:</TextBlock>
+                        <StackPanel Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="2" Orientation="Vertical">
+                            <TextBox materialDesign:HintAssist.Hint="Unesite jmbg" Grid.Row="4" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Name="pin" Width="250" Grid.ColumnSpan="3" />
+                            <TextBlock x:Name ="errorWrongPin" HorizontalAlignment="Left" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+                        </StackPanel>
 
-                        <TextBlock Grid.Row="11" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16">Izabrani lekar:</TextBlock>
-                        <ComboBox materialDesign:HintAssist.Hint="Odaberite lekara" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="3"  ItemsSource="{Binding Path= doctors}" Name="doctor" Height="30" Width="220" HorizontalAlignment="Left"></ComboBox>
 
-                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Grid.Row="13" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="4" Height="68" Width="68" BorderThickness="0" Padding="0"  HorizontalAlignment="Center" VerticalAlignment="Center" Name="AcceptButton" Click="AcceptButton_Click">
+                        <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,13" Width="133" >Mesto prebivalista:</TextBlock>
+                        <StackPanel Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="2" Orientation="Vertical">
+                            <ComboBox materialDesign:HintAssist.Hint="Odaberite mesto prebivalista" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" ItemsSource="{Binding Path= cities}" Name="livingCity" HorizontalAlignment="Left" Width="230" Height="30"></ComboBox>
+                            <TextBlock x:Name ="errorWrongLCity" HorizontalAlignment="Left" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+                        </StackPanel>
+
+
+                        <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,13" Width="110">Mesto rodjenja:</TextBlock>
+                        <StackPanel Grid.Row="6" Grid.ColumnSpan="3" Grid.Column="2" Orientation="Vertical">
+                            <ComboBox materialDesign:HintAssist.Hint="Odaberite mesto rodjenja" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" ItemsSource="{Binding Path= cities}" Name="birthCity" HorizontalAlignment="Left" Width="230" Height="30"></ComboBox>
+                            <TextBlock x:Name ="errorWrongBCity" HorizontalAlignment="Left" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+                        </StackPanel>
+
+                        <TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,13" Width="54">Telefon:</TextBlock>
+                        <StackPanel Grid.Row="7" Grid.ColumnSpan="3" Grid.Column="2" Orientation="Vertical">
+                            <TextBox materialDesign:HintAssist.Hint="Unesite telefon" Grid.Row="7" Grid.Column="2"  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="tel" Width="250" Grid.ColumnSpan="3" />
+                            <TextBlock x:Name ="errorWrongNumber" HorizontalAlignment="Left" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+                        </StackPanel>
+
+                        <TextBlock Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,13" Width="113">Datum rodjenja:</TextBlock>
+                        <StackPanel Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2" Orientation="Vertical">
+                            <DatePicker HorizontalAlignment="Left" Name="dtp" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" materialDesign:HintAssist.Hint="Odaberite datum rodjenja"  Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="230"/>
+                            <TextBlock x:Name ="errorWrongDate" HorizontalAlignment="Left" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+                        </StackPanel>
+
+
+                        <TextBlock Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,18,0,8" Width="25">Pol:</TextBlock>
+                        <StackPanel Grid.Row="10" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2" Orientation="Vertical">
+                            <ComboBox materialDesign:HintAssist.Hint="Odaberite pol" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3"  ItemsSource="{Binding Path= genders}" Name="gender" Height="30" Width="220" HorizontalAlignment="Left" Margin="0,12,0,2"></ComboBox>
+                            <TextBlock x:Name ="errorWrongGender" HorizontalAlignment="Left" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+                        </StackPanel>
+                        
+
+                        <TextBlock Grid.Row="11" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,20,0,6" Width="48">E-mail:</TextBlock>
+                        <StackPanel Grid.Row="11" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2" Orientation="Vertical">
+                            <TextBox materialDesign:HintAssist.Hint="Unesite email" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Name="email" Width="250" Height="26" Margin="0,16,0,2"/>
+                            <TextBlock x:Name ="errorWrongEmail" HorizontalAlignment="Left" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+                        </StackPanel>
+
+                        <TextBlock Grid.Row="12" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Height="18" Margin="0,16,0,10" Width="97">Izabrani lekar:</TextBlock>
+                        <StackPanel Grid.Row="12" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="2" Orientation="Vertical">
+                            <ComboBox materialDesign:HintAssist.Hint="Odaberite lekara" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="3"  ItemsSource="{Binding Path= doctors}" Name="doctor" Height="30" Width="220" HorizontalAlignment="Left" Margin="0,10,0,4"></ComboBox>
+                            <TextBlock x:Name ="errorWrongDoctor" HorizontalAlignment="Left" VerticalAlignment="center"  OpacityMask="Crimson" Width="220" Height="20" Foreground="#FFE5572C"/>
+                        </StackPanel>
+
+                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Grid.Row="13" Grid.RowSpan="2" Grid.Column="4" Height="68" Width="68" BorderThickness="0" Padding="0"  HorizontalAlignment="Center" VerticalAlignment="Center" Name="AcceptButton" Click="AcceptButton_Click" Margin="21,28,22,21">
                             <materialDesign:PackIcon Kind="Tick" Height="50" Width="50"/>
                         </Button>
-                        
+
 
 
 

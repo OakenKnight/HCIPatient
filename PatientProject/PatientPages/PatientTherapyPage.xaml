@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PatientProject.PatientPages"
       mc:Ignorable="d" 
-      d:DesignHeight="750" d:DesignWidth="440"
+      d:DesignHeight="750" d:DesignWidth="430"
       Title="PatientTherapyPage"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -17,7 +17,7 @@
       FontFamily="{DynamicResource MaterialDesignFont}">
     
     <Grid>
-        <materialDesign:DrawerHost HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" BorderBrush="{DynamicResource MaterialDesignDivider}" Height="750" Width="440">
+        <materialDesign:DrawerHost HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" BorderBrush="{DynamicResource MaterialDesignDivider}" Height="750" Width="430">
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <StackPanel Width="250" Background="LightGray">
                     <Grid Height="750">
@@ -141,11 +141,34 @@
             </materialDesign:DrawerHost.RightDrawerContent>
 
             <materialDesign:DrawerHost.TopDrawerContent>
-                <StackPanel Background="LightGray" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="440"/>
+                <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                    <StackPanel Background="LightGray" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="430" CanVerticallyScroll="True">
+                        <Separator Visibility="Hidden"/>
+                        <Separator Visibility="Hidden"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Medium" FontSize="20">Notifikacije</TextBlock>
+                        <Separator Visibility="Hidden"/>
+                        <Separator Visibility="Hidden"/>
+                        <ItemsControl ItemsSource="{Binding Path=notifications}"  Grid.IsSharedSizeScope="True">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type local:Notification}">
+                                    <Border x:Name="Border" Padding="8" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                        <StackPanel Margin="8 0 0 0">
+                                            <TextBlock FontWeight="Bold" Text="{Binding Header}" TextWrapping="Wrap"/>
+                                            <TextBlock FontWeight="Bold" Text="{Binding Date}" TextWrapping="Wrap"/>
+                                            <TextBlock Text="{Binding Content}" TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </StackPanel>
+                </ScrollViewer>
+
             </materialDesign:DrawerHost.TopDrawerContent>
 
-            <Grid MinWidth="440" MinHeight="750">
-                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="750" Width="440">
+            <Grid MinWidth="430" MinHeight="750">
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="750" Width="430">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="23"/>
                         <ColumnDefinition Width="66"/>
@@ -164,7 +187,7 @@
 
 
 
-                    <Rectangle Fill="#536878" HorizontalAlignment="Left" Height="91" StrokeThickness="0" VerticalAlignment="Top" Width="440" Grid.ColumnSpan="6" Grid.RowSpan="2"/>
+                    <Rectangle Fill="#536878" HorizontalAlignment="Left" Height="91" StrokeThickness="0" VerticalAlignment="Top" Width="430" Grid.ColumnSpan="6" Grid.RowSpan="2"/>
 
                     <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ButtonAssist.CornerRadius="10" ToolTip="Meni" Grid.Column="1" Grid.Row="0" Name="menu" Click="displayMenu_Click" Width="60" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="40" Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" CommandParameter="{x:Static Dock.Left}">
                         <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" Kind="Menu" Foreground="White" Width="50" Height="40"/>
@@ -208,9 +231,45 @@
 
                         <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Medium" FontSize="24" Margin="45,27,45,26">Pregled terapija</TextBlock>
 
-                        <Calendar Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="calendar" SelectionMode="SingleDate" MouseDoubleClick="CalendarDayButton_MouseLeftButtonDown">
+                        <StackPanel  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6"  Orientation="Horizontal" Width="360">
+                            <Button  Style="{StaticResource MaterialDesignFlatMidBgButton}" Width="180" ToolTip="MaterialDesignFlatMidButton" Name="list" Click="list_Click">
+                                Raspored terapija
+                            </Button>
+                            <Button Width="180" Style="{StaticResource MaterialDesignFlatMidBgButton}" ToolTip="MaterialDesignFlatMidButton" Name="calendarView" Click="calendarView_Click">
+                                Prikaz na kalendaru
+                            </Button>
+                        </StackPanel>
 
-                        </Calendar>
+
+                        <StackPanel Orientation="Vertical" Grid.Row="4" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="4" Name="calendarStackPanel">
+                            <Separator Visibility="Hidden"/>
+                            <Separator Visibility="Hidden"/>
+                            <Separator Visibility="Hidden"/>
+                            <Separator Visibility="Hidden"/>
+                            <Separator Visibility="Hidden"/>
+                            <Calendar HorizontalAlignment="Center" VerticalAlignment="Center" Name="calendar" SelectionMode="SingleDate" MouseDoubleClick="CalendarDayButton_MouseLeftButtonDown"/>
+                            <Button Width="180" Style="{StaticResource MaterialDesignFlatMidBgButton}" ToolTip="MaterialDesignFlatMidButton" Name="generisi" Click="generisi_Click">Generisi izvestaj</Button>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Vertical" Grid.Row="4" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="4" Name="dataGridTherapy">
+                            <Separator Visibility="Hidden"/>
+                            <Separator Visibility="Hidden"/>
+                            <Separator Visibility="Hidden"/>
+                            <Separator Visibility="Hidden"/>
+                            <Separator Visibility="Hidden"/>
+                            <ListView ItemsSource="{Binding Path=drugsTherapy}" >
+                                <ListView.View >
+                                    <GridView AllowsColumnReorder="False" >
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=startDate}" Header="Pocetak" Width="70" />
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=endDate}" Header="Kraj" Width="70"/>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=drug}" Header="Lek" Width="100"/>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=description}" Header="Opis" Width="160"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </StackPanel>
+                        
+                        
                         <Popup Name="TherapyPopup" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="450" IsOpen="False" Placement="Center" StaysOpen = "False">
                             <Grid Background="LightGray" Focusable="False" Name="gridContainer">
                                 <Grid.ColumnDefinitions>

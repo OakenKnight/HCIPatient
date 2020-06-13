@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PatientProject;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -29,10 +30,14 @@ namespace HCZdravo.PatientPages
         string parentEmpty = "Unesite ime roditelja...";
         string lastnameEmpty = "Unesite prezime...";
         string pinEmpty = "Unesite jmbg...";
-        string livingCityEmpty = "Unesite grad stanovanja...";
-        string birthCityEmpty = "Unesite grad rodjenja...";
+        string livingCityEmpty = "Odaberite grad stanovanja...";
+        string birthCityEmpty = "Odaberite grad rodjenja...";
         string telEmpty = "Unesite telefon...";
-        string emailEmpty = "Unesite e-mail...";
+        string emailEmpty = "Unesite e-mail..."; 
+        
+        string doctorEmpty = "Odaberite doktora...";
+        string genderEmpty = "Odaberite pol...";
+        string dateEmpty = "Odaberite datum rodjenja...";
 
         string nameWrong = "Ime mora sadrzati samo slova!";
         string parentWrong = "Ime mora sadrzati samo slova!";
@@ -42,7 +47,14 @@ namespace HCZdravo.PatientPages
         string cityWrong = "Grad ne sme sadrzati cifre u nazivu!";
         string emailWrong = "Email mora sadrzati @!";
         string telWrong = "Telefon mora sadrzati samo cifre!";
+        string dateWrong = "Datum mora biti unet u formatu dd-mm-yyyy!";
+
         public ObservableCollection<string> doctors
+        {
+            get;
+            set;
+        }
+        public ObservableCollection<string> cities
         {
             get;
             set;
@@ -75,9 +87,22 @@ namespace HCZdravo.PatientPages
 
             doctors = new ObservableCollection<string>();
             genders = new ObservableCollection<string>();
-            days = new ObservableCollection<int>();
-            years = new ObservableCollection<int>();
-            months = new ObservableCollection<String>();
+            cities = new ObservableCollection<String>();
+
+            cities.Add("Novi Sad");
+            cities.Add("Subotica");
+            cities.Add("Zrenjanin");
+            cities.Add("Kekenda");
+            cities.Add("Mali Idjos");
+            cities.Add("Vrsac");
+            cities.Add("Sombor");
+            cities.Add("Senta");
+            cities.Add("Kula");
+            cities.Add("Indjija");
+            cities.Add("Sremska Mitrovica");
+            cities.Add("Bajmok");
+            cities.Add("Backa Topola");
+
 
             genders.Add("Ženski");
             genders.Add("Muški");
@@ -108,10 +133,12 @@ namespace HCZdravo.PatientPages
             validateBCity();
             validateTel();
             validateEmail();
-            validateCB();
+            validateDoctor();
+            validateGender();
+            validateDate();
             validatePin();
 
-            if (validateName() && validateParentName() && validateLastname() && validateLCity() && validateBCity() && validateTel() && validateEmail() && validateCB() && validatePin())
+            if (validateName() && validateParentName() && validateLastname() && validateLCity() && validateBCity() && validateTel() && validateEmail() && validateDoctor() && validatePin() && validateDate() && validateGender())
             {
                 MessageBoxResult succesMessage = MessageBox.Show("Uspešno ste kreirali nalog!", "Uspešno!", MessageBoxButton.OKCancel);
                 errorWrongInput.Text = "";
@@ -124,6 +151,9 @@ namespace HCZdravo.PatientPages
                         }
                 }
             }
+            else {
+                errorWrongInput.Text = "Polja sa zvezdicom moraju biti popunjena";
+            }
 
 
 
@@ -131,77 +161,68 @@ namespace HCZdravo.PatientPages
 
 
         }
-        public bool validateCB()
+        public bool validateDoctor()
         {
-
-            if (doctor.SelectedItem == null && gender.SelectedItem != null && dtp.SelectedDate != null)
+            if (doctor.SelectedItem == null)
             {
-                errorWrongInput.Text = "Oznacite doktora!";
-                return false;
-            }
-            else if (doctor.SelectedItem != null && gender.SelectedItem == null && dtp.SelectedDate != null)
-            {
-                errorWrongInput.Text = "Oznacite pol!";
-                return false;
-            }
-            else if (doctor.SelectedItem != null && gender.SelectedItem != null && dtp.SelectedDate == null)
-            {
-                errorWrongInput.Text = "Oznacite datum!";
-                return false;
-
-            }
-            else if (doctor.SelectedItem == null && gender.SelectedItem == null && dtp.SelectedDate != null)
-            {
-                errorWrongInput.Text = "Oznacite doktora i pol!";
-                return false;
-
-            }
-            else if (doctor.SelectedItem == null && gender.SelectedItem != null && dtp.SelectedDate == null)
-            {
-                errorWrongInput.Text = "Oznacite doktora i godinu!";
-                return false;
-            }
-            else if (doctor.SelectedItem != null && gender.SelectedItem == null && dtp.SelectedDate == null)
-            {
-                errorWrongInput.Text = "Oznacite pol i godinu!";
-                return false;
-
-            }
-            else if (doctor.SelectedItem == null && gender.SelectedItem == null && dtp.SelectedDate == null)
-            {
-                errorWrongInput.Text = "Oznacite doktora, pol i datum rodjenja!";
+                errorWrongDoctor.Text = doctorEmpty;
                 return false;
             }
             else
             {
-                errorWrongInput.Text = "";
+                errorWrongDoctor.Text = "";
                 return true;
             }
         }
+        public bool validateGender()
+        {
+            if (gender.SelectedItem == null)
+            {
+                errorWrongGender.Text = genderEmpty;
+                return false;
+            }
+            else
+            {
+                errorWrongGender.Text = "";
+                return true;
+            }
+        }
+
+        public bool validateDate() {
+
+            DateTime temp;
+            if (!DateTime.TryParse(dtp.Text, out temp))
+            {
+                errorWrongDate.Text = dateWrong;
+                return false;
+            }
+            else if (dtp.SelectedDate == null)
+            {
+                errorWrongDate.Text = dateEmpty;
+                return false;
+            }
+            else
+            {
+                errorWrongDate.Text = "";
+                return true;
+            }
+        }
+
         public bool validateEmail()
         {
             if (email.Text.Equals(""))
             {
-                email.Text = emailEmpty;
-                email.Foreground = Brushes.Red;
-                return false;
-            }
-            else if (email.Text.Equals(emailEmpty))
-            {
-                return false;
-            }
-            else if (email.Text.Equals(emailWrong))
-            {
+                errorWrongEmail.Text = emailEmpty;
                 return false;
             }
             else if (!emailIsValid(email.Text))
             {
-                email.Text = emailWrong;
-                email.Foreground = Brushes.Red;
+                errorWrongEmail.Text = emailWrong;
                 return false;
             }
             else
             {
+                errorWrongEmail.Text = "";
                 return true;
             }
         }
@@ -211,74 +232,42 @@ namespace HCZdravo.PatientPages
         {
             if (tel.Text.Equals(""))
             {
-                tel.Text = telEmpty;
-                tel.Foreground = Brushes.Red;
-                return false;
-            }
-            else if (tel.Text.Equals(telEmpty))
-            {
-                return false;
-            }
-            else if (tel.Text.Equals(telWrong))
-            {
+                errorWrongNumber.Text = telEmpty;
                 return false;
             }
             else if (!tel.Text.All(char.IsDigit))
             {
-                tel.Text = telWrong;
-                tel.Foreground = Brushes.Red;
+                errorWrongNumber.Text = telWrong;
                 return false;
             }
             else
             {
+                errorWrongNumber.Text = "";
                 return true;
             }
         }
         public bool validateLCity()
         {
-            if (livingCity.Text.Equals(""))
-            {
-                livingCity.Text = livingCityEmpty;
-                livingCity.Foreground = Brushes.Red;
-                return false;
-            }
-            else if (livingCity.Text.Equals(livingCityEmpty))
-            {
-                return false;
-            }
-            else if (!livingCity.Text.Equals(cityWrong) && !Regex.IsMatch(livingCity.Text, @"^[\p{L}\p{M}' \.\-]+$"))
-            {
-                livingCity.Text = cityWrong;
-                livingCity.Foreground = Brushes.Red;
+            if (livingCity.SelectedItem == null) {
+                errorWrongLCity.Text = livingCityEmpty;
                 return false;
             }
             else
             {
+                errorWrongLCity.Text = "";
                 return true;
             }
         }
         public bool validateBCity()
         {
-            if (birthCity.Text.Equals(""))
+            if (birthCity.SelectedItem==null)
             {
-                birthCity.Text = birthCityEmpty;
-                birthCity.Foreground = Brushes.Red;
-
-                return false;
-            }
-            else if (birthCity.Text.Equals(birthCityEmpty))
-            {
-                return false;
-            }
-            else if (!birthCity.Text.Equals(cityWrong) && !Regex.IsMatch(birthCity.Text, @"^[\p{L}\p{M}' \.\-]+$"))
-            {
-                birthCity.Text = cityWrong;
-                birthCity.Foreground = Brushes.Red;
-
+                errorWrongBCity.Text = birthCityEmpty;
                 return false;
             }
             else
             {
+                errorWrongBCity.Text = "";
                 return true;
             }
         }
@@ -286,26 +275,12 @@ namespace HCZdravo.PatientPages
         {
             if (pin.Text.Equals(""))
             {
-                pin.Text = pinEmpty;
-                pin.Foreground = Brushes.Red;
-                return false;
-            }
-            else if (pin.Text.Equals(pinEmpty))
-            {
-                return false;
-            }
-            else if (pin.Text.Equals(pinWrong))
-            {
-                return false;
-            }
-            else if (pin.Text.Equals(pinShort))
-            {
+                errorWrongPin.Text = pinEmpty;
                 return false;
             }
             else if (!pin.Text.All(char.IsDigit))
             {
-                pin.Text = pinWrong;
-                pin.Foreground = Brushes.Red;
+                errorWrongPin.Text = pinWrong;
 
                 return false;
             }
@@ -313,13 +288,12 @@ namespace HCZdravo.PatientPages
             {
                 if (pin.Text.Length != 13)
                 {
-                    pin.Text = pinShort;
-                    pin.Foreground = Brushes.Red;
-
+                    errorWrongPin.Text = pinShort;
                     return false;
                 }
                 else
                 {
+                    errorWrongPin.Text = "";
                     return true;
                 }
             }
@@ -328,24 +302,18 @@ namespace HCZdravo.PatientPages
         {
             if (lastname.Text.Equals(""))
             {
-                lastname.Text = lastnameEmpty;
-                lastname.Foreground = Brushes.Red;
+                errorWrongLastname.Text = lastnameEmpty;
 
                 return false;
             }
-            else if (lastname.Text.Equals(lastnameEmpty))
+            else if (!Regex.IsMatch(lastname.Text, @"^[\p{L}\p{M}' \.\-]+$"))
             {
-                return false;
-            }
-            else if (!lastname.Text.Equals(lastnameWrong) && !Regex.IsMatch(lastname.Text, @"^[\p{L}\p{M}' \.\-]+$"))
-            {
-                lastname.Text = lastnameWrong;
-                lastname.Foreground = Brushes.Red;
-
+                errorWrongLastname.Text = lastnameWrong;
                 return false;
             }
             else
             {
+                errorWrongLastname.Text = "";
                 return true;
             }
 
@@ -356,24 +324,19 @@ namespace HCZdravo.PatientPages
 
             if (parentName.Text.Equals(""))
             {
-                parentName.Text = parentEmpty;
-                parentName.Foreground = Brushes.Red;
+                errorWrongNameParent.Text = parentEmpty;
 
                 return false;
             }
-            else if (parentName.Text.Equals(parentEmpty))
-            {
-                return false;
-            }
-            else if (!parentName.Text.Equals(parentWrong) && !Regex.IsMatch(parentName.Text, @"^[\p{L}\p{M}' \.\-]+$"))
-            {
-                parentName.Text = parentWrong;
-                parentName.Foreground = Brushes.Red;
 
+            else if (!Regex.IsMatch(parentName.Text, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
+                errorWrongNameParent.Text = parentWrong;
                 return false;
             }
             else
             {
+                errorWrongNameParent.Text = "";
                 return true;
             }
         }
@@ -382,23 +345,18 @@ namespace HCZdravo.PatientPages
         {
             if (name.Text.Equals(""))
             {
-                name.Text = nameEmpty;
-                name.Foreground = Brushes.Red;
+                errorWrongName.Text = nameEmpty;
                 return false;
             }
-            else if (name.Text.Equals(nameEmpty))
+            else if (!Regex.IsMatch(name.Text, @"^[\p{L}\p{M}' \.\-]+$"))
             {
-                return false;
-            }
-            else if (!name.Text.Equals(nameEmpty) && !Regex.IsMatch(name.Text, @"^[\p{L}\p{M}' \.\-]+$"))
-            {
-                name.Text = nameWrong;
-                name.Foreground = Brushes.Red;
+                errorWrongName.Text = nameWrong;
 
                 return false;
             }
             else
             {
+                errorWrongName.Text = "";
                 return true;
             }
         }
@@ -514,6 +472,28 @@ namespace HCZdravo.PatientPages
             else if (email.Text.Equals(emailWrong))
             {
                 email.Text = "";
+            }
+        }
+        private void exitClick_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult succesMessage = MessageBox.Show("Da li ste sigurni da zelite da izadjete?", "Izlazak?", MessageBoxButton.YesNo);
+            switch (succesMessage)
+            {
+                case MessageBoxResult.Yes:
+                    {
+                        try
+                        {
+                            System.Diagnostics.Process.GetProcessById(MainWindow.idKeyboard).Kill();
+
+                        }
+                        catch
+                        {
+
+                        }
+                        Environment.Exit(0);
+                        break;
+                    }
+
             }
         }
     }

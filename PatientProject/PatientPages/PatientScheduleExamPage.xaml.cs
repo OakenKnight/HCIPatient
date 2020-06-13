@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,19 @@ namespace PatientProject.PatientPages
     /// </summary>
     public partial class PatientScheduleExamPage : Page
     {
+        public ObservableCollection<Notification> notifications
+        {
+            get;
+            set;
+        }
         public PatientScheduleExamPage()
         {
             InitializeComponent();
+
+            this.DataContext = this;
+            Notifications notifi = new Notifications();
+            notifications = notifi.notifications;
+
         }
 
         private void displayMenu_Click(object sender, RoutedEventArgs e)
@@ -47,6 +58,15 @@ namespace PatientProject.PatientPages
             {
                 case MessageBoxResult.Yes:
                     {
+                        try
+                        {
+                            System.Diagnostics.Process.GetProcessById(MainWindow.idKeyboard).Kill();
+
+                        }
+                        catch
+                        {
+
+                        }
                         Environment.Exit(0);
                         break;
                     }
@@ -148,13 +168,18 @@ namespace PatientProject.PatientPages
 
         private void suggestExam_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/PatientPages/PatientSuggestAppointmentPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/PatientPages/PatientSuggestExamPage.xaml", UriKind.Relative));
 
         }
         private void regularExam_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/PatientPages/PatientChooseDoctorPage.xaml", UriKind.Relative));
 
+        }
+
+        private void prioritySchedule_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/PatientPages/PatientPrioritySchedulePage.xaml", UriKind.Relative));
         }
     }
 }

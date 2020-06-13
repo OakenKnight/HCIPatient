@@ -1,9 +1,11 @@
-﻿using System;
+﻿using PatientProject.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +25,33 @@ namespace PatientProject.PatientPages
 
     public partial class PatientEditInfoPage : Page
     {
+        string nameEmpty = "Unesite ime...";
+        string parentEmpty = "Unesite ime roditelja...";
+        string lastnameEmpty = "Unesite prezime...";
+        string pinEmpty = "Unesite jmbg...";
+        string livingCityEmpty = "Odaberite grad stanovanja...";
+        string birthCityEmpty = "Odaberite grad rodjenja...";
+        string telEmpty = "Unesite telefon...";
+        string emailEmpty = "Unesite e-mail...";
+
+        string doctorEmpty = "Odaberite doktora...";
+        string genderEmpty = "Odaberite pol...";
+        string dateEmpty = "Odaberite datum rodjenja...";
+
+        string nameWrong = "Ime mora sadrzati samo slova!";
+        string parentWrong = "Ime mora sadrzati samo slova!";
+        string lastnameWrong = "Prezime mora sadrzati samo slova!";
+        string pinShort = "Jmbg mora sadrzati 13 brojeva...";
+        string pinWrong = "Jmbg mora sadrzati samo cifre!";
+        string emailWrong = "Email mora sadrzati @!";
+        string telWrong = "Telefon mora sadrzati samo cifre!";
+        string dateWrong = "Datum mora biti unet u formatu dd-mm-yyyy!";
+
+        public ObservableCollection<Notification> notifications
+        {
+            get;
+            set;
+        }
         public ObservableCollection<string> doctors
         {
             get;
@@ -49,29 +78,52 @@ namespace PatientProject.PatientPages
             get;
             set;
         }
-
-
-        public PatientEditInfoPage(string chosenDoctor, string personName, string personLastname, string personParent, DateTime personBirthDate, string personTelephone, string personGender, string personLivingCity, string personBirthCity, string personPin, MailAddress personEmail)
+        public Patient patient {
+            get;
+            set;
+        }
+        public ObservableCollection<string> cities
+        {
+            get;
+            set;
+        }
+        public PatientEditInfoPage(Patient p)
         {
             InitializeComponent();
             this.DataContext = this;
 
             doctors = new ObservableCollection<string>();
             genders = new ObservableCollection<string>();
-            days = new ObservableCollection<int>();
-            years = new ObservableCollection<int>();
-            months = new ObservableCollection<String>();
+            Notifications notifi = new Notifications();
+            notifications = notifi.notifications;
+            cities = new ObservableCollection<string>();
+            patient = p;
 
-            name.Text = personName;
-            parent.Text = personParent;
-            lastname.Text = personLastname;
-            pin.Text = personPin;
-            tel.Text = personTelephone;
+
+            name.Text = p.name;
+            parent.Text = p.lastname ;
+            lastname.Text = p.parentName;
+            pin.Text = p.pin;
+            tel.Text = p.number;
             
-            livingCity.Text = personLivingCity;
-            birthCity.Text = personBirthCity;
             
-            email.Text = personEmail.ToString();
+            
+            email.Text = p.email.ToString();
+
+            cities.Add("Novi Sad");
+            cities.Add("Subotica");
+            cities.Add("Zrenjanin");
+            cities.Add("Kekenda");
+            cities.Add("Mali Idjos");
+            cities.Add("Vrsac");
+            cities.Add("Sombor");
+            cities.Add("Senta");
+            cities.Add("Kula");
+            cities.Add("Indjija");
+            cities.Add("Sremska Mitrovica");
+            cities.Add("Bajmok");
+            cities.Add("Backa Topola");
+
 
             genders.Add("Ženski");
             genders.Add("Muški");
@@ -83,20 +135,13 @@ namespace PatientProject.PatientPages
             doctors.Add("dr Jelena Klašnjar");
             doctors.Add("dr Miodrag Đukić");
             doctors.Add("dr Petar Petrović");
+            doctors.Add("dr Legenda Nestorovic");
 
-            String[] parts = personBirthDate.ToString().Split(' ');
-            foreach (String part in parts) {
-                Console.WriteLine(part);
-            }
-            /*
-            day.SelectedItem = Convert.ToInt32(parts[0]);
-            month.SelectedItem = parts[1];
-            yrs.SelectedItem = Convert.ToInt32(parts[2]);
-            */
-            //Console.WriteLine(dtp.SelectedDate.ToString());
-            dtp.SelectedDate = personBirthDate;
-            gender.SelectedItem = personGender;
-            doctor.SelectedItem = chosenDoctor;
+            livingCity.SelectedItem = p.living_city;
+            birthCity.SelectedItem = p.birth_city;
+            dtp.SelectedDate = p.birth;
+            gender.SelectedItem = p.gender;
+            doctor.SelectedItem = p.chosenDoctor;
             
 
         }
@@ -122,6 +167,15 @@ namespace PatientProject.PatientPages
             {
                 case MessageBoxResult.Yes:
                     {
+                        try
+                        {
+                            System.Diagnostics.Process.GetProcessById(MainWindow.idKeyboard).Kill();
+
+                        }
+                        catch
+                        {
+
+                        }
                         Environment.Exit(0);
                         break;
                     }
@@ -222,48 +276,262 @@ namespace PatientProject.PatientPages
             //string date = dtp.SelectedDate.ToString().Split(' ')[0];
 
             //Console.WriteLine(date);
-            DateTime date = dtp.SelectedDate.Value;
-            MessageBoxResult succesMessage = MessageBox.Show("Potvrdite izmene podataka na nalogu!", "Potvrdite izmene?", MessageBoxButton.OKCancel);
-            switch (succesMessage)
+
+            validateName();
+            validateParentName();
+            validateLastname();
+            validateLCity();
+            validateBCity();
+            validateTel();
+            validateEmail();
+            validateDoctor();
+            validateGender();
+            validateDate();
+            validatePin();
+
+            if (validateName() && validateParentName() && validateLastname() && validateLCity() && validateBCity() && validateTel() && validateEmail() && validateDoctor() && validatePin() && validateDate() && validateGender())
             {
-                case MessageBoxResult.OK:
-                    {
-                        NavigationService.Navigate(new PatientProfilePage(doctor.SelectedItem.ToString(), name.Text, lastname.Text, parent.Text, dtp.SelectedDate.Value, tel.Text, gender.SelectedItem.ToString(), livingCity.Text, birthCity.Text, pin.Text, new MailAddress(email.Text)));
-                        break;
-                    }
+                MessageBoxResult succesMessage = MessageBox.Show("Potvrdite izmene podataka na nalogu!", "Potvrdite izmene?", MessageBoxButton.OKCancel);
+                switch (succesMessage)
+                {
+                    case MessageBoxResult.OK:
+                        {
+                            NavigationService.Navigate(new PatientProfilePage(doctor.SelectedItem.ToString(), name.Text, lastname.Text, parent.Text, dtp.SelectedDate.Value, tel.Text, gender.SelectedItem.ToString(), livingCity.SelectedItem.ToString(), birthCity.SelectedItem.ToString(), pin.Text, new MailAddress(email.Text)));
+                            break;
+                        }
+                }
+
             }
+
+               
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
           //  string date = day.SelectedItem.ToString() + "/" + month.SelectedItem.ToString() + "/" + yrs.SelectedItem.ToString();
            // string date = dtp.SelectedDate.ToString();
-            NavigationService.Navigate(new PatientProfilePage(doctor.SelectedItem.ToString(), name.Text, lastname.Text, parent.Text, dtp.SelectedDate.Value, tel.Text, gender.SelectedItem.ToString(), livingCity.Text, birthCity.Text, pin.Text, new MailAddress(email.Text)));
+            NavigationService.Navigate(new PatientProfilePage(patient.chosenDoctor, patient.name, patient.lastname, patient.parentName, patient.birth, patient.number, patient.gender, patient.living_city, patient.birth_city, patient.pin, patient.email));
 
         }
+
+
+
+        public bool validateDoctor()
+        {
+            if (doctor.SelectedItem == null)
+            {
+                errorWrongDoctor.Text = doctorEmpty;
+                return false;
+            }
+            else
+            {
+                errorWrongDoctor.Text = "";
+                return true;
+            }
+        }
+        public bool validateGender()
+        {
+            if (gender.SelectedItem == null)
+            {
+                errorWrongGender.Text = genderEmpty;
+                return false;
+            }
+            else
+            {
+                errorWrongGender.Text = "";
+                return true;
+            }
+        }
+
+        public bool validateDate()
+        {
+            DateTime temp;
+            if (!DateTime.TryParse(dtp.Text, out temp))
+            {
+                errorWrongDate.Text = dateWrong;
+                return false;
+            }
+            else if (dtp.SelectedDate == null)
+            {
+                errorWrongDate.Text = dateEmpty;
+                return false;
+            }
+            else
+            {
+                errorWrongDate.Text = "";
+                return true;
+            }
+        }
+
+        public bool validateEmail()
+        {
+            if (email.Text.Equals(""))
+            {
+                errorWrongEmail.Text = emailEmpty;
+                return false;
+            }
+            else if (!emailIsValid(email.Text))
+            {
+                errorWrongEmail.Text = emailWrong;
+                return false;
+            }
+            else
+            {
+                errorWrongEmail.Text = "";
+                return true;
+            }
+        }
+
+
+        public bool validateTel()
+        {
+            if (tel.Text.Equals(""))
+            {
+                errorWrongNumber.Text = telEmpty;
+                return false;
+            }
+            else if (!tel.Text.All(char.IsDigit))
+            {
+                errorWrongNumber.Text = telWrong;
+                return false;
+            }
+            else
+            {
+                errorWrongNumber.Text = "";
+                return true;
+            }
+        }
+        public bool validateLCity()
+        {
+            if (livingCity.SelectedItem == null)
+            {
+                errorWrongLCity.Text = livingCityEmpty;
+                return false;
+            }
+            else
+            {
+                errorWrongLCity.Text = "";
+                return true;
+            }
+        }
+        public bool validateBCity()
+        {
+            if (birthCity.SelectedItem == null)
+            {
+                errorWrongBCity.Text = birthCityEmpty;
+                return false;
+            }
+            else
+            {
+                errorWrongBCity.Text = "";
+                return true;
+            }
+        }
+        public bool validatePin()
+        {
+            if (pin.Text.Equals(""))
+            {
+                errorWrongPin.Text = pinEmpty;
+                return false;
+            }
+            else if (!pin.Text.All(char.IsDigit))
+            {
+                errorWrongPin.Text = pinWrong;
+
+                return false;
+            }
+            else
+            {
+                if (pin.Text.Length != 13)
+                {
+                    errorWrongPin.Text = pinShort;
+                    return false;
+                }
+                else
+                {
+                    errorWrongPin.Text = "";
+                    return true;
+                }
+            }
+        }
+        public bool validateLastname()
+        {
+            if (lastname.Text.Equals(""))
+            {
+                errorWrongLastname.Text = lastnameEmpty;
+
+                return false;
+            }
+            else if (!Regex.IsMatch(lastname.Text, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
+                errorWrongLastname.Text = lastnameWrong;
+                return false;
+            }
+            else
+            {
+                errorWrongLastname.Text = "";
+                return true;
+            }
+
+        }
+        public bool validateParentName()
+        {
+
+
+            if (parent.Text.Equals(""))
+            {
+                errorWrongNameParent.Text = parentEmpty;
+
+                return false;
+            }
+
+            else if (!Regex.IsMatch(parent.Text, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
+                errorWrongNameParent.Text = parentWrong;
+                return false;
+            }
+            else
+            {
+                errorWrongNameParent.Text = "";
+                return true;
+            }
+        }
+
+        public bool validateName()
+        {
+            if (name.Text.Equals(""))
+            {
+                errorWrongName.Text = nameEmpty;
+                return false;
+            }
+            else if (!Regex.IsMatch(name.Text, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
+                errorWrongName.Text = nameWrong;
+
+                return false;
+            }
+            else
+            {
+                errorWrongName.Text = "";
+                return true;
+            }
+        }
+
+        public bool emailIsValid(string emailaddress)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(emailaddress);
+
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+
+
+
     }
 }
-
-/*
- <Grid Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="31*"/>
-                                <RowDefinition Height="13*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="65*"/>
-                                <ColumnDefinition Width="104*"/>
-                                <ColumnDefinition Width="90*"/>
-                            </Grid.ColumnDefinitions>
-                            <!-- TODO 1: uraditi comboboxeve svuda sa material designom  -->
-                            
-                            <ComboBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Path= days}" Name="day" Width="47" HorizontalAlignment="Left" Height="24" />
-                            <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Path= months}" Name="month" Width="90" HorizontalAlignment="Center" Height="24"/>
-                            <ComboBox Grid.Column="2" Grid.Row="0" ItemsSource="{Binding Path= years}" Name="yrs" Width="76" HorizontalAlignment="Center" Height="24" />
-
-                            <TextBlock Grid.Row="1" Grid.Column="0" FontSize="10" HorizontalAlignment="Center" Margin="10,0,25,0" Width="34">Dan</TextBlock>
-                            <TextBlock Grid.Row="1" Grid.Column="1" FontSize="10" HorizontalAlignment="Center" Margin="10,0,25,0" Width="34">Mesec</TextBlock>
-                            <TextBlock Grid.Row="1" Grid.Column="2" FontSize="10" HorizontalAlignment="Center" Margin="10,0,25,0" Width="34">Godina</TextBlock>
-
-                        </Grid>
-*/

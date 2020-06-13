@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PatientProject"
       mc:Ignorable="d" 
-      d:DesignHeight="750" d:DesignWidth="440"
+      d:DesignHeight="750" d:DesignWidth="430"
       Title="PatientRegistrationPage"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -49,18 +49,35 @@
             <TextBlock FontSize="20" TextWrapping="Wrap"  Text="Unesite korisničko ime i lozinku:" Height="74" />
         </StackPanel>
 
-        <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Height="26"  Width="128" >Korsničko ime:</TextBlock>
-        <TextBox Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="190" Height="24" Name="username" GotFocus="username_GotFocus"></TextBox>
+        <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Height="26"  Width="169" Margin="0,19,0,18" >Korsničko ime: *</TextBlock>
+        <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Grid.Column="2" Grid.Row="3" Width="190" VerticalAlignment="Center">
+            <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="190" Height="24" Name="username" GotFocus="username_GotFocus"></TextBox>
+            <TextBlock Height="20"  x:Name ="errorWrongUsername" HorizontalAlignment="Center" VerticalAlignment="center" OpacityMask="Crimson" Width ="190" Foreground="#FFE5572C"/>
+        </StackPanel>
+
+        <TextBlock Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Height="26"  Width="169" Margin="0,18" >Lozinka: *</TextBlock>
+        <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Grid.Column="2" Grid.Row="4" Width="190" VerticalAlignment="Center">
+            <PasswordBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="190" Height="24" Name="pwd1" GotFocus="pwd1_GotFocus"></PasswordBox>
+            <TextBlock Height="20"  x:Name ="errorWrongPwd1" HorizontalAlignment="Center" VerticalAlignment="center" OpacityMask="Crimson" Width ="190" Foreground="#FFE5572C"/>
+        </StackPanel>
+        
+
+        <TextBlock Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Height="28"  Width="169" Margin="0,17" >Potvrdite lozinku: *</TextBlock>
+        <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Grid.Column="2" Grid.Row="5" Width="190" VerticalAlignment="Center">
+            <PasswordBox Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="190" Height="24" Name="pwd2" GotFocus="pwd2_GotFocus"></PasswordBox>
+            <TextBlock Height="20"  x:Name ="errorWrongPwd2" HorizontalAlignment="Center" VerticalAlignment="center" OpacityMask="Crimson" Width ="190" Foreground="#FFE5572C"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row ="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="center" OpacityMask="Crimson" Grid.Column="1" Text="Sva polja sa zvezdicom moraju biti popunjena..."/>
 
 
-        <TextBlock Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Height="26"  Width="72" >Lozinka:</TextBlock>
-        <PasswordBox Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="190" Height="24" Name="pwd1" GotFocus="pwd1_GotFocus"></PasswordBox>
+        <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Grid.Column="0" Grid.Row="7" Width="350" VerticalAlignment="Top" Grid.ColumnSpan="3">
+            <TextBlock Grid.Row ="6" Grid.ColumnSpan="2" Height="30"  x:Name ="errormessage" HorizontalAlignment="Center" VerticalAlignment="center" OpacityMask="Crimson" Width ="340" Foreground="#FFE5572C" Grid.Column="1" />
+        </StackPanel>
 
-        <TextBlock Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Height="28"  Width="152" >Potvrdite lozinku:</TextBlock>
-        <PasswordBox Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="190" Height="24" Name="pwd2" GotFocus="pwd2_GotFocus"></PasswordBox>
-
-        <TextBlock Grid.Row ="6" Grid.ColumnSpan="2" Height="30"  x:Name ="errormessage" HorizontalAlignment="Center" VerticalAlignment="center" OpacityMask="Crimson" Width ="340" Foreground="#FFE5572C" Grid.Column="1" />
         <Button Grid.ColumnSpan="3" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Medium" FontSize="30" Height="50"  Width="132" Click="Nastavi_Button_Click" Grid.Column="0"  Style="{StaticResource MaterialDesignRaisedDarkButton}" >Nastavi</Button>
-
+        <Button Grid.Column="2" HorizontalAlignment="Left" Margin="156,10,0,0" Background="Transparent" VerticalAlignment="Top" Width="49"  Height="37" Name="exitClick" Click="exitClick_Click" BorderThickness="0">
+            <materialDesign:PackIcon Kind="Close" Foreground="Black"></materialDesign:PackIcon>
+        </Button>
     </Grid>
 </Page>

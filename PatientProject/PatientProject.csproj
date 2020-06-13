@@ -37,9 +37,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotNetProjects.DataVisualization.Toolkit, Version=6.0.79.0, Culture=neutral, PublicKeyToken=79778c5f2eed289b, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNetProjects.WpfToolkit.DataVisualization.6.0.79\lib\net40\DotNetProjects.DataVisualization.Toolkit.dll</HintPath>
-    </Reference>
     <Reference Include="InteractiveDataDisplay.WPF, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\InteractiveDataDisplay.WPF.1.0.0\lib\net452\InteractiveDataDisplay.WPF.dll</HintPath>
     </Reference>
@@ -52,13 +49,18 @@
     <Reference Include="Microsoft.Maps.MapControl.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Maps.MapControl.WPF.1.0.0.3\lib\net40-Client\Microsoft.Maps.MapControl.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Reactive, Version=4.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Reactive.4.0.0\lib\net46\System.Reactive.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Controls.DataVisualization.Toolkit.4.0.0.0\lib\net40-Client\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -89,24 +91,38 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\Patient.cs" />
+    <Compile Include="PatientPages\CalendarDataTherapy.cs" />
     <Compile Include="PatientPages\CheckedListItem.cs" />
-    <Compile Include="PatientPages\ExpandersItemsList.cs" />
+    <Compile Include="PatientPages\Diagnosis.cs" />
+    <Compile Include="PatientPages\DrugsThreapy.cs" />
+    <Compile Include="PatientPages\Exam.cs" />
+    <Compile Include="PatientPages\BlogArticle.cs" />
+    <Compile Include="PatientPages\Notifications.cs" />
     <Compile Include="PatientPages\DateValidationClass.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PatientPages\PatientChooseDateExamPage.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="PatientPages\PatientDoctorPriorityTimePage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="PatientPages\PatientChooseDoctorPage.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="PatientPages\PatientDoctorPriorityDatePage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="PatientPages\PatientChooseTimePage.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="PatientPages\PatientDoctorPriorityPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PatientPages\PatientDatePriorityTimePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PatientPages\PatientDatePriorityDoctorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PatientPages\PatientDatePriorityPage.xaml">
       <SubType>Designer</SubType>
@@ -116,13 +132,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PatientPages\PatientExamDetailsConfirmPage.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="PatientPages\PatientExamDetailsConfirmPriorityDatePage .xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PatientPages\PatientExamSuggestDatePage.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PatientPages\PatientForgotenPasswordPage.xaml">
       <SubType>Designer</SubType>
@@ -180,25 +192,44 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PatientPages\PatientSuggestExamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PatientPages\PatientTherapyPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PatientPages\PatientSuggestAppointmentPage.xaml">
+    <Page Include="PatientPages\PatientPrioritySchedulePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PatientPages\PreviewZaStampu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PatientPages\PrintWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PatientPages\ExpandersItem.cs" />
-    <Compile Include="PatientPages\PatientChooseDateExamPage.xaml.cs">
-      <DependentUpon>PatientChooseDateExamPage.xaml</DependentUpon>
+    <Compile Include="PatientPages\Notification.cs" />
+    <Compile Include="PatientPages\PatientDoctorPriorityTimePage.xaml.cs">
+      <DependentUpon>PatientDoctorPriorityTimePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatientPages\PatientChooseDoctorPage.xaml.cs">
-      <DependentUpon>PatientChooseDoctorPage.xaml</DependentUpon>
+    <Compile Include="PatientPages\PatientDoctorPriorityDatePage.xaml.cs">
+      <DependentUpon>PatientDoctorPriorityDatePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatientPages\PatientChooseTimePage.xaml.cs">
-      <DependentUpon>PatientChooseTimePage.xaml</DependentUpon>
+    <Compile Include="PatientPages\PatientDoctorPriorityPage.xaml.cs">
+      <DependentUpon>PatientDoctorPriorityPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatientPages\PatientDatePriorityTimePage.xaml.cs">
+      <DependentUpon>PatientDatePriorityTimePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatientPages\PatientDatePriorityDoctorPage.xaml.cs">
+      <DependentUpon>PatientDatePriorityDoctorPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PatientPages\PatientDatePriorityPage.xaml.cs">
       <DependentUpon>PatientDatePriorityPage.xaml</DependentUpon>
@@ -206,11 +237,8 @@
     <Compile Include="PatientPages\PatientEditInfoPage.xaml.cs">
       <DependentUpon>PatientEditInfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatientPages\PatientExamDetailsConfirmPage.xaml.cs">
-      <DependentUpon>PatientExamDetailsConfirmPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PatientPages\PatientExamSuggestDatePage.xaml.cs">
-      <DependentUpon>PatientExamSuggestDatePage.xaml</DependentUpon>
+    <Compile Include="PatientPages\PatientExamDetailsConfirmPriorityDatePage .xaml.cs">
+      <DependentUpon>PatientExamDetailsConfirmPriorityDatePage .xaml</DependentUpon>
     </Compile>
     <Compile Include="PatientPages\PatientForgotenPasswordPage.xaml.cs">
       <DependentUpon>PatientForgotenPasswordPage.xaml</DependentUpon>
@@ -254,13 +282,23 @@
     <Compile Include="PatientPages\PatientSignInPage.xaml.cs">
       <DependentUpon>PatientSignInPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PatientPages\PatientSuggestExamPage.xaml.cs">
+      <DependentUpon>PatientSuggestExamPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PatientPages\PatientTherapyPage.xaml.cs">
       <DependentUpon>PatientTherapyPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatientPages\PatientSuggestAppointmentPage.xaml.cs">
-      <DependentUpon>PatientSuggestAppointmentPage.xaml</DependentUpon>
+    <Compile Include="PatientPages\PatientPrioritySchedulePage.xaml.cs">
+      <DependentUpon>PatientPrioritySchedulePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PatientPages\PickersViewModel.cs" />
+    <Compile Include="PatientPages\PreviewZaStampu.xaml.cs">
+      <DependentUpon>PreviewZaStampu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatientPages\PrintWindow.xaml.cs">
+      <DependentUpon>PrintWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatientPages\QuestionAnswer.cs" />
     <Compile Include="PatientPages\ScheduledExam.cs" />
     <Compile Include="PatientPages\TimeValidationClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
