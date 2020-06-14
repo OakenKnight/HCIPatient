@@ -70,9 +70,9 @@ namespace PatientProject.PatientPages
             doctors.Add("dr Zoran Radovanovic");
             doctors.Add("dr Goran Stevanovic");
             doctors.Add("dr Jovan Prodanov");
-            doctors.Add("dr Jelena Klašnjar");
-            doctors.Add("dr Miodrag Đukić");
-            doctors.Add("dr Petar Petrović");
+            doctors.Add("dr Jelena Klasnjar");
+            doctors.Add("dr Miodrag Djukic");
+            doctors.Add("dr Petar Petrovic");
             doctors.Add("dr Legenda Nestorovic");
 
             chosenDoctor.Text = patient.chosenDoctor;
@@ -93,6 +93,7 @@ namespace PatientProject.PatientPages
             InitializeComponent();
             this.DataContext = this;
             patient = MainWindow.patient;
+            doctors = new ObservableCollection<string>();
 
             patient.name = personName;
             patient.parentName = personParent;
@@ -108,6 +109,14 @@ namespace PatientProject.PatientPages
 
             Notifications notifi = new Notifications();
             notifications = notifi.notifications;
+
+            doctors.Add("dr Zoran Radovanovic");
+            doctors.Add("dr Goran Stevanovic");
+            doctors.Add("dr Jovan Prodanov");
+            doctors.Add("dr Jelena Klasnjar");
+            doctors.Add("dr Miodrag Djukic");
+            doctors.Add("dr Petar Petrovic");
+            doctors.Add("dr Legenda Nestorovic");
 
             chosenDoctor.Text = patient.chosenDoctor;
             name.Text = patient.name;

@@ -232,10 +232,11 @@
                         <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Medium" FontSize="24" Margin="45,27,45,26">Pregled terapija</TextBlock>
 
                         <StackPanel  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6"  Orientation="Horizontal" Width="360">
-                            <Button  Style="{StaticResource MaterialDesignFlatMidBgButton}" Width="180" ToolTip="MaterialDesignFlatMidButton" Name="list" Click="list_Click">
+                            <Button  Style="{StaticResource MaterialDesignFlatMidBgButton}" Width="170" Name="list" Click="list_Click">
                                 Raspored terapija
                             </Button>
-                            <Button Width="180" Style="{StaticResource MaterialDesignFlatMidBgButton}" ToolTip="MaterialDesignFlatMidButton" Name="calendarView" Click="calendarView_Click">
+                            <StackPanel Width="20"/>
+                            <Button Width="170" Style="{StaticResource MaterialDesignFlatMidBgButton}" Name="calendarView" Click="calendarView_Click">
                                 Prikaz na kalendaru
                             </Button>
                         </StackPanel>

@@ -33,7 +33,7 @@
             <RowDefinition Height="197*"/>
         </Grid.RowDefinitions>
 
-        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="MaterialDesignFloatingActionAccentButton" Grid.Row="0" Grid.Column="1" x:Name="back" BorderThickness="0" Padding="0" Height="66" Width="66"  Click="back_Click" HorizontalAlignment="Left" VerticalAlignment="Center" >
+        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Grid.Row="0" Grid.Column="1" x:Name="back" BorderThickness="0" Padding="0" Height="66" Width="66"  Click="back_Click" HorizontalAlignment="Left" VerticalAlignment="Center" >
             <materialDesign:PackIcon Kind="ArrowLeft" Height="50" Width="52" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Button>
         <Image Grid.Row="0" Grid.Column="2">

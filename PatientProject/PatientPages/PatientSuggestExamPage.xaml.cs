@@ -50,9 +50,11 @@ namespace PatientProject.PatientPages
             exams = new ObservableCollection<ScheduledExam>();
             doctors.Add("dr Goran Stevanovic");
             doctors.Add("dr Jovan Prodanov");
-            doctors.Add("dr Jelena Klašnjar");
-            doctors.Add("dr Miodrag Đukić");
-            doctors.Add("dr Petar Petrović");
+            doctors.Add("dr Jelena Klasnjar");
+            doctors.Add("dr Miodrag Djukic");
+            doctors.Add("dr Petar Petrovic");
+            doctors.Add("dr Legenda Nestorovic");
+
             startDate.DisplayDateStart = DateTime.Today;
             endDate.DisplayDateStart = DateTime.Today;
         }

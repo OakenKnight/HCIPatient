@@ -16,7 +16,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Binding = System.Windows.Data.Binding;
 using MessageBox = System.Windows.MessageBox;
-using Syncfusion.Pdf;
 using System.Windows.Xps;
 using System.Windows.Xps.Packaging;
 using System.IO;
@@ -302,39 +301,46 @@ namespace PatientProject.PatientPages
 
         private void CalendarDayButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            gridContainer.Focus();
 
-            string[] parts = calendar.SelectedDate.Value.Date.ToString().Split(' ');
+            try {
+                string[] parts = calendar.SelectedDate.Value.Date.ToString().Split(' ');
 
-            dateText.Text = parts[0];
+                dateText.Text = parts[0];
 
-            Console.WriteLine(sender.ToString());
+                Console.WriteLine(sender.ToString());
 
-            if (!drugsListNames.Keys.Contains(Convert.ToDateTime(sender.ToString())))
-            {
-                TherapyPopup.IsOpen = false;
-
-            }
-            else
-            {
-                foreach (DateTime datum in drugsListNames.Keys)
+                if (!drugsListNames.Keys.Contains(Convert.ToDateTime(sender.ToString())))
                 {
-                    if (sender.ToString().Equals(datum.Date.ToString()))
+                    TherapyPopup.IsOpen = false;
+
+                }
+                else
+                {
+                    foreach (DateTime datum in drugsListNames.Keys)
                     {
-                        itemControl.DataContext = null;
-                        itemControl.DataContext = drugsListNames[datum.Date];
-                        Console.WriteLine(drugsListNames[datum.Date]);
-                        Binding b = new Binding(drugsListNames[datum.Date].ToString())
+                        if (sender.ToString().Equals(datum.Date.ToString()))
                         {
-                            Source = this
-                        };
-                        itemControl.SetBinding(ItemsControl.ItemsSourceProperty, b);
-                        itemControl.Items.Refresh();
+                            itemControl.DataContext = null;
+                            itemControl.DataContext = drugsListNames[datum.Date];
+                            Console.WriteLine(drugsListNames[datum.Date]);
+                            Binding b = new Binding(drugsListNames[datum.Date].ToString())
+                            {
+                                Source = this
+                            };
+                            itemControl.SetBinding(ItemsControl.ItemsSourceProperty, b);
+                            itemControl.Items.Refresh();
+                        }
                     }
+
+                    TherapyPopup.IsOpen = true;
                 }
 
-                TherapyPopup.IsOpen = true;
             }
+            catch
+            {
+            }
+
+            
 
 
             
@@ -367,35 +373,7 @@ namespace PatientProject.PatientPages
         }
         
 
-        private MemoryStream GetXPSDocument(string fileName)
-        {
-            //Create visual UIElement.
-            UIElement visual = System.Windows.Markup.XamlReader.Load(System.Xml.XmlReader.Create(fileName)) as System.Windows.UIElement;
-            FixedDocument doc = new System.Windows.Documents.FixedDocument();
-            PageContent pageContent = new System.Windows.Documents.PageContent();
-            FixedPage fixedPage = new System.Windows.Documents.FixedPage();
-
-            //Create first page of document
-            fixedPage.Children.Add(visual);
-            ((System.Windows.Markup.IAddChild)pageContent).AddChild(fixedPage);
-
-            //Adding page content to pages.
-            doc.Pages.Add(pageContent);
-
-            //Create the stream.
-            MemoryStream stream = new MemoryStream();
-
-            XpsDocument xpsdocument = new XpsDocument(System.IO.Packaging.Package.Open(stream, FileMode.Create));
-            XpsDocumentWriter xpswriter = XpsDocument.CreateXpsDocumentWriter(xpsdocument);
-
-            //Write the XPS document.
-            xpswriter.Write(doc);
-
-            //Close the XPS document.
-            xpsdocument.Close();
-
-            return stream;
-        }
+        
 
     }
 }

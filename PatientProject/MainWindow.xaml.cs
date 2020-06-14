@@ -105,6 +105,15 @@ namespace PatientProject
 
             ScheduledExam exam7 = new ScheduledExam(dayaftertmrw2, "id7", "dr Legenda Nestorovic", "16:30", "666");
 
+            ScheduledExam exam8 = new ScheduledExam(new DateTime(2020,5,12), "id8", "dr Jelena Klasnjar", "16:30", "666");
+            ScheduledExam exam9 = new ScheduledExam(new DateTime(2020, 5, 16), "id9", "dr Legenda Nestorovic", "16:30", "666");
+            ScheduledExam exam10 = new ScheduledExam(new DateTime(2020, 4, 16), "id10", "dr Goran Stevanovic", "16:30", "666");
+            ScheduledExam exam11 = new ScheduledExam(new DateTime(2020, 4, 6), "id11", "dr Legenda Nestorovic", "16:30", "666");
+            ScheduledExam exam12 = new ScheduledExam(new DateTime(2020, 3, 16), "id12", "dr Legenda Nestorovic", "16:30", "666");
+           
+
+
+
             examsForToday = new ObservableCollection<ScheduledExam>();
             examsForTomorrow = new ObservableCollection<ScheduledExam>();
             examsForTmrw2 = new ObservableCollection<ScheduledExam>();
@@ -127,7 +136,12 @@ namespace PatientProject
             exams.Add(exam4);
             exams.Add(exam5);
             exams.Add(exam6);
-            exams.Add(exam7);
+            exams.Add(exam7); 
+            exams.Add(exam8);
+            exams.Add(exam9);
+            exams.Add(exam10);
+            exams.Add(exam11);
+            exams.Add(exam12);
 
             scheduledExamsNames[dns.Date] = nameof(examsForToday);
             scheduledExamsNames[tmrw.Date] = nameof(examsForTomorrow);

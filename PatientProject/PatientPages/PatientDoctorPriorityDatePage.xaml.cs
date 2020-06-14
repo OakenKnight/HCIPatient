@@ -53,9 +53,11 @@ namespace PatientProject.PatientPages
             doctors = new ObservableCollection<string>();
             doctors.Add("dr Goran Stevanovic");
             doctors.Add("dr Jovan Prodanov");
-            doctors.Add("dr Jelena Klašnjar");
-            doctors.Add("dr Miodrag Đukić");
-            doctors.Add("dr Petar Petrović");
+            doctors.Add("dr Jelena Klasnjar");
+            doctors.Add("dr Miodrag Djukic");
+            doctors.Add("dr Petar Petrovic");
+            doctors.Add("dr Legenda Nestorovic");
+
         }
         public PatientDoctorPriorityDatePage(string doctor, DateTime date)
         {
@@ -73,9 +75,11 @@ namespace PatientProject.PatientPages
             doctors = new ObservableCollection<string>();
             doctors.Add("dr Goran Stevanovic");
             doctors.Add("dr Jovan Prodanov");
-            doctors.Add("dr Jelena Klašnjar");
-            doctors.Add("dr Miodrag Đukić");
-            doctors.Add("dr Petar Petrović");
+            doctors.Add("dr Jelena Klasnjar");
+            doctors.Add("dr Miodrag Djukic");
+            doctors.Add("dr Petar Petrovic");
+            doctors.Add("dr Legenda Nestorovic");
+
         }
         public PatientDoctorPriorityDatePage(string doctor, DateTime date,string term)
         {
@@ -93,9 +97,11 @@ namespace PatientProject.PatientPages
             doctors = new ObservableCollection<string>();
             doctors.Add("dr Goran Stevanovic");
             doctors.Add("dr Jovan Prodanov");
-            doctors.Add("dr Jelena Klašnjar");
-            doctors.Add("dr Miodrag Đukić");
-            doctors.Add("dr Petar Petrović");
+            doctors.Add("dr Jelena Klasnjar");
+            doctors.Add("dr Miodrag Djukic");
+            doctors.Add("dr Petar Petrovic");
+            doctors.Add("dr Legenda Nestorovic");
+
         }
 
         private void displayMenu_Click(object sender, RoutedEventArgs e)

@@ -23,7 +23,7 @@ namespace HCZdravo
     {
         String usernameWrong = "Korisnicko ime je vec zauzeto";
         String usernameEmpty = "Unesite korisnicko ime";
-        String passWrong = "Lozinka nema dovoljno karaktera";
+        String passWrong = "Minimalni broj karaktera lozinke je 8.";
         int minPassChars = 6;
         public PatientRegistrationPage()
         {

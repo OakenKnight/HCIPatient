@@ -19,9 +19,10 @@ namespace PatientProject.PatientPages
     /// <summary>
     /// Interaction logic for PatientSeeDoctorsPage.xaml
     /// </summary>
+    
     public partial class PatientSeeDoctorsPage : Page
     {
-        public ObservableCollection<Notification> notifications
+        public ObservableCollection<ExpandersItem> doctors 
         {
             get;
             set;
@@ -30,9 +31,23 @@ namespace PatientProject.PatientPages
         {
             InitializeComponent();
             this.DataContext = this;
-            Notifications notifi = new Notifications();
-            notifications = notifi.notifications;
+            doctors = new ObservableCollection<ExpandersItem>();
+
+            string nestorovic = "Doktor Legenda Nestorovic, u narodu poznat kao doktor estrogenije, poznat po svojim veoma avangardnim stavovima o Covid19 i Nikoli Tesli. Da, dobro ste procitali! O Nikoli Tesli!";
+            string stevanovic = "Doktor Goran Stevanovic, Rođen je 1972. godine u Beogradu. Osnovnu i srednju školu završio je u Beogradu, kako ističe u biografiji priloženoj uz doktorsku disertaciju, sa odličnim uspehom. Medicinski fakultet u Beogradu upisao je školske 1990 / 91.i diplomirao 1.jula 1996.godine sa prosečnom ocenom 9,42.Tokom studija, navodi, objavio je nekoliko stručnih radova na studentskim kongresima i časopisu „Medicinski podmladak\" ";
+            string petrovic = "Doktor Petar Petrovic, izmisljena licnost. Ima specijalne moci da izleci osobu od depresije i ftna.";
+            string prodanov = "Doktor Jovan Prodanov, legenda Novog Sada. Lekar koji zagovara skakanje po blatnjavim baricama i jedenje mrava zarad viseg cilja";
+            string klasnjar = "Doktor Jelena Klasnjar, Jako dobar lekar. Vec mi ponestaje ideja za ovo";
+            string djukic = "Doktor Miodrag Djukic. Lik koji je zasluzan za smanjenej broja rokova studentima. Predaje SPPURV, predmet koji nikog ne zanima, predmet koji smo svi prepisivali sa slika od prethodnih godina. Srbenda.";
+            doctors.Add(new ExpandersItem("dr Legenda Nestorovic", "id1", nestorovic));
+            doctors.Add(new ExpandersItem("dr Goran Stevanovic", "id2", stevanovic));
+            doctors.Add(new ExpandersItem("dr Petar Petrovic", "id3", petrovic));
+            doctors.Add(new ExpandersItem("dr Jovan Prodanov", "id4", prodanov));
+            doctors.Add(new ExpandersItem("dr Jelena Klasnjar", "id5", klasnjar));
+            doctors.Add(new ExpandersItem("dr Miodrag Djukic", "id6", djukic));
+
         }
+
         private void displayMenu_Click(object sender, RoutedEventArgs e)
         {
 
@@ -101,7 +116,7 @@ namespace PatientProject.PatientPages
         private void EmergencyExamButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO 1: mora da se uradi ovde
-            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleEmergemcyExamPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduleEmergencyExamPage.xaml", UriKind.Relative));
 
         }
 
@@ -165,6 +180,7 @@ namespace PatientProject.PatientPages
 
 
 
+ 
 
     }
 }

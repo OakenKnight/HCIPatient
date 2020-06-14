@@ -184,6 +184,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PatientPages\PatientScheduledExamsChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PatientPages\PatientSeeDoctorsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -276,6 +280,9 @@
     <Compile Include="PatientPages\PatientScheduleExamPage.xaml.cs">
       <DependentUpon>PatientScheduleExamPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PatientPages\PatientScheduledExamsChart.xaml.cs">
+      <DependentUpon>PatientScheduledExamsChart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PatientPages\PatientSeeDoctorsPage.xaml.cs">
       <DependentUpon>PatientSeeDoctorsPage.xaml</DependentUpon>
     </Compile>
@@ -328,9 +335,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\arrows.png" />
-    <Resource Include="Resources\back.png" />
-    <Resource Include="Resources\button.png" />
     <Resource Include="Resources\logo.png" />
     <Resource Include="Resources\social-media.png" />
     <Resource Include="Resources\symbol.png" />

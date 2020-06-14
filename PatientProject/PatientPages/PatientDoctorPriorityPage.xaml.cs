@@ -44,7 +44,7 @@ namespace PatientProject.PatientPages
         {
             InitializeComponent();
             this.DataContext = this;
-            izabraniLekar = "dr Petar Petrović";
+            izabraniLekar = "dr Petar Petrovic";
             chosenDoctor.Text = izabraniLekar;
 
             doctors = new ObservableCollection<string>();
@@ -52,9 +52,10 @@ namespace PatientProject.PatientPages
             notifications = notifi.notifications;
             doctors.Add("dr Goran Stevanovic");
             doctors.Add("dr Jovan Prodanov");
-            doctors.Add("dr Jelena Klašnjar");
-            doctors.Add("dr Miodrag Đukić");
-            doctors.Add("dr Petar Petrović");
+            doctors.Add("dr Jelena Klasnjar");
+            doctors.Add("dr Miodrag Djukic");
+            doctors.Add("dr Petar Petrovic");
+            doctors.Add("dr Legenda Nestorovic");
 
         }
         public PatientDoctorPriorityPage(string doctor)
@@ -67,13 +68,15 @@ namespace PatientProject.PatientPages
             Notifications notifi = new Notifications();
             notifications = notifi.notifications;
             doctors = new ObservableCollection<string>();
-            izabraniLekar = "dr Petar Petrović";
+            izabraniLekar = "dr Petar Petrovic";
             chosenDoctor.Text = izabraniLekar;
             doctors.Add("dr Goran Stevanovic");
             doctors.Add("dr Jovan Prodanov");
-            doctors.Add("dr Jelena Klašnjar");
-            doctors.Add("dr Miodrag Đukić");
-            doctors.Add("dr Petar Petrović");
+            doctors.Add("dr Jelena Klasnjar");
+            doctors.Add("dr Miodrag Djukic");
+            doctors.Add("dr Petar Petrovic");
+            doctors.Add("dr Legenda Nestorovic");
+
         }
 
         public PatientDoctorPriorityPage(string doctor, DateTime date)
@@ -92,13 +95,15 @@ namespace PatientProject.PatientPages
             doctorCB.SelectedItem = doctor;
 
             doctors = new ObservableCollection<string>();
-            izabraniLekar = "dr Petar Petrović";
+            izabraniLekar = "dr Petar Petrovic";
             chosenDoctor.Text = izabraniLekar;
             doctors.Add("dr Goran Stevanovic");
             doctors.Add("dr Jovan Prodanov");
-            doctors.Add("dr Jelena Klašnjar");
-            doctors.Add("dr Miodrag Đukić");
-            doctors.Add("dr Petar Petrović");
+            doctors.Add("dr Jelena Klasnjar");
+            doctors.Add("dr Miodrag Djukic");
+            doctors.Add("dr Petar Petrovic");
+            doctors.Add("dr Legenda Nestorovic");
+
 
         }
         public PatientDoctorPriorityPage(string doctor, DateTime date, string term)
@@ -110,7 +115,7 @@ namespace PatientProject.PatientPages
             this.date = date;
             this.doctor = doctor;
             this.term = term;
-            izabraniLekar = "dr Petar Petrović";
+            izabraniLekar = "dr Petar Petrovic";
             chosenDoctor.Text = izabraniLekar;
 
             doctorCB.SelectedItem = doctor;
@@ -118,9 +123,11 @@ namespace PatientProject.PatientPages
 
             doctors.Add("dr Goran Stevanovic");
             doctors.Add("dr Jovan Prodanov");
-            doctors.Add("dr Jelena Klašnjar");
-            doctors.Add("dr Miodrag Đukić");
-            doctors.Add("dr Petar Petrović");
+            doctors.Add("dr Jelena Klasnjar");
+            doctors.Add("dr Miodrag Djukic");
+            doctors.Add("dr Petar Petrovic");
+            doctors.Add("dr Legenda Nestorovic");
+
         }
 
         private void displayMenu_Click(object sender, RoutedEventArgs e)

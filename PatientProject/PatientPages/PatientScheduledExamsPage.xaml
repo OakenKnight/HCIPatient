@@ -233,10 +233,11 @@
                         <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Medium" FontSize="24" Text="Zakazani pregledi" Height="28" Margin="36,27,35,27" Width="192"/>
 
                         <StackPanel  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6"  Orientation="Horizontal" Width="360">
-                            <Button  Style="{StaticResource MaterialDesignFlatMidBgButton}" Width="180" ToolTip="MaterialDesignFlatMidButton" Name="list" Click="list_Click">
+                            <Button  Style="{StaticResource MaterialDesignFlatMidBgButton}" Width="170" Name="list" Click="list_Click">
                                 Raspored pregleda
                             </Button>
-                            <Button Width="180" Style="{StaticResource MaterialDesignFlatMidBgButton}" ToolTip="MaterialDesignFlatMidButton" Name="calendarView" Click="calendarView_Click">
+                            <StackPanel Width="20"/>
+                            <Button Width="170" Style="{StaticResource MaterialDesignFlatMidBgButton}" Name="calendarView" Click="calendarView_Click">
                                 Prikaz na kalendaru
                             </Button>
                         </StackPanel>
@@ -261,53 +262,69 @@
                         </StackPanel>
 
 
-                        <StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5"  Name="listViewStackPanel" Margin="0,0,10,0">
+                        <StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4"  Name="listViewStackPanel" Margin="0,0,10,0">
                             <ListView ItemsSource="{Binding Path=exams}" MouseDoubleClick="ListView_MouseDoubleClick" Name="listView">
                                 <ListView.View >
                                     <GridView AllowsColumnReorder="False" >
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Date}" Header="Datum" Width="70" />
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Doctor}" Header="Doktor" Width="100"/>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Time}" Header="Vreme" Width="100"/>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Room}" Header="Prostorija" Width="100"/>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Date}" Header="Datum" Width="73" />
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Doctor}" Header="Doktor" Width="150"/>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Time}" Header="Vreme" Width="70"/>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Room}" Header="Soba" Width="70"/>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
                         </StackPanel>
+                        <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource MaterialDesignFlatMidBgButton}" Width="180" x:Name="showChart" Click="showChart_Click" Content="Prikaz na grafiku" Margin="102,0"/>
+
 
                         <Popup Name="selectedExamPopup" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="450" StaysOpen="False" Placement="Center" IsOpen="False">
                             <StackPanel Background="LightGray" Focusable="False" Height="Auto">
-                                <Separator Visibility="Hidden"/>
-                                <Separator Visibility="Hidden"/>
+                                <Grid  Width="300" Height="450">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="61*"/>
+                                        <ColumnDefinition Width="14*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="3*"/>
+                                        <RowDefinition Height="22*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"  FontWeight="Medium" FontSize="18" Height="52" TextWrapping="Wrap" Margin="13,4,13,394" Grid.RowSpan="2" Width="218">Mozete promeniti podatke za pregled:</TextBlock>
+                                    <Button Style="{StaticResource MaterialDesignIconForegroundButton}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Name="selectedExit" Click="selectedExit_Click" Height="32" Width="32" Margin="12,12,12,10">
+                                        <materialDesign:PackIcon Kind="Close" />
+                                    </Button>
 
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"  FontWeight="Medium" FontSize="20" Height="52" TextWrapping="Wrap" Margin="16,0">Mozete promeniti podatke za pregled:</TextBlock>
-                                <Separator Visibility="Hidden"/>
-                                <Separator Visibility="Hidden"/>
 
-                                <Border x:Name="Border" Padding="8" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
-                                    <Grid Width="250" Height="350">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="84"/>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="6*"/>
-                                            <RowDefinition Height="6*"/>
-                                            <RowDefinition Height="6*"/>
-                                            <RowDefinition Height="6*"/>
-                                            <RowDefinition Height="11*"/>
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Text="Doktor:" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="0" Grid.Row="0" Height="22" Margin="11,18,11,20" Width="62"></TextBlock>
-                                        <ComboBox x:Name="doktor" Grid.Column="1" Grid.Row="0" Width="156" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" ItemsSource="{Binding doctors}" Height="32" Margin="5,14" ></ComboBox>
-                                        <TextBlock Text="Termin:" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="0" Grid.Row="1" Height="22" Margin="11,16,11,22" Width="62"></TextBlock>
-                                        <ComboBox x:Name="time" Grid.Column="1" Grid.Row="1" Width="156" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" ItemsSource="{Binding vremena}" Height="32" Margin="5,12,5,16"></ComboBox>
-                                        <TextBlock Text="Datum:" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="0" Grid.Row="2" Height="22" Margin="11,16,11,22" Width="62"></TextBlock>
-                                        <TextBlock Text="Soba:" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="0" Grid.Row="3" Height="22" Margin="11,16,11,22" Width="62"></TextBlock>
-                                        <TextBlock Name="room" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1" Grid.Row="3" Height="22" Margin="11,16,11,22"></TextBlock>
+                                    <Border x:Name="Border" Padding="8" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                                        <Grid Width="250" Height="350">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="84"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="6*"/>
+                                                <RowDefinition Height="6*"/>
+                                                <RowDefinition Height="6*"/>
+                                                <RowDefinition Height="6*"/>
+                                                <RowDefinition Height="11*"/>
+                                            </Grid.RowDefinitions>
 
-                                        <DatePicker x:Name="date" Grid.Column="1" Grid.Row="2" Width="156" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Height="32" Margin="5,10,5,18"></DatePicker>
-                                        <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignRaisedAccentButton}" materialDesign:RippleAssist.Feedback="#DD000000" Content="Izmeni" FontSize="20" FontWeight="Medium" Name="reschedule" Click="reschedule_Click" Width="100" />
-                                    </Grid>
-                                </Border>
+                                            <TextBlock Text="Doktor:" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="0" Grid.Row="0" Height="22" Margin="11,18,11,20" Width="62"></TextBlock>
+                                            <ComboBox x:Name="doktor" Grid.Column="1" Grid.Row="0" Width="156" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" ItemsSource="{Binding doctors}" Height="32" Margin="5,14" ></ComboBox>
+                                            <TextBlock Text="Termin:" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="0" Grid.Row="1" Height="22" Margin="11,16,11,22" Width="62"></TextBlock>
+                                            <ComboBox x:Name="time" Grid.Column="1" Grid.Row="1" Width="156" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" ItemsSource="{Binding vremena}" Height="32" Margin="5,12,5,16"></ComboBox>
+                                            <TextBlock Text="Datum:" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="0" Grid.Row="2" Height="22" Margin="11,16,11,22" Width="62"></TextBlock>
+                                            <TextBlock Text="Soba:" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="0" Grid.Row="3" Height="22" Margin="11,16,11,22" Width="62"></TextBlock>
+                                            <TextBlock Name="room" FontSize="18" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1" Grid.Row="3" Height="22" Margin="11,16,11,22"></TextBlock>
+
+                                            <DatePicker x:Name="date" Grid.Column="1" Grid.Row="2" Width="156" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Height="32" Margin="5,10,5,18"></DatePicker>
+                                            <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignRaisedAccentButton}" materialDesign:RippleAssist.Feedback="#DD000000" Content="Izmeni" FontSize="20" FontWeight="Medium" Name="reschedule" Click="reschedule_Click" Width="100" />
+                                        </Grid>
+                                    </Border>
+                                    
+                                </Grid>
+                                
+
+                             
                             </StackPanel>
                         </Popup>
 

@@ -44,7 +44,7 @@ namespace PatientProject.PatientPages
             ratings = new ObservableCollection<int>();
             doctors = new ObservableCollection<string>();
 
-            for (int i = 1; i < 11; i++) {
+            for (int i = 1; i < 6; i++) {
                 ratings.Add(i);
             }
 

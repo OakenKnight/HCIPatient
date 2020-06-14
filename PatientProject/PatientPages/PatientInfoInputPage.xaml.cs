@@ -48,6 +48,7 @@ namespace HCZdravo.PatientPages
         string emailWrong = "Email mora sadrzati @!";
         string telWrong = "Telefon mora sadrzati samo cifre!";
         string dateWrong = "Datum mora biti unet u formatu dd-mm-yyyy!";
+        
 
         public ObservableCollection<string> doctors
         {
@@ -113,8 +114,9 @@ namespace HCZdravo.PatientPages
             doctors.Add("dr Jelena Klašnjar");
             doctors.Add("dr Miodrag Đukić");
             doctors.Add("dr Petar Petrović");
+            doctors.Add("dr Legenda Nestorovic");
 
-
+            dtp.DisplayDateEnd = DateTime.Today;
 
         }
 

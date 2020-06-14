@@ -291,7 +291,6 @@ namespace PatientProject.PatientPages
 
         private void CalendarDayButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            gridContainer.Focus();
 
             try
             {
@@ -384,7 +383,10 @@ namespace PatientProject.PatientPages
                     time.SelectedItem = selectedExam.Time;
                     date.SelectedDate = selectedExam.Date;
                     room.Text = selectedExam.Room;
-                    selectedExamPopup.IsOpen = true;
+                    if (selectedExam.Date > DateTime.Today) {
+                        selectedExamPopup.IsOpen = true;
+
+                    }
                 }
             
         }
@@ -426,6 +428,16 @@ namespace PatientProject.PatientPages
 
             
 
+        }
+
+        private void showChart_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/PatientPages/PatientScheduledExamsChart.xaml", UriKind.Relative));
+        }
+
+        private void selectedExit_Click(object sender, RoutedEventArgs e)
+        {
+            selectedExamPopup.IsOpen = false;
         }
     }
 }

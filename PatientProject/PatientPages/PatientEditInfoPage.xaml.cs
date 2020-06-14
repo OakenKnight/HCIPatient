@@ -142,7 +142,7 @@ namespace PatientProject.PatientPages
             dtp.SelectedDate = p.birth;
             gender.SelectedItem = p.gender;
             doctor.SelectedItem = p.chosenDoctor;
-            
+            dtp.DisplayDateEnd = DateTime.Today;
 
         }
         private void displayMenu_Click(object sender, RoutedEventArgs e)

@@ -89,8 +89,8 @@
 
 
 
-
-            <TextBlock x:Name="CurrentMonth" FontWeight="Light" Text="{Binding}" FontSize="20" FontFamily="helvetica" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.ColumnSpan="7"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="helvetica" FontWeight="Medium"> Terapija za mesec:</TextBlock>
+            <TextBlock x:Name="CurrentMonth" Text="{Binding}" FontWeight="Medium" FontSize="20" FontFamily="helvetica" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.ColumnSpan="7"/>
 
 
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Ned" FontFamily="Helvetica" FontWeight="Light" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>

@@ -50,7 +50,6 @@ C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientP
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientScheduledExamsPage.g.cs
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientScheduleEmergencyExamPage.g.cs
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientScheduleExamPage.g.cs
-C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientSeeDoctorsPage.g.cs
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientSignInPage.g.cs
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientSuggestExamPage.g.cs
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientTherapyPage.g.cs
@@ -81,7 +80,6 @@ C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientP
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientScheduledExamsPage.baml
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientScheduleEmergencyExamPage.baml
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientScheduleExamPage.baml
-C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientSeeDoctorsPage.baml
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientSignInPage.baml
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientSuggestExamPage.baml
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientTherapyPage.baml
@@ -111,15 +109,12 @@ C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientP
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientProject.csproj.GenerateResource.cache
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientProject.csproj.CoreCompileInputs.cache
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientProject.csproj.CopyComplete
-C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\bin\Debug\Syncfusion.Compression.Base.dll
-C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\bin\Debug\Syncfusion.Licensing.dll
-C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\bin\Debug\Syncfusion.Pdf.Base.dll
-C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\bin\Debug\Syncfusion.Compression.Base.xml
-C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\bin\Debug\Syncfusion.Pdf.Base.xml
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PreviewZaStampu.g.cs
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PreviewZaStampu.baml
-C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\bin\Debug\Aspose.PDF.dll
-C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\bin\Debug\Aspose.PDF.xml
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PrintWindow.g.cs
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PrintWindow.baml
 C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientProject.csprojAssemblyReference.cache
+C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientScheduledExamsChart.g.cs
+C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientScheduledExamsChart.baml
+C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientSeeDoctorsPage.g.cs
+C:\Users\Korisnik\Desktop\treca godina\letnji semestar\HCI\projekat hci\PatientProject\PatientProject\obj\Debug\PatientPages\PatientSeeDoctorsPage.baml

@@ -250,7 +250,7 @@
 
                         <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="131,0,44,0" Height="16" Width="0"/>
 
-                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"  ToolTip="MaterialDesignFloatingActionAccentButton" Grid.Row="2" Grid.Column="1" x:Name="Back" Width="60" Height="60" BorderThickness="0" Padding="0"  HorizontalAlignment="Left" VerticalAlignment="Center" Click="Back_Click">
+                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Grid.Row="2" Grid.Column="1" x:Name="Back" Width="60" Height="60" BorderThickness="0" Padding="0"  HorizontalAlignment="Left" VerticalAlignment="Center" Click="Back_Click">
                             <materialDesign:PackIcon Kind="ArrowLeft" Height="24" Width="24"/>
                         </Button>
 

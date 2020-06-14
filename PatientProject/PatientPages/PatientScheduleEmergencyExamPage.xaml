@@ -203,7 +203,7 @@
                         <materialDesign:PackIcon Kind="Bell" Foreground="White" Width="50" Height="35" VerticalAlignment="Center"  HorizontalAlignment="Center"/>
                     </Button>
 
-                    <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ButtonAssist.CornerRadius="10" ToolTip="Options" Grid.Column="4" Grid.Row="0" Name="gear" Click="displayOptions_Click" Width="60" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="40" Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" CommandParameter="{x:Static Dock.Right}">
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:ButtonAssist.CornerRadius="10" ToolTip="Opcije" Grid.Column="4" Grid.Row="0" Name="gear" Click="displayOptions_Click" Width="60" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="40" Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" CommandParameter="{x:Static Dock.Right}">
                         <materialDesign:PackIcon Kind="DotsVertical" Foreground="White" Width="50" Height="40" VerticalAlignment="Center"  HorizontalAlignment="Center"/>
                     </Button>
                     <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" Grid.RowSpan="4">
@@ -225,7 +225,7 @@
                             <RowDefinition Height="474"/>
 
                         </Grid.RowDefinitions>
-                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}"  ToolTip="MaterialDesignFloatingActionAccentButton" Grid.Row="2" Grid.Column="1" x:Name="Back" Width="60" BorderThickness="0" Padding="0"  HorizontalAlignment="Left" VerticalAlignment="Center" Click="Back_Click" Height="60" Margin="0,11">
+                        <Button Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Grid.Row="2" Grid.Column="1" x:Name="Back" Width="60" BorderThickness="0" Padding="0"  HorizontalAlignment="Left" VerticalAlignment="Center" Click="Back_Click" Height="60" Margin="0,11">
                             <materialDesign:PackIcon Kind="ArrowLeft" Height="24" Width="24"/>
                         </Button>
 

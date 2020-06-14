@@ -260,5 +260,26 @@ namespace PatientProject.PatientPages
         {
             DiagnosisPopup.IsOpen = true;
         }
+
+
+        private void alergiesExit_Click(object sender, RoutedEventArgs e)
+        {
+            AlergiesPopup.IsOpen = false;
+        }
+
+        private void drugsExit_Click(object sender, RoutedEventArgs e)
+        {
+            DrugsPopup.IsOpen = false;
+        }
+
+        private void examsPopup_Click(object sender, RoutedEventArgs e)
+        {
+            ExamsPopup.IsOpen = false;
+        }
+
+        private void diagnosis_Click(object sender, RoutedEventArgs e)
+        {
+            DiagnosisPopup.IsOpen = false;
+        }
     }
 }
